@@ -30,6 +30,7 @@ export interface PackageCard {
   tag: string;
   description: string;
   startingPrice: number;
+  offerPrice?: number;
   isPopular?: boolean;
   features: string[];
 }

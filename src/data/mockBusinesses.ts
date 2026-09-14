@@ -83,7 +83,7 @@ export const BUSINESS_CATEGORIES: CategoryCardData[] = [
   },
   {
     id: 'crm',
-    name: 'ATMAN Business CRM',
+    name: 'Xampire Business CRM',
     label: 'Business & CRM',
     tagline: 'Lead Pipeline & Client Portal',
     description: 'Leads, customers, follow-ups and business operations.',
@@ -654,19 +654,19 @@ export const BUSINESS_DATA_MAP: Record<BusinessCategory, BusinessData> = {
 
   crm: {
     id: 'crm',
-    name: 'ATMAN Business CRM',
+    name: 'Xampire Business CRM',
     label: 'Business & CRM',
     tagline: 'Lead tracking, client follow-ups & business pipelines',
     category: 'Sales Pipeline & Operations Dashboard',
     description: 'Custom client management software designed for agencies, distributors, service companies, and B2B businesses.',
     defaultCustomization: {
-      businessName: 'ATMAN Business CRM',
+      businessName: 'Xampire Business CRM',
       tagline: 'Operations, Leads & Client Relations',
       accentColor: 'violet',
       phone: '+91 94311 00880',
       whatsapp: '+91 94311 00880',
       address: 'Harmu Bypass Commercial Complex, Ranchi, Jharkhand',
-      website: 'www.atmanbiz.local',
+      website: 'www.xampiretech.com',
       crmStagesList: ['New Inquiry', 'Requirements Call', 'Proposal Sent', 'Closed Won']
     },
     stats: [

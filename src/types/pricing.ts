@@ -2,19 +2,24 @@ import { BusinessCategory } from './showroom';
 
 export type DealMode = 'standard' | 'launch_offer' | 'special_discount' | 'custom_quote';
 
+export type PricingTierId = 'website' | 'booking' | 'dashboard' | 'custom';
+
 export interface PricingTierConfig {
-  id: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special';
+  id: PricingTierId;
   name: string;
   tagline: string;
   badge?: string;
   isPopular?: boolean;
-  regularPrice: number; // e.g. 4499 or 9999
-  offerPrice: number;   // e.g. 3499 or 7499
-  floorPrice: number;   // PRESENTER-ONLY safety guard (e.g. 2500, 5500)
+  regularPrice: number; // e.g. 20000, 30000, 45000, 60000
+  regularPriceDisplay?: string; // e.g. "₹60,000–₹1,00,000+"
+  offerPrice: number;   // e.g. 7500, 10000, 15000, 20000
+  offerPriceDisplay?: string; // e.g. "Starting ₹20,000 / Custom Quote"
+  floorPrice: number;   // PRESENTER-ONLY safety guard (e.g. 5000, 8000, 12000, 20000)
   defaultAdvancePercent: number; // default 50%
   description: string;
   features: string[];
   inclusionsByCategory: Record<BusinessCategory, string[]>;
+  isQuote?: boolean;
 }
 
 export interface CompetitorBenchmark {
@@ -35,7 +40,7 @@ export interface BonusOfferConfig {
 
 export interface PricingState {
   dealMode: DealMode;
-  selectedTierId: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special';
+  selectedTierId: PricingTierId;
   customPriceOverrides: Record<string, number>;
   advancePercentage: number; // default 50
   isNegotiationDrawerOpen: boolean; // Presenter-only drawer
@@ -44,10 +49,10 @@ export interface PricingState {
 
 export interface PricingConfig {
   tiers: {
-    tier_a: PricingTierConfig;
-    tier_b: PricingTierConfig;
-    tier_c: PricingTierConfig;
-    restaurant_special: PricingTierConfig;
+    website: PricingTierConfig;
+    booking: PricingTierConfig;
+    dashboard: PricingTierConfig;
+    custom: PricingTierConfig;
   };
   bonus: BonusOfferConfig;
   competitors: CompetitorBenchmark[];

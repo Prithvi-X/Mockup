@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { BusinessCategory, CustomizationState, DemoViewMode } from '../types/showroom';
 import { DemoSpeedMode } from '../types/salesMode';
-import { DealMode } from '../types/pricing';
+import { DealMode, PricingTierId } from '../types/pricing';
 import { BUSINESS_DATA_MAP } from '../data/mockBusinesses';
 
-const STORAGE_KEY = 'atman_demo_customizations_v2';
-const RECENT_KEY = 'atman_recent_demos';
-const PINNED_KEY = 'atman_pinned_demos';
+const STORAGE_KEY = 'xampire_demo_customizations_v2';
+const RECENT_KEY = 'xampire_recent_demos';
+const PINNED_KEY = 'xampire_pinned_demos';
 
 interface DemoContextType {
   screen: 'showroom' | 'demo';
@@ -35,8 +35,8 @@ interface DemoContextType {
   // Phase 5 Pricing, Competitor Comparison & Sales Offer Engine
   dealMode: DealMode;
   setDealMode: (mode: DealMode) => void;
-  selectedPricingTierId: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special';
-  setSelectedPricingTierId: (id: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special') => void;
+  selectedPricingTierId: PricingTierId;
+  setSelectedPricingTierId: (id: PricingTierId) => void;
   customPriceOverrides: Record<string, number>;
   setCustomPriceOverride: (tierId: string, price: number) => void;
   advancePercentage: number;
@@ -116,7 +116,7 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Phase 5 Pricing & Sales Offer Engine
   const [dealMode, setDealMode] = useState<DealMode>('launch_offer');
-  const [selectedPricingTierId, setSelectedPricingTierId] = useState<'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special'>('tier_a');
+  const [selectedPricingTierId, setSelectedPricingTierId] = useState<PricingTierId>('booking');
   const [customPriceOverrides, setCustomPriceOverrides] = useState<Record<string, number>>({});
   const [advancePercentage, setAdvancePercentage] = useState<number>(50);
   const [isNegotiationDrawerOpen, setIsNegotiationDrawerOpen] = useState<boolean>(false);
@@ -125,16 +125,16 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCustomPriceOverrides(prev => ({ ...prev, [tierId]: price }));
   };
 
-  const getCategoryDefaultTier = (cat: BusinessCategory): 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special' => {
+  const getCategoryDefaultTier = (cat: BusinessCategory): PricingTierId => {
     switch (cat) {
-      case 'salon': return 'tier_a';
-      case 'hotel': return 'tier_b';
-      case 'restaurant': return 'restaurant_special';
-      case 'gym': return 'tier_b';
-      case 'clinic': return 'tier_b';
-      case 'crm':
-      case 'custom':
-      default: return 'tier_c';
+      case 'custom': return 'custom';
+      case 'crm': return 'dashboard';
+      case 'salon':
+      case 'hotel':
+      case 'restaurant':
+      case 'gym':
+      case 'clinic':
+      default: return 'booking';
     }
   };
 

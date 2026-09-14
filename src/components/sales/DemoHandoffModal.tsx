@@ -62,8 +62,8 @@ export const DemoHandoffModal: React.FC = () => {
 
   // Compute pricing for any tier (floor prices are strictly excluded and never displayed)
   const getTierPricing = (tier: PricingTierConfig) => {
-    if (tier.id === 'tier_c') {
-      return { regular: 0, finalPrice: 0, advance: 0, isQuote: true };
+    if (tier.isQuote || tier.id === 'custom') {
+      return { regular: tier.regularPrice, finalPrice: tier.offerPrice, advance: Math.round((tier.offerPrice * advancePercentage) / 100), isQuote: true };
     }
     const overridden = customPriceOverrides[tier.id];
     const finalPrice = overridden !== undefined 
@@ -98,7 +98,7 @@ export const DemoHandoffModal: React.FC = () => {
       if (customization.phone) setPhone(customization.phone);
       setSelectedCat(category);
 
-      const activeTier = PRICING_CONFIG.tiers[selectedPricingTierId] || PRICING_CONFIG.tiers.tier_b;
+      const activeTier = PRICING_CONFIG.tiers[selectedPricingTierId] || PRICING_CONFIG.tiers.booking;
       const tierPricing = getTierPricing(activeTier);
 
       if (tierPricing.isQuote) {
@@ -111,20 +111,13 @@ export const DemoHandoffModal: React.FC = () => {
 
   if (!isDemoHandoffOpen) return null;
 
-  // Active tiers list (includes restaurant special if restaurant)
-  const activeTiers: PricingTierConfig[] = 
-    selectedCat === 'restaurant'
-      ? [
-          PRICING_CONFIG.tiers.restaurant_special,
-          PRICING_CONFIG.tiers.tier_a,
-          PRICING_CONFIG.tiers.tier_b,
-          PRICING_CONFIG.tiers.tier_c
-        ]
-      : [
-          PRICING_CONFIG.tiers.tier_a,
-          PRICING_CONFIG.tiers.tier_b,
-          PRICING_CONFIG.tiers.tier_c
-        ];
+  // 4 Primary Tiers: Website, Booking, Dashboard, Custom
+  const activeTiers: PricingTierConfig[] = [
+    PRICING_CONFIG.tiers.website,
+    PRICING_CONFIG.tiers.booking,
+    PRICING_CONFIG.tiers.dashboard,
+    PRICING_CONFIG.tiers.custom
+  ];
 
   const handleSelectPackage = (tier: PricingTierConfig) => {
     setSelectedPricingTierId(tier.id);
@@ -180,7 +173,7 @@ export const DemoHandoffModal: React.FC = () => {
         `• Launch Bonus: ReviewBro.in included free for 2 months\n` +
         `• Scope Modules: ${inquiry.modules.slice(0, 4).join(', ')}${inquiry.modules.length > 4 ? ` (+${inquiry.modules.length - 4} more)` : ''}\n` +
         `• Next Step: We will configure your prototype sandbox within 48 hours.\n\n` +
-        `Best regards,\nATMAN Software Solutions`,
+        `Best regards,\nXampire Technologies`,
         `Formal Quotation Slip: ${inquiry.businessName}`
       );
     }, 400);

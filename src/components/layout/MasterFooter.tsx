@@ -15,7 +15,7 @@ export const MasterFooter: React.FC = () => {
               <div className="w-6 h-6 rounded-md bg-gray-900 border border-gray-900 flex items-center justify-center text-white font-bold shadow-2xs">
                 <Layers className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="text-base font-bold tracking-tight text-gray-900">ATMAN Software</span>
+              <span className="text-base font-bold tracking-tight text-gray-900">Xampire Technologies</span>
             </div>
             <p className="text-xs text-gray-500 max-w-sm leading-relaxed">
               Custom websites, booking systems, dashboards, and business management tools designed around the way modern local businesses actually operate.
@@ -25,7 +25,7 @@ export const MasterFooter: React.FC = () => {
                 <MapPin className="w-3.5 h-3.5 text-gray-400" /> Ranchi, Jharkhand & Remote
               </span>
               <span className="flex items-center gap-1">
-                <Mail className="w-3.5 h-3.5 text-gray-400" /> hello@atmansoftware.local (Demo)
+                <Mail className="w-3.5 h-3.5 text-gray-400" /> hello@xampiretech.com (Demo)
               </span>
             </div>
           </div>
@@ -96,7 +96,7 @@ export const MasterFooter: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-[11px]">
-          <p>© {new Date().getFullYear()} ATMAN Software. Master Software Demo Showroom.</p>
+          <p>© {new Date().getFullYear()} Xampire Technologies. Master Software Demo Showroom.</p>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
             <span>Showroom Mode Active • Offline-Ready</span>

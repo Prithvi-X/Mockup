@@ -577,7 +577,7 @@ export const WorkflowProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [wowMoment, setWowMoment] = useState<{ title: string; description: string } | null>(null);
   const [savedInquiries, setSavedInquiries] = useState<SalesRequirementInquiry[]>(() => {
     try {
-      const saved = localStorage.getItem('atman_sales_inquiries');
+      const saved = localStorage.getItem('xampire_sales_inquiries') || localStorage.getItem('atman_sales_inquiries');
       if (saved) return JSON.parse(saved);
     } catch (e) {
       // ignore
@@ -589,7 +589,7 @@ export const WorkflowProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setSavedInquiries(prev => {
       const next = [inquiry, ...prev];
       try {
-        localStorage.setItem('atman_sales_inquiries', JSON.stringify(next));
+        localStorage.setItem('xampire_sales_inquiries', JSON.stringify(next));
       } catch (e) {
         // ignore
       }

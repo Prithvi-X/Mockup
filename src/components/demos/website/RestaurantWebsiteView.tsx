@@ -299,7 +299,7 @@ export const RestaurantWebsiteView: React.FC = () => {
 
         <div className="max-w-5xl mx-auto mt-8 pt-4 border-t border-gray-200 text-center text-gray-500 text-[11px] flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>© {new Date().getFullYear()} {customization.businessName}. All rights reserved.</span>
-          <span className="text-gray-400">Powered by ATMAN Restaurant POS & Web Engine</span>
+          <span className="text-gray-400">Powered by Xampire Technologies Restaurant POS & Web Engine</span>
         </div>
       </footer>
     </div>

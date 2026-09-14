@@ -42,28 +42,21 @@ export const PricingPresentationView: React.FC = () => {
   // Interactive Monthly vs One-Time calculator rate (default ₹999/month)
   const [calculatorMonthlyRate, setCalculatorMonthlyRate] = useState<number>(999);
 
-  // Determine tiers to display based on category
-  const activeTiers: PricingTierConfig[] = 
-    category === 'restaurant'
-      ? [
-          PRICING_CONFIG.tiers.restaurant_special,
-          PRICING_CONFIG.tiers.tier_a,
-          PRICING_CONFIG.tiers.tier_b,
-          PRICING_CONFIG.tiers.tier_c
-        ]
-      : [
-          PRICING_CONFIG.tiers.tier_a,
-          PRICING_CONFIG.tiers.tier_b,
-          PRICING_CONFIG.tiers.tier_c
-        ];
+  // 4 Primary Tiers: Website, Booking (Primary), Dashboard, Custom
+  const activeTiers: PricingTierConfig[] = [
+    PRICING_CONFIG.tiers.website,
+    PRICING_CONFIG.tiers.booking,
+    PRICING_CONFIG.tiers.dashboard,
+    PRICING_CONFIG.tiers.custom
+  ];
 
   const getTierPricing = (tier: PricingTierConfig) => {
-    if (tier.id === 'tier_c') {
+    if (tier.isQuote || tier.id === 'custom') {
       return {
-        regular: 0,
-        finalPrice: 0,
-        advance: 0,
-        remaining: 0,
+        regular: tier.regularPrice,
+        finalPrice: tier.offerPrice,
+        advance: Math.round((tier.offerPrice * advancePercentage) / 100),
+        remaining: tier.offerPrice - Math.round((tier.offerPrice * advancePercentage) / 100),
         isQuote: true,
         savings: 0
       };
@@ -90,7 +83,7 @@ export const PricingPresentationView: React.FC = () => {
     };
   };
 
-  const selectedTier = PRICING_CONFIG.tiers[selectedPricingTierId] || PRICING_CONFIG.tiers.tier_a;
+  const selectedTier = PRICING_CONFIG.tiers[selectedPricingTierId] || PRICING_CONFIG.tiers.booking;
   const selectedTierPricing = getTierPricing(selectedTier);
 
   const handleStartProject = (tier: PricingTierConfig) => {
@@ -177,31 +170,41 @@ export const PricingPresentationView: React.FC = () => {
                 {/* Price Display */}
                 <div className="my-4 p-3.5 rounded-lg bg-gray-50 border border-gray-200">
                   {pricing.isQuote ? (
-                    <div>
-                      <span className="text-2xl font-bold text-gray-900">
-                        Custom Quote
-                      </span>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Tailored to your specific operational scale
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs text-gray-600 font-medium">
+                        <span>Standard Project:</span>
+                        <span className="font-semibold text-gray-700">{tier.regularPriceDisplay || '₹60,000–₹1,00,000+'}</span>
+                      </div>
+                      <div className="flex items-baseline justify-between pt-1">
+                        <span className="text-xs font-bold text-indigo-900">Launch Offer:</span>
+                        <span className="text-xl font-extrabold text-gray-900">
+                          {tier.offerPriceDisplay || 'Starting ₹20,000 / Custom Quote'}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-gray-500 pt-1">
+                        Architecture tailored to your operational scale
                       </p>
                     </div>
                   ) : (
                     <div>
-                      <div className="flex items-baseline gap-2">
-                        {pricing.savings > 0 && (
-                          <span className="text-sm text-gray-400 line-through font-semibold">
-                            ₹{pricing.regular.toLocaleString('en-IN')}
-                          </span>
-                        )}
-                        <span className="text-3xl font-extrabold text-gray-900">
+                      <div className="flex items-center justify-between text-xs text-gray-600 font-medium pb-1">
+                        <span>Standard Project Price:</span>
+                        <span className="text-sm font-semibold text-gray-400 line-through">
+                          ₹{pricing.regular.toLocaleString('en-IN')}
+                        </span>
+                      </div>
+
+                      <div className="flex items-baseline justify-between pt-0.5">
+                        <span className="text-xs font-bold text-indigo-900">Launch Offer:</span>
+                        <span className="text-2xl font-extrabold text-gray-900">
                           ₹{pricing.finalPrice.toLocaleString('en-IN')}
                         </span>
                       </div>
 
                       {pricing.savings > 0 && (
-                        <div className="mt-1 flex items-center gap-1.5 text-xs text-emerald-700 font-bold">
-                          <TrendingDown className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>Save ₹{pricing.savings.toLocaleString('en-IN')} with Launch Offer</span>
+                        <div className="mt-2 flex items-center justify-between text-xs text-emerald-800 font-bold bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+                          <span>You Save:</span>
+                          <span>₹{pricing.savings.toLocaleString('en-IN')}</span>
                         </div>
                       )}
 
@@ -209,7 +212,7 @@ export const PricingPresentationView: React.FC = () => {
                       <div className="mt-3 pt-3 border-t border-gray-200 grid grid-cols-2 gap-2 text-xs">
                         <div className="bg-white p-2 rounded border border-gray-200">
                           <span className="text-[10px] text-gray-500 uppercase tracking-wider block font-semibold">
-                            Today ({advancePercentage}%)
+                            Advance ({advancePercentage}%)
                           </span>
                           <span className="text-sm font-bold text-emerald-700">
                             ₹{pricing.advance.toLocaleString('en-IN')}
@@ -229,10 +232,15 @@ export const PricingPresentationView: React.FC = () => {
                 </div>
 
                 {/* Included Bonus Tag on Offer Tiers */}
-                {!pricing.isQuote && dealMode === 'launch_offer' && (
-                  <div className="mb-4 p-2.5 rounded-lg bg-amber-50 border border-amber-200 flex items-center gap-2 text-xs text-amber-800">
-                    <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span><strong>Bonus:</strong> ReviewBro.in free for 2 months</span>
+                {!pricing.isQuote && (
+                  <div className="mb-4 p-2.5 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-between text-xs font-semibold text-amber-900">
+                    <span className="flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                      ReviewBro.in:
+                    </span>
+                    <span className="font-bold text-emerald-800 bg-white px-2 py-0.5 rounded border border-amber-200 uppercase text-[10px]">
+                      FREE for 2 months
+                    </span>
                   </div>
                 )}
 
@@ -390,7 +398,7 @@ export const PricingPresentationView: React.FC = () => {
               Our Custom Project
             </span>
             <div className="text-xl sm:text-2xl font-bold text-gray-900 mt-0.5">
-              ₹3,499 – ₹7,499 One-Time Project Fee
+              ₹7,500 – ₹15,000 One-Time Project Fee
             </div>
             <p className="text-xs text-gray-600 mt-0.5">
               Zero monthly subscription fees. No commission on customer bookings or orders.
@@ -399,10 +407,10 @@ export const PricingPresentationView: React.FC = () => {
 
           <button
             type="button"
-            onClick={() => handleStartProject(PRICING_CONFIG.tiers.tier_a)}
+            onClick={() => handleStartProject(PRICING_CONFIG.tiers.booking)}
             className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-md shadow-xs transition self-start sm:self-center shrink-0"
           >
-            Start With ₹1,750 Advance
+            Start With ₹5,000 Advance
           </button>
         </div>
 

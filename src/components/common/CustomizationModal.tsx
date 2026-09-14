@@ -936,7 +936,7 @@ export const CustomizationModal: React.FC = () => {
               <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-700 text-xs space-y-2">
                 <h4 className="font-semibold text-gray-900">Custom Architecture Workflows</h4>
                 <p className="text-gray-500 leading-relaxed">
-                  For bespoke enterprises (such as workshops, coaching academies, jewelry showrooms, and logistics), ATMAN architects design the database models and modules according to your exact operational diagram.
+                  For bespoke enterprises (such as workshops, coaching academies, jewelry showrooms, and logistics), Xampire Technologies architects design the database models and modules according to your exact operational diagram.
                 </p>
               </div>
             )}

@@ -2,39 +2,36 @@ import { PricingConfig } from '../types/pricing';
 
 export const PRICING_CONFIG: PricingConfig = {
   tiers: {
-    tier_a: {
-      id: 'tier_a',
-      name: 'Custom Business Website',
-      tagline: 'Customer-facing digital storefront & booking workflow',
-      regularPrice: 4499,
-      offerPrice: 3499,
-      floorPrice: 2500, // PRESENTER-ONLY SAFETY GUARD — NEVER EXPOSED TO PROSPECT
+    website: {
+      id: 'website',
+      name: 'Business Website',
+      tagline: 'Customer-facing branded digital storefront & catalog',
+      regularPrice: 20000,
+      offerPrice: 7500,
+      floorPrice: 5000, // PRESENTER-ONLY SAFETY GUARD — NEVER EXPOSED TO PROSPECT
       defaultAdvancePercent: 50,
-      description: 'A mobile-optimized branded storefront that allows local customers to browse services and self-book without third-party fees.',
+      description: 'A mobile-optimized branded storefront that allows local customers to browse services, location and contact your business directly.',
       features: [
         'Branded custom website & color styling',
         'Mobile-responsive layout',
         'Services / catalog showcase with ₹ pricing',
         'Direct WhatsApp contact & call CTA',
-        'Customer booking / inquiry form',
-        'Service & date/time selection',
-        'Automated WhatsApp booking slip trigger',
-        'Setup, local hosting & configuration'
+        'Google Maps directions & location showcase',
+        'Customer inquiry form & contact capture',
+        'Setup, local hosting & configuration assistance'
       ],
       inclusionsByCategory: {
         salon: [
           'Branded Salon & Spa storefront',
           'Hair, beauty & treatment catalog with ₹ pricing',
-          'Stylist selection & available time slots',
-          '60-second online customer booking form',
-          'Automated WhatsApp appointment slip',
+          'Stylist profiles & salon working hours',
+          'Direct WhatsApp appointment inquiry',
           'Google Maps directions & salon address'
         ],
         hotel: [
           'Boutique hotel & resort showcase',
           'Room categories, photos & tariff cards',
           'Direct booking inquiry without OTA commissions',
-          'Guest contact & check-in dates selection',
           'Front-desk concierge WhatsApp chat',
           'Directions & property amenities showcase'
         ],
@@ -42,37 +39,32 @@ export const PRICING_CONFIG: PricingConfig = {
           'Digital restaurant menu showcase',
           'Categorized food items with photos & ₹ prices',
           'Veg / Non-veg badges & food descriptions',
-          'Dine-in / takeaway order inquiry form',
-          'Table reservation request form',
-          'Direct WhatsApp table & order confirmation'
+          'Table reservation & order inquiry via WhatsApp',
+          'Google Maps location & opening hours'
         ],
         gym: [
           'Modern fitness club digital storefront',
           'Membership tiers & monthly/annual pricing',
           'Facility photo gallery (weights, steam, turf)',
           'Free 1-day guest pass inquiry form',
-          'Direct WhatsApp membership counselor chat',
-          'Gym timing & location map integration'
+          'Direct WhatsApp membership counselor chat'
         ],
         clinic: [
           'Doctor clinic & OPD storefront',
           'Specialist doctor profiles & consultation fees',
-          'Clinic timings & appointment booking form',
-          'Specialty selection (dental, general, etc.)',
-          'Instant WhatsApp appointment acknowledgment',
+          'Clinic timings & medical specialties list',
+          'Instant WhatsApp appointment inquiry',
           'Emergency contact & clinic address directions'
         ],
         crm: [
           'Corporate agency / services landing page',
           'Solutions showcase & case studies',
           'Lead capture & custom quote inquiry form',
-          'Project scope checklist',
           'Instant sales team WhatsApp notification',
           'Office contact details & credentials'
         ],
         custom: [
           'Bespoke branded digital storefront',
-          'Tailored customer intake flow',
           'Service / product catalog with custom attributes',
           'WhatsApp instant inquiry dispatch',
           'Mobile-first responsive architecture',
@@ -81,30 +73,102 @@ export const PRICING_CONFIG: PricingConfig = {
       }
     },
 
-    tier_b: {
-      id: 'tier_b',
-      name: 'Custom Business System',
-      tagline: 'Website + Real-time Owner Operations Dashboard',
-      badge: 'MOST POPULAR',
+    booking: {
+      id: 'booking',
+      name: 'Website + Booking System',
+      tagline: 'Self-service online booking/ordering + WhatsApp confirmation',
+      badge: 'PRIMARY LAUNCH OFFER',
       isPopular: true,
-      regularPrice: 9999,
-      offerPrice: 7499,
-      floorPrice: 5500, // PRESENTER-ONLY SAFETY GUARD — NEVER EXPOSED TO PROSPECT
+      regularPrice: 30000,
+      offerPrice: 10000,
+      floorPrice: 8000, // PRESENTER-ONLY SAFETY GUARD — NEVER EXPOSED TO PROSPECT
       defaultAdvancePercent: 50,
-      description: 'The complete business solution: branded customer frontend connected live to your private owner management dashboard.',
+      description: 'The primary growth engine: customer-facing website with 60-second self-service booking/ordering, automated WhatsApp confirmations, and zero commissions.',
       features: [
-        'Everything in Custom Business Website',
-        'Private owner management dashboard',
-        'Live booking & order queue management',
-        'Customer database & visit history',
-        'Status management (Confirmed / Active / Done)',
-        'Simple daily business revenue overview',
-        'Cash vs UPI payment balance tracking',
-        'Activity feed & real-time notifications'
+        'Everything in Business Website',
+        'Self-service 60-second online booking / ordering flow',
+        'Automated WhatsApp confirmation slips to customer & owner',
+        'Slot, table, and staff availability management',
+        'Customer contact & service details capture',
+        'Zero commissions on direct customer bookings',
+        'ReviewBro.in FREE for 2 months included'
       ],
       inclusionsByCategory: {
         salon: [
           'Everything in Salon Website',
+          '60-second online customer booking form',
+          'Stylist selection & available time slots',
+          'Automated WhatsApp appointment slip to client & owner',
+          'Slot clash prevention & zero booking commissions'
+        ],
+        hotel: [
+          'Everything in Hotel Website',
+          'Direct online room booking workflow',
+          'Guest contact & check-in/out dates selection',
+          'Automated WhatsApp reservation confirmation',
+          'Zero commissions on direct guest bookings'
+        ],
+        restaurant: [
+          'Everything in Restaurant Menu',
+          'Contactless QR digital menu & table ordering flow',
+          'Dine-in table number / takeaway cart flow',
+          'Direct WhatsApp order confirmation slip',
+          'Zero food aggregator commission'
+        ],
+        gym: [
+          'Everything in Gym Storefront',
+          '60-second online membership registration flow',
+          'Plan & duration selection with instant slip',
+          'Free trial pass instant WhatsApp delivery',
+          'Direct joining with zero intermediary fees'
+        ],
+        clinic: [
+          'Everything in Clinic Storefront',
+          '60-second online patient appointment booking',
+          'Doctor slot & specialty selection',
+          'Instant WhatsApp appointment confirmation with token',
+          'Patient reminder slips'
+        ],
+        crm: [
+          'Everything in Services Storefront',
+          'Interactive project requirement intake flow',
+          'Scope module selection & budget tier intake',
+          'Instant sales team WhatsApp lead dispatch',
+          'Automated lead confirmation acknowledgment'
+        ],
+        custom: [
+          'Everything in Custom Storefront',
+          'Interactive customer self-service intake/booking flow',
+          'Custom input fields & requirement checklist',
+          'Automated WhatsApp inquiry confirmation',
+          'Instant owner notification'
+        ]
+      }
+    },
+
+    dashboard: {
+      id: 'dashboard',
+      name: 'Website + Business Dashboard',
+      tagline: 'Customer frontend + Real-time owner operations dashboard',
+      badge: 'FULL OPERATIONS SUITE',
+      regularPrice: 45000,
+      offerPrice: 15000,
+      floorPrice: 12000, // PRESENTER-ONLY SAFETY GUARD — NEVER EXPOSED TO PROSPECT
+      defaultAdvancePercent: 50,
+      description: 'The complete business operations system: branded customer frontend connected live to your private owner management dashboard with live queues, customer history, and cash vs UPI balance tracking.',
+      features: [
+        'Everything in Website + Booking System',
+        'Private owner management dashboard',
+        'Live queue & order status management',
+        'Customer database & visit history',
+        'Status management (Pending / Active / Done)',
+        'Daily business revenue overview',
+        'Cash vs UPI payment balance tracking',
+        'Real-time activity feed & notifications'
+      ],
+      inclusionsByCategory: {
+        salon: [
+          'Everything in Salon Booking System',
           'Owner live queue dashboard (today\'s schedule)',
           'Customer database with visit history & loyalty',
           'Stylist shift assignment & availability control',
@@ -112,7 +176,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Daily collection tracking (Cash vs UPI)'
         ],
         hotel: [
-          'Everything in Hotel Website',
+          'Everything in Hotel Booking System',
           'Front-desk room occupancy & reservation dashboard',
           'Guest check-in & check-out status management',
           'Room availability & tariff calendar',
@@ -120,7 +184,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Daily revenue & advance payment tracking'
         ],
         restaurant: [
-          'Everything in Restaurant Menu',
+          'Everything in Restaurant Ordering System',
           'Live kitchen display & order queue (KOT)',
           'Table management & status (Available/Occupied)',
           'Order status workflow (New -> Preparing -> Ready)',
@@ -128,7 +192,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Daily sales overview & item popularity reports'
         ],
         gym: [
-          'Everything in Gym Storefront',
+          'Everything in Gym Joining System',
           'Member management dashboard & roster',
           'Attendance log (biometric/QR check-in simulated)',
           'Membership expiry & renewal alert tracking',
@@ -136,7 +200,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Fee payment recording & receipts'
         ],
         clinic: [
-          'Everything in Clinic Storefront',
+          'Everything in Clinic Booking System',
           'Digital token queue system (#A-101, #A-102)',
           'Doctor consultation dashboard & patient history',
           'Waiting room queue display status',
@@ -144,7 +208,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Daily patient count & consultation fee reports'
         ],
         crm: [
-          'Everything in Services Storefront',
+          'Everything in Inquiry Flow',
           'Kanban deal pipeline (New -> Contacted -> Won)',
           'Lead tracking with budget & requirement details',
           'Customer interaction history & follow-up notes',
@@ -152,7 +216,7 @@ export const PRICING_CONFIG: PricingConfig = {
           'Deal closure tracking & proposal archive'
         ],
         custom: [
-          'Everything in Custom Storefront',
+          'Everything in Custom Inquiry Flow',
           'Tailored multi-stage business dashboard',
           'Role-specific views (Owner / Cashier / Staff)',
           'Custom status workflow & dispatch states',
@@ -162,14 +226,17 @@ export const PRICING_CONFIG: PricingConfig = {
       }
     },
 
-    tier_c: {
-      id: 'tier_c',
+    custom: {
+      id: 'custom',
       name: 'Custom Business Software',
       tagline: 'Bespoke architecture built around your exact workflow',
-      regularPrice: 0,
-      offerPrice: 0,
-      floorPrice: 0, // Quote-based
+      regularPrice: 60000,
+      regularPriceDisplay: '₹60,000–₹1,00,000+',
+      offerPrice: 20000,
+      offerPriceDisplay: 'Starting ₹20,000 / Custom Quote',
+      floorPrice: 20000, // PRESENTER-ONLY SAFETY GUARD
       defaultAdvancePercent: 40,
+      isQuote: true,
       description: 'When your business has unique operational needs, multi-branch operations, or complex custom hardware requirements.',
       features: [
         'Architecture tailored to your exact workflow',
@@ -231,43 +298,6 @@ export const PRICING_CONFIG: PricingConfig = {
           'Legacy software data migration assistance',
           'Dedicated engineering support & SLA'
         ]
-      }
-    },
-
-    restaurant_special: {
-      id: 'restaurant_special',
-      name: 'Digital Menu + QR Ordering',
-      tagline: 'Self-service contactless QR menu & kitchen orders',
-      regularPrice: 2999,
-      offerPrice: 2499,
-      floorPrice: 2000, // PRESENTER-ONLY SAFETY GUARD
-      defaultAdvancePercent: 50,
-      description: 'Dedicated restaurant package: customers scan QR on table, browse digital menu with photos, and place orders directly.',
-      features: [
-        'Mobile-friendly QR digital menu',
-        'Printable tabletop QR code graphic',
-        'Menu categories & dish photography',
-        'Live ₹ pricing with veg / non-veg tags',
-        'Table order cart & self-checkout flow',
-        'Dine-in table number or takeaway options',
-        'Owner kitchen order management screen',
-        'Optional +₹3,000–₹5,000 upgrade for advanced billing'
-      ],
-      inclusionsByCategory: {
-        restaurant: [
-          'Custom branded QR code for table stands',
-          'Visual digital menu accessible on any phone',
-          'Instant cart & ordering without app download',
-          'Live kitchen ticket display (KOT)',
-          'Order status updates (New -> Preparing -> Ready)',
-          'Table-wise bill summary with UPI QR'
-        ],
-        salon: [],
-        hotel: [],
-        gym: [],
-        clinic: [],
-        crm: [],
-        custom: []
       }
     }
   },
@@ -365,8 +395,8 @@ export const PRICING_CONFIG: PricingConfig = {
     {
       feature: 'Starting Cost',
       saas: 'Recurring monthly expense',
-      agency: 'High upfront project cost (₹45k+)',
-      ourSolution: 'Affordable entry project (₹3,499 offer)'
+      agency: 'High upfront project cost (₹60k+)',
+      ourSolution: 'Accessible entry project (₹7,500 – ₹10,000 launch offer)'
     },
     {
       feature: 'Direct Owner Demo',

@@ -326,7 +326,7 @@ export const QuickAccessPalette: React.FC = () => {
             <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
-          <span>ATMAN Presenter Palette</span>
+          <span>Xampire Technologies Presenter Palette</span>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-# ATMAN Software — Master Software Demo Showroom (Phase 2)
+# Xampire Technologies — Master Software Demo Showroom
 
 An interactive, responsive, offline-first sales showroom with **working simulated end-to-end workflows** for selling custom software to local businesses (Salons, Hotels, Restaurants, Gyms, Clinics, CRMs, and Bespoke Operations).
 
@@ -87,7 +87,7 @@ When an owner only gives you 1–2 minutes, use the **[⚡ Quick Demo]** button 
 3. Tap **Call Next Patient**: The token board animates to the next patient in line and updates consultation counters!
 4. Tap patient name → opens Consultation Notes modal with live note saving.
 
-### 6. Business & CRM (*ATMAN Business CRM*)
+### 6. Business & CRM (*Xampire Business CRM*)
 1. Customer View: Fill in company name, requirement, and budget range → tap *Request Proposal*.
 2. Switch to Dashboard: Deal appears in the **Visual Kanban Pipeline**.
 3. Use the arrow buttons on deal cards to advance opportunities: **New → Contacted → Proposal Sent → Won** and watch the active pipeline value re-calculate in real time!

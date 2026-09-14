@@ -159,12 +159,10 @@ export const PresenterNegotiationDrawer: React.FC = () => {
               onChange={(e) => setSelectedPricingTierId(e.target.value as any)}
               className="w-full bg-white border border-gray-300 text-gray-900 text-xs rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-600"
             >
-              <option value="tier_a">Tier A: Custom Website / Booking (₹4,499 reg)</option>
-              <option value="tier_b">Tier B: Business System + Dashboard (₹9,999 reg)</option>
-              {category === 'restaurant' && (
-                <option value="restaurant_special">Restaurant Special: QR Menu (₹2,999 reg)</option>
-              )}
-              <option value="tier_c">Tier C: Full Custom Software (Custom Quote)</option>
+              <option value="website">Business Website (₹20,000 std / ₹7,500 offer)</option>
+              <option value="booking">Website + Booking System (₹30,000 std / ₹10,000 offer)</option>
+              <option value="dashboard">Website + Business Dashboard (₹45,000 std / ₹15,000 offer)</option>
+              <option value="custom">Custom Business Software (₹60,000+ / Custom Quote)</option>
             </select>
           </div>
 
@@ -206,17 +204,17 @@ export const PresenterNegotiationDrawer: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => applyFlatDiscount(500)}
-                className="py-1.5 px-2.5 bg-white hover:bg-gray-50 text-gray-700 rounded-md text-xs font-medium border border-gray-300 transition shadow-xs"
-              >
-                ₹500 Off
-              </button>
-              <button
-                type="button"
                 onClick={() => applyFlatDiscount(1000)}
                 className="py-1.5 px-2.5 bg-white hover:bg-gray-50 text-gray-700 rounded-md text-xs font-medium border border-gray-300 transition shadow-xs"
               >
                 ₹1,000 Off
+              </button>
+              <button
+                type="button"
+                onClick={() => applyFlatDiscount(2500)}
+                className="py-1.5 px-2.5 bg-white hover:bg-gray-50 text-gray-700 rounded-md text-xs font-medium border border-gray-300 transition shadow-xs"
+              >
+                ₹2,500 Off
               </button>
             </div>
           </div>

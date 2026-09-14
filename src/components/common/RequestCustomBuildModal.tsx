@@ -41,14 +41,14 @@ export const RequestCustomBuildModal: React.FC = () => {
   };
 
   const handleCopySummary = () => {
-    const text = `ATMAN CUSTOM SOFTWARE BLUEPRINT\n` +
+    const text = `XAMPIRE TECHNOLOGIES CUSTOM SOFTWARE BLUEPRINT\n` +
       `Business: ${customization.businessName} (${category.toUpperCase()})\n` +
       `Contact: ${contactName || 'Owner'} (${contactPhone})\n` +
       `Target Timeline: ${timeline}\n` +
       `Estimated Budget: ${budgetRange}\n` +
       `Modules:\n${selectedModules.map(m => ` - ${m}`).join('\n')}\n` +
       (notes ? `Notes: ${notes}\n` : '') +
-      `Generated from ATMAN Master Software Showroom`;
+      `Generated from Xampire Technologies Master Software Showroom`;
 
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -84,7 +84,7 @@ export const RequestCustomBuildModal: React.FC = () => {
           <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3 text-xs font-mono shadow-2xs">
             <div className="flex items-center justify-between pb-2 border-b border-gray-200">
               <span className="text-gray-500">SPEC REF #</span>
-              <span className="text-gray-900 font-semibold">ATMAN-ARCH-2026-X8</span>
+              <span className="text-gray-900 font-semibold">XAMPIRE-ARCH-2026-X8</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-gray-500">BUSINESS</span>

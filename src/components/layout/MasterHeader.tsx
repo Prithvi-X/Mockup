@@ -24,10 +24,10 @@ export const MasterHeader: React.FC = () => {
           </div>
           <div>
             <span className="font-extrabold text-base sm:text-lg tracking-tight text-gray-900">
-              ATMAN
+              Xampire
             </span>
             <span className="text-[11px] font-semibold tracking-wider text-gray-500 ml-1.5 uppercase hidden sm:inline">
-              Software
+              Technologies
             </span>
           </div>
         </div>

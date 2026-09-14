@@ -132,7 +132,7 @@ export const CustomSoftwareView: React.FC = () => {
       {/* Comparison: Generic SaaS vs Custom Software */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 shadow-xs">
         <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-6 text-center">
-          Generic SaaS Subscriptions vs. ATMAN Custom Software
+          Generic SaaS Subscriptions vs. Xampire Technologies Custom Software
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -162,11 +162,11 @@ export const CustomSoftwareView: React.FC = () => {
             </ul>
           </div>
 
-          {/* ATMAN Custom */}
+          {/* Xampire Technologies Custom */}
           <div className="bg-emerald-50/40 border border-emerald-200 rounded-xl p-5 space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>ATMAN Bespoke Solution</span>
+              <span>Xampire Technologies Bespoke Solution</span>
             </div>
             <ul className="space-y-2.5 text-xs text-gray-700">
               <li className="flex items-start gap-2">
