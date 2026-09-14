@@ -55,22 +55,22 @@ export const PresenterControlBar: React.FC = () => {
   const currentStepObj = currentScenario?.steps[quickDemoStep - 1];
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 max-w-5xl w-[calc(100%-2rem)] px-2 pointer-events-auto transition-all duration-300">
-      <div className="bg-slate-900/90 hover:bg-slate-900/95 text-slate-200 backdrop-blur-xl border border-slate-700/70 shadow-2xl rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 max-w-4xl w-[calc(100%-2rem)] px-2 pointer-events-auto transition-all duration-300">
+      <div className="bg-white/95 backdrop-blur-md text-gray-800 border border-gray-200 shadow-lg rounded-xl px-4 py-2 flex flex-wrap items-center justify-between gap-3 text-xs">
         
         {/* Left Section: Active Demo Info & Steps */}
         <div className="flex items-center gap-3 min-w-0">
           {isQuickDemoRunning ? (
             <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1 font-semibold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 shadow-inner whitespace-nowrap">
-                <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+              <span className="flex items-center gap-1 font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200 shadow-xs whitespace-nowrap">
+                <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
                 Step {quickDemoStep}/{totalSteps}
               </span>
               <div className="hidden sm:flex flex-col min-w-0">
-                <span className="font-semibold text-white truncate max-w-[200px] md:max-w-[300px]">
+                <span className="font-semibold text-gray-900 truncate max-w-[180px] md:max-w-[260px]">
                   {currentStepObj?.title || 'Interactive Step'}
                 </span>
-                <span className="text-[10px] text-slate-400 truncate max-w-[200px] md:max-w-[300px]">
+                <span className="text-[10px] text-gray-500 truncate max-w-[180px] md:max-w-[260px]">
                   {currentStepObj?.subtitle}
                 </span>
               </div>
@@ -78,7 +78,7 @@ export const PresenterControlBar: React.FC = () => {
           ) : (
             <button
               onClick={() => startQuickDemo(category, 'quick')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20 active:scale-95 transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-xs active:scale-98 transition-all"
             >
               <Zap className="w-3.5 h-3.5 fill-current" />
               <span>Run 60s Quick Demo</span>
@@ -87,16 +87,16 @@ export const PresenterControlBar: React.FC = () => {
 
           {/* Stepper Dots (only when running) */}
           {isQuickDemoRunning && (
-            <div className="hidden md:flex items-center gap-1.5 pl-2 border-l border-slate-700/60">
+            <div className="hidden md:flex items-center gap-1.5 pl-2 border-l border-gray-200">
               {Array.from({ length: totalSteps }).map((_, i) => (
                 <div
                   key={i}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i + 1 === quickDemoStep
-                      ? 'w-6 bg-amber-400'
+                      ? 'w-5 bg-indigo-600'
                       : i + 1 < quickDemoStep
-                      ? 'w-3 bg-emerald-400'
-                      : 'w-2 bg-slate-700'
+                      ? 'w-2.5 bg-emerald-600'
+                      : 'w-2 bg-gray-200'
                   }`}
                   title={`Step ${i + 1}`}
                 />
@@ -107,11 +107,11 @@ export const PresenterControlBar: React.FC = () => {
 
         {/* Center: Stepper Controls (if running) */}
         {isQuickDemoRunning && (
-          <div className="flex items-center gap-1.5 bg-slate-800/80 px-2 py-1 rounded-xl border border-slate-700/50">
+          <div className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200">
             <button
               onClick={prevQuickDemoStep}
               disabled={quickDemoStep <= 1}
-              className="p-1 rounded-lg hover:bg-slate-700 text-slate-300 disabled:opacity-40 disabled:hover:bg-transparent transition-colors"
+              className="p-1 rounded-md hover:bg-gray-200 text-gray-600 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
               title="Previous Step (Left Arrow)"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -119,10 +119,10 @@ export const PresenterControlBar: React.FC = () => {
 
             <button
               onClick={toggleQuickDemoAutoPlay}
-              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg font-medium transition-all ${
+              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md font-medium transition-all ${
                 isQuickDemoAutoPlay
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-inner'
-                  : 'hover:bg-slate-700 text-slate-300'
+                  ? 'bg-indigo-100 text-indigo-800 font-semibold'
+                  : 'hover:bg-gray-200 text-gray-700'
               }`}
               title="Toggle Auto-Play (Spacebar)"
             >
@@ -141,7 +141,7 @@ export const PresenterControlBar: React.FC = () => {
 
             <button
               onClick={nextQuickDemoStep}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold border border-amber-500/30 transition-all active:scale-95"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all active:scale-98 shadow-xs"
               title="Next Step (Right Arrow)"
             >
               <span className="text-[11px]">{quickDemoStep === totalSteps ? 'Finish' : 'Next'}</span>
@@ -150,7 +150,7 @@ export const PresenterControlBar: React.FC = () => {
 
             <button
               onClick={startOverQuickDemo}
-              className="p-1 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors ml-1"
+              className="p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-gray-800 transition-colors ml-1"
               title="Start Over"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export const PresenterControlBar: React.FC = () => {
 
             <button
               onClick={exitQuickDemo}
-              className="p-1 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-rose-400 transition-colors"
+              className="p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-rose-600 transition-colors"
               title="Exit Quick Demo"
             >
               <X className="w-3.5 h-3.5" />
@@ -169,16 +169,16 @@ export const PresenterControlBar: React.FC = () => {
         {/* Right Section: Speed Pacing, Presentation Mode & Quote */}
         <div className="flex items-center gap-2">
           {/* Speed Selector */}
-          <div className="hidden lg:flex items-center bg-slate-800/80 p-0.5 rounded-xl border border-slate-700/60">
+          <div className="hidden lg:flex items-center bg-gray-100 p-0.5 rounded-md border border-gray-200">
             <button
               onClick={() => {
                 setDemoSpeedMode('quick');
                 if (!isQuickDemoRunning) startQuickDemo(category, 'quick');
               }}
-              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-medium transition-all ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-medium transition-all ${
                 demoSpeedMode === 'quick'
-                  ? 'bg-amber-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-gray-900 font-semibold shadow-xs'
+                  : 'text-gray-500 hover:text-gray-800'
               }`}
               title="60-second high velocity demo"
             >
@@ -190,10 +190,10 @@ export const PresenterControlBar: React.FC = () => {
                 setDemoSpeedMode('guided');
                 if (!isQuickDemoRunning) startQuickDemo(category, 'guided');
               }}
-              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-medium transition-all ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-medium transition-all ${
                 demoSpeedMode === 'guided'
-                  ? 'bg-amber-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-gray-900 font-semibold shadow-xs'
+                  : 'text-gray-500 hover:text-gray-800'
               }`}
               title="Guided multi-step demo"
             >
@@ -202,10 +202,10 @@ export const PresenterControlBar: React.FC = () => {
             </button>
             <button
               onClick={() => setDemoSpeedMode('explore')}
-              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-medium transition-all ${
+              className={`flex items-center gap-1 px-2 py-1 rounded text-[11px] font-medium transition-all ${
                 demoSpeedMode === 'explore'
-                  ? 'bg-amber-500 text-slate-950 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-gray-900 font-semibold shadow-xs'
+                  : 'text-gray-500 hover:text-gray-800'
               }`}
               title="Unrestricted exploration"
             >
@@ -217,10 +217,10 @@ export const PresenterControlBar: React.FC = () => {
           {/* Pricing & Sales Offer Engine Button */}
           <button
             onClick={() => setViewMode('pricing')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-semibold border transition-all shadow-sm active:scale-95 ${
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold border transition-all shadow-xs active:scale-98 ${
               viewMode === 'pricing'
-                ? 'bg-amber-500 text-slate-950 font-bold border-amber-400'
-                : 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border-amber-500/30'
+                ? 'bg-indigo-600 text-white font-semibold border-indigo-600'
+                : 'bg-white hover:bg-gray-50 text-indigo-700 border-indigo-200'
             }`}
             title="Open Pricing, Comparison & Sales Offer Engine"
           >
@@ -231,7 +231,7 @@ export const PresenterControlBar: React.FC = () => {
           {/* Package Quotes & Closing Modal Button */}
           <button
             onClick={() => setIsDemoHandoffOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-semibold border border-emerald-500/30 transition-all shadow-sm active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200 transition-all shadow-xs active:scale-98"
             title="Open Package Quotations & Requirement Intake (H)"
           >
             <FileText className="w-3.5 h-3.5" />
@@ -241,10 +241,10 @@ export const PresenterControlBar: React.FC = () => {
           {/* Presentation Mode Toggle */}
           <button
             onClick={() => setIsPresentationMode(prev => !prev)}
-            className={`p-1.5 rounded-xl border transition-all ${
+            className={`p-1.5 rounded-md border transition-all shadow-xs ${
               isPresentationMode 
-                ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+                ? 'bg-indigo-50 text-indigo-700 border-indigo-300'
+                : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300'
             }`}
             title="Toggle Distraction-Free Presentation Mode (P)"
           >
@@ -258,7 +258,7 @@ export const PresenterControlBar: React.FC = () => {
           {/* Quick Palette Shortcut hint */}
           <button
             onClick={() => setIsQuickAccessOpen(true)}
-            className="hidden sm:flex items-center gap-1 p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 text-[10px] transition-colors"
+            className="hidden sm:flex items-center gap-1 p-1.5 rounded-md bg-gray-50 hover:bg-gray-100 text-gray-500 hover:text-gray-800 border border-gray-200 text-[10px] transition-colors"
             title="Command Palette (Ctrl+K)"
           >
             <Command className="w-3 h-3" />

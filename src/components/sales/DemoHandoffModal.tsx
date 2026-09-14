@@ -194,43 +194,43 @@ export const DemoHandoffModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden text-slate-100 animate-in fade-in zoom-in-95 duration-200 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs overflow-y-auto">
+      <div className="relative w-full max-w-4xl bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden text-gray-900 animate-in fade-in zoom-in-95 duration-200 my-8">
         
         {/* Header */}
-        <div className="p-6 pb-4 border-b border-slate-800 bg-gradient-to-b from-slate-800/60 to-transparent flex items-start justify-between gap-4">
+        <div className="p-6 pb-4 border-b border-gray-200 bg-gray-50/50 flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">
                 <FileText className="w-3.5 h-3.5" />
                 Sales Handoff & Quotation
               </span>
-              <span className="text-xs text-slate-400">Prospect: {customization.businessName}</span>
+              <span className="text-xs text-gray-500">Prospect: {customization.businessName}</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-white">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
               Package Quotation & Requirement Intake
             </h2>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <p className="text-sm text-gray-500 mt-0.5">
               Select an implementation package or capture custom software requirements directly during your client meeting.
             </p>
           </div>
 
           <button
             onClick={() => setIsDemoHandoffOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex border-b border-slate-800 px-6 bg-slate-900/50 text-sm font-medium">
+        <div className="flex border-b border-gray-200 px-6 bg-white text-sm font-medium">
           <button
             onClick={() => setActiveTab('intake')}
             className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
               activeTab === 'intake'
-                ? 'border-emerald-400 text-emerald-400 font-semibold'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-600 text-indigo-600 font-semibold'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
             <FileText className="w-4 h-4" />
@@ -240,8 +240,8 @@ export const DemoHandoffModal: React.FC = () => {
             onClick={() => setActiveTab('packages')}
             className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
               activeTab === 'packages'
-                ? 'border-emerald-400 text-emerald-400 font-semibold'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-600 text-indigo-600 font-semibold'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
             <DollarSign className="w-4 h-4" />
@@ -252,8 +252,8 @@ export const DemoHandoffModal: React.FC = () => {
               onClick={() => setActiveTab('saved')}
               className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
                 activeTab === 'saved'
-                  ? 'border-emerald-400 text-emerald-400 font-semibold'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-indigo-600 text-indigo-600 font-semibold'
+                  : 'border-transparent text-gray-500 hover:text-gray-900'
               }`}
             >
               <CheckCheck className="w-4 h-4" />
@@ -266,15 +266,15 @@ export const DemoHandoffModal: React.FC = () => {
         {activeTab === 'intake' && (
           <form onSubmit={handleSaveInquiry} className="p-6 space-y-5 max-h-[65vh] overflow-y-auto">
             {submitted && (
-              <div className="p-4 bg-emerald-500/15 border border-emerald-500/30 rounded-2xl flex items-center justify-between gap-3 text-emerald-300 text-xs animate-in fade-in">
+              <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between gap-3 text-emerald-900 text-xs animate-in fade-in shadow-2xs">
                 <div className="flex items-center gap-2">
-                  <CheckCheck className="w-5 h-5 text-emerald-400" />
+                  <CheckCheck className="w-5 h-5 text-emerald-600" />
                   <span>Proposal recorded! Simulated WhatsApp quote generated for prospect review.</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="font-semibold underline hover:text-white"
+                  className="font-semibold underline hover:text-emerald-700"
                 >
                   Create Another
                 </button>
@@ -283,8 +283,8 @@ export const DemoHandoffModal: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <Building className="w-3.5 h-3.5 text-slate-400" />
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <Building className="w-3.5 h-3.5 text-gray-500" />
                   Business Name *
                 </label>
                 <input
@@ -292,13 +292,13 @@ export const DemoHandoffModal: React.FC = () => {
                   required
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-slate-400" />
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-gray-500" />
                   Contact Person
                 </label>
                 <input
@@ -306,28 +306,28 @@ export const DemoHandoffModal: React.FC = () => {
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   placeholder="e.g. Vikram Malhotra (Owner)"
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-400" />
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-gray-500" />
                   Phone / WhatsApp
                 </label>
                 <input
                   type="text"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                 />
               </div>
             </div>
 
             {/* Scope Modules Selection */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-slate-400" />
+              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-gray-500" />
                 Required Functional Modules
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
@@ -338,14 +338,14 @@ export const DemoHandoffModal: React.FC = () => {
                       key={mod}
                       type="button"
                       onClick={() => toggleModule(mod)}
-                      className={`p-3 rounded-xl border text-left flex items-start gap-2.5 transition-all text-xs ${
+                      className={`p-3 rounded-lg border text-left flex items-start gap-2.5 transition-all text-xs ${
                         isChecked 
-                          ? 'bg-emerald-500/10 border-emerald-500/50 text-white font-medium'
-                          : 'bg-slate-800/40 border-slate-700/60 text-slate-400 hover:bg-slate-800/80'
+                          ? 'bg-indigo-50/70 border-indigo-600 text-indigo-950 font-medium'
+                          : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
                       }`}
                     >
                       <div className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center flex-shrink-0 transition-colors ${
-                        isChecked ? 'bg-emerald-500 text-slate-950' : 'border border-slate-600 bg-slate-800'
+                        isChecked ? 'bg-indigo-600 text-white' : 'border border-gray-300 bg-white'
                       }`}>
                         {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                       </div>
@@ -359,14 +359,14 @@ export const DemoHandoffModal: React.FC = () => {
             {/* Target Budget Tier & Payment Structure */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <IndianRupee className="w-3.5 h-3.5 text-amber-400" />
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <IndianRupee className="w-3.5 h-3.5 text-gray-500" />
                   Target Package / Budget
                 </label>
                 <select
                   value={budgetTier}
                   onChange={(e) => setBudgetTier(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                 >
                   {activeTiers.map((t) => {
                     const p = getTierPricing(t);
@@ -384,7 +384,7 @@ export const DemoHandoffModal: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
                   Notes / Specific Requirements
                 </label>
                 <input
@@ -392,38 +392,38 @@ export const DemoHandoffModal: React.FC = () => {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="e.g. Needs Hindi language, 2 receipt printers, staff logins"
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                 />
               </div>
             </div>
 
             {/* Transparent Terms & Launch Bonus Callout */}
-            <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-2xs">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="font-bold text-white block">Transparent Terms & Bonus Included</span>
-                  <span className="text-slate-400">
+                  <span className="font-bold text-gray-900 block">Transparent Terms & Bonus Included</span>
+                  <span className="text-gray-500">
                     50% advance to start • 50% upon delivery • {PRICING_CONFIG.bonus.exactHeadline}
                   </span>
                 </div>
               </div>
 
-              <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-medium self-start sm:self-center shrink-0">
+              <span className="px-2.5 py-1 rounded-md bg-white border border-gray-200 text-gray-700 text-[11px] font-medium self-start sm:self-center shrink-0 shadow-2xs">
                 Zero Monthly SaaS Fees
               </span>
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-3">
-              <span className="text-xs text-slate-400">
+            <div className="pt-3 border-t border-gray-200 flex items-center justify-between gap-3">
+              <span className="text-xs text-gray-500">
                 Saves locally to your device and prepares a formal WhatsApp proposal slip.
               </span>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 active:scale-95 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-xs transition"
               >
                 <Send className="w-4 h-4" />
                 <span>Save & Generate WhatsApp Slip</span>
@@ -436,8 +436,8 @@ export const DemoHandoffModal: React.FC = () => {
         {activeTab === 'packages' && (
           <div className="p-6 space-y-6 max-h-[65vh] overflow-y-auto">
             <div className="text-center max-w-xl mx-auto space-y-1">
-              <h3 className="text-lg font-bold text-white">Transparent Software Investment Packages</h3>
-              <p className="text-xs text-slate-400">
+              <h3 className="text-lg font-bold text-gray-900">Transparent Software Investment Packages</h3>
+              <p className="text-xs text-gray-500">
                 100% custom-built for local business ownership. No recurring monthly revenue share or transaction commissions.
               </p>
             </div>
@@ -448,56 +448,56 @@ export const DemoHandoffModal: React.FC = () => {
                 return (
                   <div
                     key={tier.id}
-                    className={`rounded-2xl p-5 border flex flex-col justify-between transition-all relative ${
+                    className={`rounded-xl p-5 border flex flex-col justify-between transition-all relative ${
                       tier.isPopular
-                        ? 'bg-slate-800/90 border-amber-500/70 shadow-xl shadow-amber-500/10 ring-1 ring-amber-500/30'
-                        : 'bg-slate-800/40 border-slate-700/80 hover:bg-slate-800/70'
+                        ? 'bg-white border-2 border-indigo-600 shadow-sm'
+                        : 'bg-white border-gray-200 shadow-2xs hover:border-gray-300'
                     }`}
                   >
                     {tier.isPopular && (
-                      <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full shadow">
+                      <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-bold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs">
                         Most Popular
                       </div>
                     )}
 
                     <div>
-                      <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                      <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider block">
                         {tier.tagline}
                       </span>
-                      <h4 className="text-base font-bold text-white mt-0.5">{tier.name}</h4>
+                      <h4 className="text-base font-bold text-gray-900 mt-0.5">{tier.name}</h4>
                       
                       <div className="mt-3 mb-3">
                         {pricing.isQuote ? (
-                          <div className="text-2xl font-extrabold text-amber-400">
+                          <div className="text-2xl font-bold text-gray-900">
                             Custom Quote
                           </div>
                         ) : (
                           <div>
                             <div className="flex items-baseline gap-2">
-                              <span className="text-2xl font-extrabold text-amber-400">
+                              <span className="text-2xl font-bold text-gray-900">
                                 ₹{pricing.finalPrice.toLocaleString('en-IN')}
                               </span>
                               {pricing.regular > pricing.finalPrice && (
-                                <span className="text-xs text-slate-500 line-through">
+                                <span className="text-xs text-gray-400 line-through">
                                   ₹{pricing.regular.toLocaleString('en-IN')}
                                 </span>
                               )}
                             </div>
-                            <div className="text-[11px] text-emerald-400 font-semibold mt-0.5">
+                            <div className="text-[11px] text-emerald-700 font-semibold mt-0.5">
                               Advance ({advancePercentage}%): ₹{pricing.advance.toLocaleString('en-IN')}
                             </div>
                           </div>
                         )}
                       </div>
 
-                      <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                      <p className="text-xs text-gray-600 leading-relaxed mb-4">
                         {tier.description}
                       </p>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-700/60 mb-5">
+                      <div className="space-y-2 pt-3 border-t border-gray-100 mb-5">
                         {tier.features.slice(0, 5).map((feat, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                            <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <div key={idx} className="flex items-start gap-2 text-xs text-gray-700">
+                            <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
                             <span className="line-clamp-2">{feat}</span>
                           </div>
                         ))}
@@ -507,10 +507,10 @@ export const DemoHandoffModal: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleSelectPackage(tier)}
-                      className={`w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
+                      className={`w-full py-2.5 rounded-lg font-medium text-xs transition-all flex items-center justify-center gap-1.5 shadow-2xs ${
                         tier.isPopular
-                          ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
-                          : 'bg-slate-700 hover:bg-slate-600 text-white'
+                          ? 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                          : 'bg-white border border-gray-200 hover:bg-gray-50 text-gray-900'
                       }`}
                     >
                       <span>Choose {tier.name}</span>
@@ -527,55 +527,55 @@ export const DemoHandoffModal: React.FC = () => {
         {activeTab === 'saved' && (
           <div className="p-6 space-y-4 max-h-[65vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-700">
                 Logged Prospect Requirements ({savedInquiries.length})
               </h3>
-              <span className="text-xs text-slate-400">Stored locally in your browser</span>
+              <span className="text-xs text-gray-500">Stored locally in your browser</span>
             </div>
 
             <div className="space-y-3">
               {savedInquiries.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/80 hover:border-slate-600 transition-all space-y-2.5"
+                  className="p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all space-y-2.5 shadow-2xs"
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <h4 className="font-bold text-white text-sm">{item.businessName}</h4>
-                      <p className="text-xs text-slate-400">
+                      <h4 className="font-bold text-gray-900 text-sm">{item.businessName}</h4>
+                      <p className="text-xs text-gray-500">
                         {item.contactName} • {item.phone} • <span className="capitalize">{item.category}</span>
                       </p>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
+                      <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
                         {item.budgetTier}
                       </span>
                       <button
                         onClick={() => handleCopySummary(item, idx)}
-                        className="p-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 transition-colors"
+                        className="p-1.5 rounded-md bg-white hover:bg-gray-100 border border-gray-200 text-gray-600 transition-colors shadow-2xs"
                         title="Copy Summary"
                       >
-                        {copiedId === `saved-${idx}` ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        {copiedId === `saved-${idx}` ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-1.5">
                     {item.modules.map((m, mIdx) => (
-                      <span key={mIdx} className="text-[11px] bg-slate-700/60 text-slate-300 px-2 py-0.5 rounded-md">
+                      <span key={mIdx} className="text-[11px] bg-white border border-gray-200 text-gray-700 px-2 py-0.5 rounded-md shadow-2xs">
                         {m}
                       </span>
                     ))}
                   </div>
 
                   {item.notes && (
-                    <p className="text-xs text-slate-400 italic">
+                    <p className="text-xs text-gray-600 italic">
                       Notes: {item.notes}
                     </p>
                   )}
 
-                  <div className="text-[10px] text-slate-500 pt-1">
+                  <div className="text-[10px] text-gray-400 pt-1">
                     Recorded: {item.timestamp}
                   </div>
                 </div>
@@ -585,13 +585,13 @@ export const DemoHandoffModal: React.FC = () => {
         )}
 
         {/* Footer */}
-        <div className="p-4 px-6 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-xs text-slate-400">
+        <div className="p-4 px-6 border-t border-gray-200 bg-gray-50/50 flex items-center justify-between text-xs text-gray-500">
           <span>
             100% Client-Owned • No monthly commissions • ReviewBro.in 2 months bonus included
           </span>
           <button
             onClick={() => setIsDemoHandoffOpen(false)}
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition-colors"
+            className="px-4 py-2 rounded-lg bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-medium transition-colors shadow-2xs"
           >
             Close
           </button>

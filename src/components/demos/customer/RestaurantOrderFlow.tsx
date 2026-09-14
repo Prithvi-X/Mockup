@@ -85,50 +85,50 @@ export const RestaurantOrderFlow: React.FC = () => {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       {isOrdered ? (
-        <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-6 sm:p-8 text-center space-y-5 animate-in fade-in duration-200">
-          <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 text-center space-y-4 shadow-sm animate-in fade-in duration-200">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+            <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
               Order Sent to Kitchen
             </div>
-            <h3 className="text-2xl font-extrabold text-white">Order #{placedOrderNumber}</h3>
-            <p className="text-xs text-neutral-400 mt-1">
+            <h3 className="text-xl font-bold text-gray-900">Order #{placedOrderNumber}</h3>
+            <p className="text-xs text-gray-500 mt-1">
               Thank you, {customerName}. The kitchen is preparing your dishes.
             </p>
           </div>
 
-          <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800 text-left text-xs space-y-2 max-w-md mx-auto">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Order Mode</span>
-              <span className="font-semibold text-white">{orderType} {orderType === 'Dine In' ? `(${tableNumber})` : ''}</span>
+          <div className="bg-gray-50 p-3.5 rounded-md border border-gray-200 text-left text-xs space-y-2 max-w-md mx-auto">
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Order Mode</span>
+              <span className="font-semibold text-gray-900">{orderType} {orderType === 'Dine In' ? `(${tableNumber})` : ''}</span>
             </div>
             <div className="space-y-1 py-1">
               {cartItems.map(item => (
-                <div key={item.id} className="flex justify-between text-neutral-300">
+                <div key={item.id} className="flex justify-between text-gray-700">
                   <span>{quantities[item.id]} × {item.name}</span>
-                  <span className="font-mono">₹{item.price * quantities[item.id]}</span>
+                  <span className="font-mono text-gray-600">₹{item.price * quantities[item.id]}</span>
                 </div>
               ))}
             </div>
-            <div className="flex justify-between border-t border-neutral-800 pt-2 font-bold">
-              <span className="text-neutral-300">Total Bill</span>
-              <span className="text-emerald-400 font-mono">₹{totalAmount}</span>
+            <div className="flex justify-between border-t border-gray-200 pt-1.5 font-semibold">
+              <span className="text-gray-700">Total Bill</span>
+              <span className="text-gray-900 font-mono">₹{totalAmount}</span>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
             <button
               onClick={() => setViewMode('dashboard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs transition shadow"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs shadow-sm transition"
             >
               <span>View in Kitchen Orders</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setIsOrdered(false)}
-              className="w-full sm:w-auto text-xs text-neutral-400 hover:text-white px-3 py-2"
+              className="w-full sm:w-auto text-xs text-gray-500 hover:text-gray-900 px-3 py-1.5"
             >
               Order More Items
             </button>
@@ -138,26 +138,26 @@ export const RestaurantOrderFlow: React.FC = () => {
         <form onSubmit={handlePlaceOrder} className="space-y-5">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-base font-bold text-white tracking-tight">Digital Menu & Ordering</h3>
-              <p className="text-xs text-neutral-400">Add dishes and send your order straight to the kitchen.</p>
+              <h3 className="text-base font-semibold text-gray-900">Digital Menu & Ordering</h3>
+              <p className="text-xs text-gray-500">Add dishes and send your order straight to the kitchen.</p>
             </div>
-            <div className="flex items-center gap-1 bg-neutral-900 px-3 py-1.5 rounded-xl border border-neutral-800 text-xs font-semibold text-amber-400">
+            <div className="flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200 text-xs font-medium text-amber-800">
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>{totalItemsCount} items (₹{totalAmount})</span>
             </div>
           </div>
 
           {/* Dining Type Selection */}
-          <div className="grid grid-cols-3 gap-2 bg-neutral-950 p-1.5 rounded-xl border border-neutral-800 text-xs">
+          <div className="grid grid-cols-3 gap-1.5 bg-gray-100 p-1 rounded-md text-xs">
             {(['Dine In', 'Takeaway', 'Delivery'] as const).map((type) => (
               <button
                 key={type}
                 type="button"
                 onClick={() => setOrderType(type)}
-                className={`py-2 rounded-lg font-semibold transition ${
+                className={`py-1.5 rounded font-medium transition ${
                   orderType === type
-                    ? 'bg-neutral-800 text-white shadow-sm'
-                    : 'text-neutral-400 hover:text-white'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 {type}
@@ -166,12 +166,12 @@ export const RestaurantOrderFlow: React.FC = () => {
           </div>
 
           {orderType === 'Dine In' && (
-            <div className="bg-neutral-950 p-3 rounded-xl border border-neutral-800 flex items-center justify-between text-xs">
-              <span className="text-neutral-400">Table Number:</span>
+            <div className="bg-gray-50 p-2.5 rounded-md border border-gray-200 flex items-center justify-between text-xs">
+              <span className="text-gray-600 font-medium">Table Number:</span>
               <select
                 value={tableNumber}
                 onChange={(e) => setTableNumber(e.target.value)}
-                className="bg-neutral-900 border border-neutral-700 text-white font-semibold rounded-lg px-2.5 py-1 text-xs"
+                className="bg-white border border-gray-300 text-gray-900 font-medium rounded-md px-2.5 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500"
               >
                 <option value="Table 1">Table 1</option>
                 <option value="Table 2">Table 2</option>
@@ -183,16 +183,16 @@ export const RestaurantOrderFlow: React.FC = () => {
           )}
 
           {/* Category Tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-1 text-xs">
+          <div className="flex gap-1.5 overflow-x-auto pb-1 text-xs">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition ${
+                className={`px-3 py-1 rounded-md whitespace-nowrap transition ${
                   activeCategory === cat
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold'
-                    : 'bg-neutral-950 text-neutral-400 hover:text-white border border-neutral-800'
+                    ? 'bg-amber-100 text-amber-800 border border-amber-300 font-medium'
+                    : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200'
                 }`}
               >
                 {cat}
@@ -201,41 +201,41 @@ export const RestaurantOrderFlow: React.FC = () => {
           </div>
 
           {/* Menu Items */}
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {filteredMenu.map((dish) => {
               const qty = quantities[dish.id] || 0;
               return (
                 <div
                   key={dish.id}
-                  className="bg-neutral-950 border border-neutral-800 rounded-xl p-3.5 flex items-center justify-between hover:border-neutral-700 transition"
+                  className="bg-white border border-gray-200 rounded-lg p-3 flex items-center justify-between hover:border-gray-300 transition"
                 >
                   <div className="space-y-0.5 max-w-[70%]">
                     <div className="flex items-center gap-1.5">
-                      <span className={`w-2 h-2 rounded-full ${dish.isVeg ? 'bg-emerald-400' : 'bg-rose-500'}`} />
-                      <span className="font-bold text-xs text-white">{dish.name}</span>
+                      <span className={`w-2 h-2 rounded-full ${dish.isVeg ? 'bg-emerald-600' : 'bg-rose-600'}`} />
+                      <span className="font-semibold text-xs text-gray-900">{dish.name}</span>
                     </div>
-                    <p className="text-[11px] text-neutral-400 leading-tight">{dish.desc}</p>
-                    <div className="text-xs font-extrabold text-amber-400 mt-1">₹{dish.price}</div>
+                    <p className="text-[11px] text-gray-500 leading-tight">{dish.desc}</p>
+                    <div className="text-xs font-bold text-amber-700 mt-0.5">₹{dish.price}</div>
                   </div>
 
                   {/* Quantity Controller */}
-                  <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-lg p-1">
+                  <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-md p-1">
                     {qty > 0 && (
                       <button
                         type="button"
                         onClick={() => handleQuantity(dish.id, -1)}
-                        className="w-6 h-6 rounded bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center text-white"
+                        className="w-5 h-5 rounded bg-white hover:bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-700 transition"
                       >
                         <Minus className="w-3 h-3" />
                       </button>
                     )}
-                    <span className="w-5 text-center text-xs font-bold text-white">
+                    <span className="w-4 text-center text-xs font-semibold text-gray-900">
                       {qty}
                     </span>
                     <button
                       type="button"
                       onClick={() => handleQuantity(dish.id, 1)}
-                      className="w-6 h-6 rounded bg-amber-600 hover:bg-amber-500 flex items-center justify-center text-white"
+                      className="w-5 h-5 rounded bg-amber-600 hover:bg-amber-700 flex items-center justify-center text-white transition shadow-sm"
                     >
                       <Plus className="w-3 h-3" />
                     </button>
@@ -246,15 +246,15 @@ export const RestaurantOrderFlow: React.FC = () => {
           </div>
 
           {/* Customer Details */}
-          <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-3 text-xs">
-            <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Customer Contact</h4>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3 text-xs">
+            <h4 className="font-semibold text-gray-800 text-xs">Customer Contact</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
                 placeholder="Your Name"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 required
               />
               <input
@@ -262,22 +262,22 @@ export const RestaurantOrderFlow: React.FC = () => {
                 placeholder="WhatsApp Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 required
               />
             </div>
           </div>
 
           {/* Action */}
-          <div className="pt-2 flex items-center justify-between border-t border-neutral-800">
+          <div className="pt-2 flex items-center justify-between border-t border-gray-200">
             <div>
-              <span className="text-xs text-neutral-400 block">Subtotal</span>
-              <span className="text-lg font-extrabold text-white">₹{totalAmount}</span>
+              <span className="text-xs text-gray-500 block">Subtotal</span>
+              <span className="text-base font-bold text-gray-900">₹{totalAmount}</span>
             </div>
             <button
               type="submit"
               disabled={totalItemsCount === 0}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs shadow-md transition disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs shadow-sm transition disabled:opacity-50"
             >
               <Check className="w-4 h-4" />
               <span>Place Order ({totalItemsCount} items)</span>

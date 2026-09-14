@@ -151,41 +151,41 @@ export const CustomizationModal: React.FC = () => {
     >
       <div className="space-y-4">
         {/* Navigation Tabs */}
-        <div className="flex border-b border-neutral-800 gap-2 pb-1">
+        <div className="flex border-b border-gray-200 gap-1 pb-px">
           <button
             type="button"
             onClick={() => setActiveTab('branding')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-t-lg text-xs font-medium border-b-2 transition ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-t-lg text-xs font-medium border-b-2 -mb-px transition ${
               activeTab === 'branding'
-                ? 'border-indigo-500 text-white bg-neutral-900/60'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-indigo-600 text-indigo-700 bg-indigo-50/50'
+                : 'border-transparent text-gray-500 hover:text-gray-800'
             }`}
           >
-            <Palette className="w-3.5 h-3.5 text-indigo-400" />
+            <Palette className="w-3.5 h-3.5 text-indigo-600" />
             Branding & Logo
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('catalog')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-t-lg text-xs font-medium border-b-2 transition ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-t-lg text-xs font-medium border-b-2 -mb-px transition ${
               activeTab === 'catalog'
-                ? 'border-indigo-500 text-white bg-neutral-900/60'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-indigo-600 text-indigo-700 bg-indigo-50/50'
+                : 'border-transparent text-gray-500 hover:text-gray-800'
             }`}
           >
-            <Package className="w-3.5 h-3.5 text-emerald-400" />
+            <Package className="w-3.5 h-3.5 text-emerald-600" />
             Pricing & Catalog Items
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('presets')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-t-lg text-xs font-medium border-b-2 transition ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-t-lg text-xs font-medium border-b-2 -mb-px transition ${
               activeTab === 'presets'
-                ? 'border-indigo-500 text-white bg-neutral-900/60'
-                : 'border-transparent text-neutral-400 hover:text-neutral-200'
+                ? 'border-indigo-600 text-indigo-700 bg-indigo-50/50'
+                : 'border-transparent text-gray-500 hover:text-gray-800'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
             Presets & Quick Fill
           </button>
         </div>
@@ -194,21 +194,21 @@ export const CustomizationModal: React.FC = () => {
         {activeTab === 'branding' && (
           <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
             {/* Logo upload card */}
-            <div className="p-3.5 rounded-xl bg-neutral-950/80 border border-neutral-800 flex items-center justify-between gap-4">
+            <div className="p-3.5 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-xl border border-neutral-800 bg-neutral-900 flex items-center justify-center overflow-hidden shrink-0">
+                <div className="w-14 h-14 rounded-lg border border-gray-200 bg-white flex items-center justify-center overflow-hidden shrink-0 shadow-2xs">
                   {logoUrl ? (
                     <img src={logoUrl} alt="Logo" className="w-full h-full object-contain p-1" />
                   ) : (
-                    <div className="flex flex-col items-center justify-center text-neutral-500">
+                    <div className="flex flex-col items-center justify-center text-gray-400">
                       <ImageIcon className="w-6 h-6 stroke-[1.5]" />
-                      <span className="text-[9px] mt-0.5">No Logo</span>
+                      <span className="text-[9px] mt-0.5 font-medium">No Logo</span>
                     </div>
                   )}
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-white">Business Logo</h4>
-                  <p className="text-[11px] text-neutral-400">
+                  <h4 className="text-xs font-semibold text-gray-900">Business Logo</h4>
+                  <p className="text-[11px] text-gray-500">
                     Upload client's PNG/JPEG. Stored locally in memory & browser.
                   </p>
                 </div>
@@ -224,16 +224,16 @@ export const CustomizationModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-200 bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 rounded-lg transition"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg shadow-2xs transition"
                 >
-                  <Upload className="w-3.5 h-3.5" />
+                  <Upload className="w-3.5 h-3.5 text-gray-500" />
                   {logoUrl ? 'Change' : 'Upload'}
                 </button>
                 {logoUrl && (
                   <button
                     type="button"
                     onClick={handleRemoveLogo}
-                    className="p-1.5 text-neutral-400 hover:text-rose-400 rounded-lg hover:bg-neutral-900 transition"
+                    className="p-1.5 text-gray-400 hover:text-rose-600 rounded-lg hover:bg-gray-100 transition"
                     title="Remove custom logo"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -245,7 +245,7 @@ export const CustomizationModal: React.FC = () => {
             {/* Name & Tagline */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   Business Name
                 </label>
                 <input
@@ -253,12 +253,12 @@ export const CustomizationModal: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Ranchi Hair Port"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                   required
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   Tagline / Subtitle
                 </label>
                 <input
@@ -266,14 +266,14 @@ export const CustomizationModal: React.FC = () => {
                   value={tagline}
                   onChange={(e) => setTagline(e.target.value)}
                   placeholder="e.g. Premium Hair, Skin & Bridal Studio"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                 />
               </div>
             </div>
 
             {/* Accent Color */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1.5">
                 Brand Accent Color
               </label>
               <div className="flex flex-wrap gap-2">
@@ -284,13 +284,13 @@ export const CustomizationModal: React.FC = () => {
                     onClick={() => setAccentColor(opt.id)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition ${
                       accentColor === opt.id
-                        ? 'border-white/50 bg-neutral-800 text-white ring-1 ' + opt.ringClass
-                        : 'border-neutral-800 bg-neutral-950 text-neutral-400 hover:text-white'
+                        ? 'border-indigo-600 bg-indigo-50/70 text-indigo-950 ring-1 ' + opt.ringClass
+                        : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     <span className={`w-3 h-3 rounded-full ${opt.bgClass}`} />
                     {opt.label}
-                    {accentColor === opt.id && <Check className="w-3 h-3 ml-0.5" />}
+                    {accentColor === opt.id && <Check className="w-3 h-3 ml-0.5 text-indigo-600" />}
                   </button>
                 ))}
               </div>
@@ -299,7 +299,7 @@ export const CustomizationModal: React.FC = () => {
             {/* Contact Information */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   Phone Number
                 </label>
                 <input
@@ -307,11 +307,11 @@ export const CustomizationModal: React.FC = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 94311 00000"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   WhatsApp Number
                 </label>
                 <input
@@ -319,14 +319,14 @@ export const CustomizationModal: React.FC = () => {
                   value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
                   placeholder="+91 94311 00000"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   Physical Address
                 </label>
                 <input
@@ -334,11 +334,11 @@ export const CustomizationModal: React.FC = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Circular Road, Lalpur, Ranchi"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">
                   Custom Domain Preview
                 </label>
                 <input
@@ -346,7 +346,7 @@ export const CustomizationModal: React.FC = () => {
                   value={website}
                   onChange={(e) => setWebsite(e.target.value)}
                   placeholder="www.clientbusiness.com"
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+                  className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
                 />
               </div>
             </div>
@@ -360,7 +360,7 @@ export const CustomizationModal: React.FC = () => {
             {category === 'salon' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Salon Services & Pricing ({salonServices.length})
                   </h4>
                   <button
@@ -375,7 +375,7 @@ export const CustomizationModal: React.FC = () => {
                       };
                       setSalonServices([...salonServices, newSvc]);
                     }}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Service
@@ -384,7 +384,7 @@ export const CustomizationModal: React.FC = () => {
 
                 <div className="space-y-2">
                   {salonServices.map((svc, idx) => (
-                    <div key={svc.id} className="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 grid grid-cols-12 gap-2 items-center text-xs">
+                    <div key={svc.id} className="p-2.5 rounded-lg bg-gray-50 border border-gray-200 grid grid-cols-12 gap-2 items-center text-xs">
                       <div className="col-span-5">
                         <input
                           type="text"
@@ -395,11 +395,11 @@ export const CustomizationModal: React.FC = () => {
                             setSalonServices(updated);
                           }}
                           placeholder="Service Name"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-3 flex items-center gap-1">
-                        <span className="text-neutral-400">₹</span>
+                        <span className="text-gray-500">₹</span>
                         <input
                           type="number"
                           value={svc.price}
@@ -408,7 +408,7 @@ export const CustomizationModal: React.FC = () => {
                             updated[idx].price = Number(e.target.value) || 0;
                             setSalonServices(updated);
                           }}
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-3">
@@ -421,14 +421,14 @@ export const CustomizationModal: React.FC = () => {
                             setSalonServices(updated);
                           }}
                           placeholder="e.g. 45 mins"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-1 text-right">
                         <button
                           type="button"
                           onClick={() => setSalonServices(salonServices.filter((_, i) => i !== idx))}
-                          className="text-neutral-500 hover:text-rose-400 p-1"
+                          className="text-gray-400 hover:text-rose-600 p-1 transition"
                           title="Delete Service"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -439,9 +439,9 @@ export const CustomizationModal: React.FC = () => {
                 </div>
 
                 {/* Staff Stylists */}
-                <div className="pt-2 border-t border-neutral-800/80">
+                <div className="pt-2 border-t border-gray-200">
                   <div className="flex items-center justify-between mb-2">
-                    <h5 className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <h5 className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">
                       Stylists & Staff Members ({salonStaff.length})
                     </h5>
                     <button
@@ -449,7 +449,7 @@ export const CustomizationModal: React.FC = () => {
                       onClick={() => {
                         setSalonStaff([...salonStaff, { id: `stf-${Date.now()}`, name: 'Stylist Name', role: 'Hair Specialist' }]);
                       }}
-                      className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                      className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                     >
                       <Plus className="w-3 h-3" />
                       Add Stylist
@@ -457,7 +457,7 @@ export const CustomizationModal: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {salonStaff.map((staff, idx) => (
-                      <div key={staff.id} className="p-2 rounded bg-neutral-950 border border-neutral-800 flex items-center justify-between gap-2">
+                      <div key={staff.id} className="p-2 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-between gap-2">
                         <div className="flex-1 space-y-1">
                           <input
                             type="text"
@@ -467,7 +467,7 @@ export const CustomizationModal: React.FC = () => {
                               updated[idx].name = e.target.value;
                               setSalonStaff(updated);
                             }}
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-0.5 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-0.5 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                             placeholder="Stylist Name"
                           />
                           <input
@@ -478,14 +478,14 @@ export const CustomizationModal: React.FC = () => {
                               updated[idx].role = e.target.value;
                               setSalonStaff(updated);
                             }}
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-0.5 text-neutral-400 text-[11px]"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-0.5 text-gray-500 text-[11px] focus:outline-none focus:border-indigo-600"
                             placeholder="Specialty Role"
                           />
                         </div>
                         <button
                           type="button"
                           onClick={() => setSalonStaff(salonStaff.filter((_, i) => i !== idx))}
-                          className="text-neutral-500 hover:text-rose-400 p-1"
+                          className="text-gray-400 hover:text-rose-600 p-1 transition"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -500,7 +500,7 @@ export const CustomizationModal: React.FC = () => {
             {category === 'hotel' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Hotel Rooms & Tariff ({hotelRooms.length})
                   </h4>
                   <button
@@ -515,7 +515,7 @@ export const CustomizationModal: React.FC = () => {
                       };
                       setHotelRooms([...hotelRooms, newRoom]);
                     }}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Room Type
@@ -523,7 +523,7 @@ export const CustomizationModal: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {hotelRooms.map((rm, idx) => (
-                    <div key={rm.id} className="p-3 rounded-lg bg-neutral-950 border border-neutral-800 space-y-2 text-xs">
+                    <div key={rm.id} className="p-3 rounded-lg bg-gray-50 border border-gray-200 space-y-2 text-xs">
                       <div className="grid grid-cols-12 gap-2 items-center">
                         <div className="col-span-6">
                           <input
@@ -535,11 +535,11 @@ export const CustomizationModal: React.FC = () => {
                               setHotelRooms(updated);
                             }}
                             placeholder="Room Title"
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-3 flex items-center gap-1">
-                          <span className="text-neutral-400">₹</span>
+                          <span className="text-gray-500">₹</span>
                           <input
                             type="number"
                             value={rm.price}
@@ -548,7 +548,7 @@ export const CustomizationModal: React.FC = () => {
                               updated[idx].price = Number(e.target.value) || 0;
                               setHotelRooms(updated);
                             }}
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-2">
@@ -561,14 +561,14 @@ export const CustomizationModal: React.FC = () => {
                               setHotelRooms(updated);
                             }}
                             placeholder="Capacity"
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-1 text-right">
                           <button
                             type="button"
                             onClick={() => setHotelRooms(hotelRooms.filter((_, i) => i !== idx))}
-                            className="text-neutral-500 hover:text-rose-400 p-1"
+                            className="text-gray-400 hover:text-rose-600 p-1 transition"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -584,7 +584,7 @@ export const CustomizationModal: React.FC = () => {
                             setHotelRooms(updated);
                           }}
                           placeholder="Amenities separated by comma (e.g. WiFi, King Bed, Bathtub)"
-                          className="w-full bg-neutral-900/60 border border-neutral-800 rounded px-2 py-1 text-neutral-300 text-[11px]"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-600 text-[11px] focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                     </div>
@@ -597,7 +597,7 @@ export const CustomizationModal: React.FC = () => {
             {category === 'restaurant' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Restaurant Menu Items ({restaurantMenu.length})
                   </h4>
                   <button
@@ -613,7 +613,7 @@ export const CustomizationModal: React.FC = () => {
                       };
                       setRestaurantMenu([...restaurantMenu, newItem]);
                     }}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Dish
@@ -621,7 +621,7 @@ export const CustomizationModal: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {restaurantMenu.map((item, idx) => (
-                    <div key={item.id} className="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 grid grid-cols-12 gap-2 items-center text-xs">
+                    <div key={item.id} className="p-2.5 rounded-lg bg-gray-50 border border-gray-200 grid grid-cols-12 gap-2 items-center text-xs">
                       <div className="col-span-4">
                         <input
                           type="text"
@@ -632,7 +632,7 @@ export const CustomizationModal: React.FC = () => {
                             setRestaurantMenu(updated);
                           }}
                           placeholder="Item Name"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-3">
@@ -643,7 +643,7 @@ export const CustomizationModal: React.FC = () => {
                             updated[idx].category = e.target.value;
                             setRestaurantMenu(updated);
                           }}
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-1.5 py-1 text-neutral-300 text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-1.5 py-1 text-gray-700 text-xs focus:outline-none focus:border-indigo-600"
                         >
                           <option value="Starters">Starters</option>
                           <option value="Main Course">Main Course</option>
@@ -653,7 +653,7 @@ export const CustomizationModal: React.FC = () => {
                         </select>
                       </div>
                       <div className="col-span-2 flex items-center gap-1">
-                        <span className="text-neutral-400">₹</span>
+                        <span className="text-gray-500">₹</span>
                         <input
                           type="number"
                           value={item.price}
@@ -662,7 +662,7 @@ export const CustomizationModal: React.FC = () => {
                             updated[idx].price = Number(e.target.value) || 0;
                             setRestaurantMenu(updated);
                           }}
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-1 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-1 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-2">
@@ -674,7 +674,7 @@ export const CustomizationModal: React.FC = () => {
                             setRestaurantMenu(updated);
                           }}
                           className={`px-2 py-1 rounded text-[10px] font-medium border w-full ${
-                            item.isVeg ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10' : 'border-rose-500/40 text-rose-400 bg-rose-500/10'
+                            item.isVeg ? 'border-emerald-200 text-emerald-700 bg-emerald-50' : 'border-rose-200 text-rose-700 bg-rose-50'
                           }`}
                         >
                           {item.isVeg ? 'Veg' : 'Non-Veg'}
@@ -684,7 +684,7 @@ export const CustomizationModal: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setRestaurantMenu(restaurantMenu.filter((_, i) => i !== idx))}
-                          className="text-neutral-500 hover:text-rose-400 p-1"
+                          className="text-gray-400 hover:text-rose-600 p-1 transition"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -699,7 +699,7 @@ export const CustomizationModal: React.FC = () => {
             {category === 'gym' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Gym Membership Plans ({gymPlans.length})
                   </h4>
                   <button
@@ -714,7 +714,7 @@ export const CustomizationModal: React.FC = () => {
                       };
                       setGymPlans([...gymPlans, newPlan]);
                     }}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Plan
@@ -722,7 +722,7 @@ export const CustomizationModal: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {gymPlans.map((plan, idx) => (
-                    <div key={plan.id} className="p-3 rounded-lg bg-neutral-950 border border-neutral-800 space-y-2 text-xs">
+                    <div key={plan.id} className="p-3 rounded-lg bg-gray-50 border border-gray-200 space-y-2 text-xs">
                       <div className="grid grid-cols-12 gap-2 items-center">
                         <div className="col-span-6">
                           <input
@@ -734,11 +734,11 @@ export const CustomizationModal: React.FC = () => {
                               setGymPlans(updated);
                             }}
                             placeholder="Plan Name"
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-3 flex items-center gap-1">
-                          <span className="text-neutral-400">₹</span>
+                          <span className="text-gray-500">₹</span>
                           <input
                             type="number"
                             value={plan.price}
@@ -747,7 +747,7 @@ export const CustomizationModal: React.FC = () => {
                               updated[idx].price = Number(e.target.value) || 0;
                               setGymPlans(updated);
                             }}
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-2">
@@ -760,14 +760,14 @@ export const CustomizationModal: React.FC = () => {
                               setGymPlans(updated);
                             }}
                             placeholder="Duration"
-                            className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                            className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                           />
                         </div>
                         <div className="col-span-1 text-right">
                           <button
                             type="button"
                             onClick={() => setGymPlans(gymPlans.filter((_, i) => i !== idx))}
-                            className="text-neutral-500 hover:text-rose-400 p-1"
+                            className="text-gray-400 hover:text-rose-600 p-1 transition"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -783,7 +783,7 @@ export const CustomizationModal: React.FC = () => {
                             setGymPlans(updated);
                           }}
                           placeholder="Benefits separated by comma (e.g. Free Trainer, Steam Bath, Locker)"
-                          className="w-full bg-neutral-900/60 border border-neutral-800 rounded px-2 py-1 text-neutral-300 text-[11px]"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-600 text-[11px] focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                     </div>
@@ -796,7 +796,7 @@ export const CustomizationModal: React.FC = () => {
             {category === 'clinic' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Clinic Doctors & Fees ({clinicDoctors.length})
                   </h4>
                   <button
@@ -811,7 +811,7 @@ export const CustomizationModal: React.FC = () => {
                       };
                       setClinicDoctors([...clinicDoctors, newDoc]);
                     }}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Doctor
@@ -819,7 +819,7 @@ export const CustomizationModal: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {clinicDoctors.map((doc, idx) => (
-                    <div key={doc.id} className="p-3 rounded-lg bg-neutral-950 border border-neutral-800 grid grid-cols-12 gap-2 items-center text-xs">
+                    <div key={doc.id} className="p-3 rounded-lg bg-gray-50 border border-gray-200 grid grid-cols-12 gap-2 items-center text-xs">
                       <div className="col-span-4">
                         <input
                           type="text"
@@ -830,7 +830,7 @@ export const CustomizationModal: React.FC = () => {
                             setClinicDoctors(updated);
                           }}
                           placeholder="Doctor Name"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-3">
@@ -843,7 +843,7 @@ export const CustomizationModal: React.FC = () => {
                             setClinicDoctors(updated);
                           }}
                           placeholder="Specialty"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-neutral-300 text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-700 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-2">
@@ -856,11 +856,11 @@ export const CustomizationModal: React.FC = () => {
                             setClinicDoctors(updated);
                           }}
                           placeholder="Degrees"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-2 py-1 text-neutral-400 text-[11px]"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1 text-gray-500 text-[11px] focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-2 flex items-center gap-1">
-                        <span className="text-neutral-400">₹</span>
+                        <span className="text-gray-500">₹</span>
                         <input
                           type="number"
                           value={doc.fee}
@@ -870,14 +870,14 @@ export const CustomizationModal: React.FC = () => {
                             setClinicDoctors(updated);
                           }}
                           placeholder="Fee"
-                          className="w-full bg-neutral-900 border border-neutral-700/60 rounded px-1 py-1 text-white text-xs"
+                          className="w-full bg-white border border-gray-200 rounded px-1 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                         />
                       </div>
                       <div className="col-span-1 text-right">
                         <button
                           type="button"
                           onClick={() => setClinicDoctors(clinicDoctors.filter((_, i) => i !== idx))}
-                          className="text-neutral-500 hover:text-rose-400 p-1"
+                          className="text-gray-400 hover:text-rose-600 p-1 transition"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -892,13 +892,13 @@ export const CustomizationModal: React.FC = () => {
             {category === 'crm' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700">
                     Deal Pipeline Stages ({crmStages.length})
                   </h4>
                   <button
                     type="button"
                     onClick={() => setCrmStages([...crmStages, 'New Stage'])}
-                    className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300"
+                    className="flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Stage
@@ -906,8 +906,8 @@ export const CustomizationModal: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   {crmStages.map((stage, idx) => (
-                    <div key={idx} className="p-2 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center justify-between gap-2 text-xs">
-                      <span className="text-neutral-500 w-6 text-center font-mono">0{idx + 1}</span>
+                    <div key={idx} className="p-2 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-between gap-2 text-xs">
+                      <span className="text-gray-400 w-6 text-center font-mono">0{idx + 1}</span>
                       <input
                         type="text"
                         value={stage}
@@ -916,12 +916,12 @@ export const CustomizationModal: React.FC = () => {
                           updated[idx] = e.target.value;
                           setCrmStages(updated);
                         }}
-                        className="flex-1 bg-neutral-900 border border-neutral-700/60 rounded px-2.5 py-1 text-white text-xs"
+                        className="flex-1 bg-white border border-gray-200 rounded px-2.5 py-1 text-gray-900 text-xs focus:outline-none focus:border-indigo-600"
                       />
                       <button
                         type="button"
                         onClick={() => setCrmStages(crmStages.filter((_, i) => i !== idx))}
-                        className="text-neutral-500 hover:text-rose-400 p-1"
+                        className="text-gray-400 hover:text-rose-600 p-1 transition"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -933,9 +933,9 @@ export const CustomizationModal: React.FC = () => {
 
             {/* CUSTOM BLUEPRINT */}
             {category === 'custom' && (
-              <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-neutral-300 text-xs space-y-2">
-                <h4 className="font-semibold text-white">Custom Architecture Workflows</h4>
-                <p className="text-neutral-400 leading-relaxed">
+              <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-700 text-xs space-y-2">
+                <h4 className="font-semibold text-gray-900">Custom Architecture Workflows</h4>
+                <p className="text-gray-500 leading-relaxed">
                   For bespoke enterprises (such as workshops, coaching academies, jewelry showrooms, and logistics), ATMAN architects design the database models and modules according to your exact operational diagram.
                 </p>
               </div>
@@ -946,7 +946,7 @@ export const CustomizationModal: React.FC = () => {
         {/* TAB 3: PRESETS & QUICK FILL */}
         {activeTab === 'presets' && (
           <div className="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-gray-500">
               Click any business profile below to instantly populate realistic branding and test this category on the spot:
             </p>
             <div className="grid grid-cols-1 gap-2.5">
@@ -987,17 +987,17 @@ export const CustomizationModal: React.FC = () => {
                     setAddress('Namkum Bypass Road, Ranchi');
                   }
                 }}
-                className="p-3 rounded-xl bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-neutral-700 cursor-pointer transition flex items-center justify-between"
+                className="p-3 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 cursor-pointer transition flex items-center justify-between"
               >
                 <div>
-                  <h4 className="text-xs font-semibold text-white">
+                  <h4 className="text-xs font-semibold text-gray-900">
                     {category === 'salon' ? 'Ranchi Hair Port' : category === 'hotel' ? 'Capitol Hill Luxury Hotel' : category === 'restaurant' ? 'Kaveri Pure Veg' : category === 'gym' ? 'Cult Iron Fitness Hub' : category === 'clinic' ? 'Dr. Roy Dental Studio' : 'Chotanagpur Fleet'}
                   </h4>
-                  <p className="text-[11px] text-neutral-400">
+                  <p className="text-[11px] text-gray-500">
                     Local commercial favorite with custom branding and accent palette.
                   </p>
                 </div>
-                <button type="button" className="px-3 py-1 rounded bg-neutral-800 text-neutral-200 text-xs font-medium">
+                <button type="button" className="px-3 py-1 rounded bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-xs font-medium shadow-2xs">
                   Load Preset
                 </button>
               </div>
@@ -1037,17 +1037,17 @@ export const CustomizationModal: React.FC = () => {
                     setAddress('Tupudana Industrial Area, Ranchi');
                   }
                 }}
-                className="p-3 rounded-xl bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 hover:border-neutral-700 cursor-pointer transition flex items-center justify-between"
+                className="p-3 rounded-lg bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 cursor-pointer transition flex items-center justify-between"
               >
                 <div>
-                  <h4 className="text-xs font-semibold text-white">
+                  <h4 className="text-xs font-semibold text-gray-900">
                     {category === 'salon' ? 'Aura Luxury Unisex Salon' : category === 'hotel' ? 'The Green Valley Resort' : category === 'restaurant' ? 'The Urban Grill & Cafe' : category === 'gym' ? 'Oxygen Health Club' : category === 'clinic' ? 'CareWell PolyClinic' : 'Apex Industrial Supply'}
                   </h4>
-                  <p className="text-[11px] text-neutral-400">
+                  <p className="text-[11px] text-gray-500">
                     High-end retail & lifestyle setting with modern aesthetic.
                   </p>
                 </div>
-                <button type="button" className="px-3 py-1 rounded bg-neutral-800 text-neutral-200 text-xs font-medium">
+                <button type="button" className="px-3 py-1 rounded bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-xs font-medium shadow-2xs">
                   Load Preset
                 </button>
               </div>
@@ -1056,7 +1056,7 @@ export const CustomizationModal: React.FC = () => {
         )}
 
         {/* Footer Actions */}
-        <div className="pt-3 border-t border-neutral-800 flex items-center justify-between">
+        <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
           <button
             type="button"
             onClick={() => {
@@ -1065,24 +1065,24 @@ export const CustomizationModal: React.FC = () => {
                 setIsCustomizeOpen(false);
               }
             }}
-            className="flex items-center gap-1.5 text-xs text-rose-400 hover:text-rose-300 transition"
+            className="flex items-center gap-1.5 text-xs text-rose-600 hover:text-rose-700 font-medium transition"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             Reset to Standard
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <button
               type="button"
               onClick={() => setIsCustomizeOpen(false)}
-              className="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white bg-transparent hover:bg-neutral-800 rounded-lg transition"
+              className="px-4 py-2 text-xs font-medium text-gray-700 hover:text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 rounded-lg transition shadow-2xs"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={() => handleSubmit()}
-              className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-sm transition"
+              className="px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-xs transition"
             >
               Save & Apply Customization
             </button>

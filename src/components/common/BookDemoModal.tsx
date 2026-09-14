@@ -34,18 +34,18 @@ export const BookDemoModal: React.FC = () => {
     >
       {submitted ? (
         <div className="py-8 text-center space-y-3">
-          <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center shadow-2xs">
             <CheckCircle2 className="w-6 h-6" />
           </div>
-          <h4 className="text-base font-semibold text-white">Demo Request Received</h4>
-          <p className="text-xs text-neutral-400 max-w-xs mx-auto">
+          <h4 className="text-base font-semibold text-gray-900">Demo Request Received</h4>
+          <p className="text-xs text-gray-500 max-w-xs mx-auto">
             We will message your WhatsApp number within a few hours to arrange a personalized walkthrough.
           </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-3.5">
           <div>
-            <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
               Your Name
             </label>
             <input
@@ -54,18 +54,18 @@ export const BookDemoModal: React.FC = () => {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="e.g. Ramesh Kumar"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
               Business Category
             </label>
             <select
               value={formData.businessType}
               onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             >
               <option value="Salon / Beauty">Salon & Beauty Studio</option>
               <option value="Hotel / Guest House">Hotel & Hospitality</option>
@@ -79,7 +79,7 @@ export const BookDemoModal: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
               WhatsApp / Phone
             </label>
             <input
@@ -88,12 +88,12 @@ export const BookDemoModal: React.FC = () => {
               value={formData.whatsapp}
               onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
               placeholder="+91 98350 00000"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-300 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
               What would make your business easier?
             </label>
             <textarea
@@ -101,21 +101,21 @@ export const BookDemoModal: React.FC = () => {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               placeholder="e.g. Stop missed appointments, track staff commissions..."
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition resize-none"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition resize-none"
             />
           </div>
 
-          <div className="pt-2 border-t border-neutral-800 flex items-center justify-end gap-3">
+          <div className="pt-2 border-t border-gray-200 flex items-center justify-end gap-2.5">
             <button
               type="button"
               onClick={() => setIsBookDemoOpen(false)}
-              className="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition"
+              className="px-4 py-2 text-xs font-medium text-gray-700 hover:text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 rounded-lg transition shadow-2xs"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-sm transition"
+              className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-xs transition"
             >
               <Send className="w-3.5 h-3.5" />
               Book Walkthrough

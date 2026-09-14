@@ -56,56 +56,56 @@ export const GymJoinFlow: React.FC = () => {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       {isRegistered ? (
-        <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-6 sm:p-8 text-center space-y-5 animate-in fade-in duration-200">
-          <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 text-center space-y-4 shadow-sm animate-in fade-in duration-200">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+            <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
               Membership Activated
             </div>
-            <h3 className="text-2xl font-extrabold text-white">Member ID #{memberCode}</h3>
-            <p className="text-xs text-neutral-400 mt-1">
+            <h3 className="text-xl font-bold text-gray-900">Member ID #{memberCode}</h3>
+            <p className="text-xs text-gray-500 mt-1">
               Welcome to {customization.businessName}, {memberName}. Your membership is live.
             </p>
           </div>
 
-          <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800 text-left text-xs space-y-2 max-w-md mx-auto">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Plan</span>
-              <span className="font-semibold text-white">{selectedPlan.name} (₹{selectedPlan.price})</span>
+          <div className="bg-gray-50 p-3.5 rounded-md border border-gray-200 text-left text-xs space-y-2 max-w-md mx-auto">
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Plan</span>
+              <span className="font-semibold text-gray-900">{selectedPlan.name} (₹{selectedPlan.price})</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Duration</span>
-              <span className="font-semibold text-white">{selectedPlan.duration}</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Duration</span>
+              <span className="font-medium text-gray-900">{selectedPlan.duration}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-400">Biometric / QR Status</span>
-              <span className="font-bold text-emerald-400">Authorized for Gym Entry</span>
+              <span className="text-gray-500">Biometric / QR Status</span>
+              <span className="font-semibold text-emerald-700">Authorized for Gym Entry</span>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
             <button
               onClick={() => setViewMode('dashboard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs transition shadow"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs shadow-sm transition"
             >
               <span>View in Member Directory</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setIsRegistered(false)}
-              className="w-full sm:w-auto text-xs text-neutral-400 hover:text-white px-3 py-2"
+              className="w-full sm:w-auto text-xs text-gray-500 hover:text-gray-900 px-3 py-1.5"
             >
               Register Another Member
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleJoin} className="space-y-6">
+        <form onSubmit={handleJoin} className="space-y-5">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Choose Your Membership Plan</h3>
-            <p className="text-xs text-neutral-400">Join {customization.businessName} today with instant QR access.</p>
+            <h3 className="text-base font-semibold text-gray-900">Choose Your Membership Plan</h3>
+            <p className="text-xs text-gray-500">Join {customization.businessName} today with instant QR access.</p>
           </div>
 
           {/* Plan Cards */}
@@ -114,30 +114,30 @@ export const GymJoinFlow: React.FC = () => {
               <div
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan)}
-                className={`p-4 rounded-xl border cursor-pointer transition flex flex-col justify-between ${
+                className={`p-3.5 rounded-lg border cursor-pointer transition flex flex-col justify-between ${
                   selectedPlan.id === plan.id
-                    ? 'bg-neutral-800/90 border-emerald-500 text-white shadow-md ring-1 ring-emerald-500/40'
-                    : 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                    ? 'bg-emerald-50/50 border-emerald-500 text-gray-900 shadow-sm ring-1 ring-emerald-400/30'
+                    : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
                 }`}
               >
                 <div>
-                  <div className="font-bold text-xs text-white">{plan.name}</div>
-                  <div className="text-2xl font-extrabold text-emerald-400 my-2">₹{plan.price}</div>
-                  <ul className="space-y-1 text-[11px] text-neutral-400">
+                  <div className="font-semibold text-xs text-gray-900">{plan.name}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-emerald-700 my-1.5">₹{plan.price}</div>
+                  <ul className="space-y-1 text-[11px] text-gray-600">
                     {plan.benefits.map((b, i) => (
                       <li key={i} className="flex items-start gap-1">
-                        <Check className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
+                        <Check className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="mt-4 pt-3 border-t border-neutral-800 text-center">
+                <div className="mt-3.5 pt-2.5 border-t border-gray-200 text-center">
                   <span
-                    className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                    className={`inline-block text-[10px] font-medium px-2 py-0.5 rounded ${
                       selectedPlan.id === plan.id
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-neutral-800 text-neutral-400'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-gray-100 text-gray-600'
                     }`}
                   >
                     {selectedPlan.id === plan.id ? 'Selected' : 'Choose Plan'}
@@ -148,15 +148,15 @@ export const GymJoinFlow: React.FC = () => {
           </div>
 
           {/* Member Details */}
-          <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-3 text-xs">
-            <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Member Details</h4>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3 text-xs">
+            <h4 className="font-semibold text-gray-800 text-xs">Member Details</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
                 placeholder="Full Name"
                 value={memberName}
                 onChange={(e) => setMemberName(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 required
               />
               <input
@@ -164,21 +164,21 @@ export const GymJoinFlow: React.FC = () => {
                 placeholder="WhatsApp Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 required
               />
             </div>
           </div>
 
           {/* Action */}
-          <div className="pt-2 flex items-center justify-between border-t border-neutral-800">
+          <div className="pt-2 flex items-center justify-between border-t border-gray-200">
             <div>
-              <span className="text-xs text-neutral-400 block">Total Due</span>
-              <span className="text-lg font-extrabold text-white">₹{selectedPlan.price}</span>
+              <span className="text-xs text-gray-500 block">Total Due</span>
+              <span className="text-base font-bold text-gray-900">₹{selectedPlan.price}</span>
             </div>
             <button
               type="submit"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs shadow-sm transition"
             >
               <Check className="w-4 h-4" />
               <span>Join Now & Activate</span>

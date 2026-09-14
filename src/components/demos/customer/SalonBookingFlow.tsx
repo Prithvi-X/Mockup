@@ -105,24 +105,24 @@ export const SalonBookingFlow: React.FC = () => {
     <div className="space-y-6 max-w-2xl mx-auto">
       {/* Step Indicator */}
       {step < 5 && (
-        <div className="flex items-center justify-between px-2 text-xs text-neutral-400">
+        <div className="flex items-center justify-between px-1 text-xs text-gray-500">
           <div className="flex items-center gap-2">
             {[1, 2, 3, 4].map((s) => (
               <span
                 key={s}
                 className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] transition ${
                   step === s
-                    ? 'bg-rose-500 text-white ring-2 ring-rose-500/40'
+                    ? 'bg-rose-600 text-white'
                     : step > s
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-neutral-900 border border-neutral-800 text-neutral-400'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-gray-100 border border-gray-200 text-gray-500'
                 }`}
               >
                 {step > s ? '✓' : s}
               </span>
             ))}
           </div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-neutral-300">
+          <span className="text-[11px] font-medium text-gray-600">
             {step === 1 && 'Step 1: Choose Service'}
             {step === 2 && 'Step 2: Select Staff & Slot'}
             {step === 3 && 'Step 3: Your Details'}
@@ -135,37 +135,37 @@ export const SalonBookingFlow: React.FC = () => {
       {step === 1 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Select a Service</h3>
-            <p className="text-xs text-neutral-400">Choose the grooming or beauty treatment you wish to book.</p>
+            <h3 className="text-base font-semibold text-gray-900">Select a Service</h3>
+            <p className="text-xs text-gray-500">Choose the grooming or beauty treatment you wish to book.</p>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {activeServices.map((srv) => (
               <div
                 key={srv.id}
                 onClick={() => setSelectedService(srv)}
-                className={`p-4 rounded-xl border cursor-pointer transition flex items-center justify-between ${
+                className={`p-3.5 rounded-lg border cursor-pointer transition flex items-center justify-between ${
                   selectedService.id === srv.id
-                    ? 'bg-neutral-800/90 border-rose-500 text-white shadow-md ring-1 ring-rose-500/40'
-                    : 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                    ? 'bg-rose-50/50 border-rose-500 text-gray-900 shadow-sm ring-1 ring-rose-400/30'
+                    : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
                 }`}
               >
                 <div className="space-y-0.5">
-                  <div className="font-bold text-sm text-white flex items-center gap-2">
+                  <div className="font-semibold text-xs sm:text-sm text-gray-900 flex items-center gap-2">
                     <span>{srv.name}</span>
-                    <span className="text-[11px] bg-neutral-900 px-2 py-0.5 rounded text-neutral-400 font-normal">
+                    <span className="text-[11px] bg-gray-100 border border-gray-200 px-2 py-0.5 rounded text-gray-600 font-normal">
                       {srv.duration}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-400">{srv.desc}</p>
+                  <p className="text-xs text-gray-500">{srv.desc}</p>
                 </div>
                 <div className="text-right shrink-0 ml-4">
-                  <div className="text-base font-extrabold text-rose-400">₹{srv.price}</div>
+                  <div className="text-sm sm:text-base font-bold text-rose-700">₹{srv.price}</div>
                   <span
-                    className={`inline-block text-[10px] font-semibold mt-1 px-2 py-0.5 rounded-full ${
+                    className={`inline-block text-[10px] font-medium mt-1 px-2 py-0.5 rounded ${
                       selectedService.id === srv.id
-                        ? 'bg-rose-500 text-white'
-                        : 'bg-neutral-800 text-neutral-400'
+                        ? 'bg-rose-600 text-white'
+                        : 'bg-gray-100 text-gray-600'
                     }`}
                   >
                     {selectedService.id === srv.id ? 'Selected' : 'Select'}
@@ -178,7 +178,7 @@ export const SalonBookingFlow: React.FC = () => {
           <div className="pt-2 flex justify-end">
             <button
               onClick={() => setStep(2)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs transition shadow"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs transition shadow-sm"
             >
               <span>Continue to Staff Selection</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -191,13 +191,13 @@ export const SalonBookingFlow: React.FC = () => {
       {step === 2 && (
         <div className="space-y-5">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Select Staff & Time Slot</h3>
-            <p className="text-xs text-neutral-400">Choose your preferred stylist and an available slot today.</p>
+            <h3 className="text-base font-semibold text-gray-900">Select Staff & Time Slot</h3>
+            <p className="text-xs text-gray-500">Choose your preferred stylist and an available slot today.</p>
           </div>
 
           {/* Staff Cards */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">
+            <label className="block text-xs font-medium text-gray-700 mb-2">
               Available Stylists Today
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -205,16 +205,16 @@ export const SalonBookingFlow: React.FC = () => {
                 <div
                   key={staff.id}
                   onClick={() => setSelectedStaff(staff.name)}
-                  className={`p-3.5 rounded-xl border cursor-pointer transition ${
+                  className={`p-3 rounded-lg border cursor-pointer transition ${
                     selectedStaff === staff.name
-                      ? 'bg-neutral-800 border-rose-500 text-white ring-1 ring-rose-500/40 shadow-sm'
-                      : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:text-white'
+                      ? 'bg-rose-50/50 border-rose-500 text-gray-900 ring-1 ring-rose-400/30 shadow-sm'
+                      : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                   }`}
                 >
-                  <div className="font-bold text-xs text-white">{staff.name}</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">{staff.role}</div>
-                  <div className="text-[10px] text-emerald-400 mt-2 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <div className="font-semibold text-xs text-gray-900">{staff.name}</div>
+                  <div className="text-[11px] text-gray-500 mt-0.5">{staff.role}</div>
+                  <div className="text-[10px] text-emerald-700 mt-2 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     <span>{staff.availableSlots.length} slots open</span>
                   </div>
                 </div>
@@ -224,7 +224,7 @@ export const SalonBookingFlow: React.FC = () => {
 
           {/* Time Slots */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">
+            <label className="block text-xs font-medium text-gray-700 mb-2">
               Select Time Slot (Today)
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
@@ -234,19 +234,19 @@ export const SalonBookingFlow: React.FC = () => {
                   type="button"
                   disabled={!slot.available}
                   onClick={() => setSelectedSlot(slot.time)}
-                  className={`py-2 px-1 text-center rounded-lg text-xs font-medium border transition ${
+                  className={`py-1.5 px-1 text-center rounded-md text-xs font-medium border transition ${
                     !slot.available
-                      ? 'opacity-40 cursor-not-allowed bg-neutral-950 border-neutral-900 text-neutral-600 line-through'
+                      ? 'opacity-40 cursor-not-allowed bg-gray-50 border-gray-200 text-gray-400 line-through'
                       : selectedSlot === slot.time
-                      ? 'bg-rose-600 border-rose-500 text-white font-bold shadow-sm'
-                      : 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:text-white hover:border-neutral-700'
+                      ? 'bg-rose-600 border-rose-600 text-white font-semibold shadow-sm'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
                   {slot.time}
                 </button>
               ))}
             </div>
-            <p className="text-[10px] text-neutral-400 mt-1.5">
+            <p className="text-[10px] text-gray-400 mt-1.5">
               * Slots with strikethrough are already booked by other clients.
             </p>
           </div>
@@ -254,14 +254,14 @@ export const SalonBookingFlow: React.FC = () => {
           <div className="pt-2 flex items-center justify-between">
             <button
               onClick={() => setStep(1)}
-              className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white px-3 py-2 rounded-lg"
+              className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 px-3 py-1.5 rounded-md"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
             </button>
             <button
               onClick={() => setStep(3)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs transition shadow"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs transition shadow-sm"
             >
               <span>Continue to Contact Info</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -274,13 +274,13 @@ export const SalonBookingFlow: React.FC = () => {
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Customer Information</h3>
-            <p className="text-xs text-neutral-400">Enter your name and WhatsApp number to receive appointment updates.</p>
+            <h3 className="text-base font-semibold text-gray-900">Customer Information</h3>
+            <p className="text-xs text-gray-500">Enter your name and WhatsApp number to receive appointment updates.</p>
           </div>
 
-          <div className="space-y-3 bg-neutral-950 p-4 rounded-xl border border-neutral-800">
+          <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+              <label className="block text-xs font-medium text-gray-700 mb-1">
                 Your Full Name *
               </label>
               <input
@@ -288,13 +288,13 @@ export const SalonBookingFlow: React.FC = () => {
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="e.g. Priya Sharma"
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
+                className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-rose-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+              <label className="block text-xs font-medium text-gray-700 mb-1">
                 WhatsApp / Phone Number *
               </label>
               <input
@@ -302,13 +302,13 @@ export const SalonBookingFlow: React.FC = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+91 94311 88210"
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
+                className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-rose-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+              <label className="block text-xs font-medium text-gray-700 mb-1">
                 Special Requests or Service Notes (Optional)
               </label>
               <input
@@ -316,7 +316,7 @@ export const SalonBookingFlow: React.FC = () => {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="e.g. Prefers organic shampoo or sensitive skin"
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
+                className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-rose-500"
               />
             </div>
           </div>
@@ -324,7 +324,7 @@ export const SalonBookingFlow: React.FC = () => {
           <div className="pt-2 flex items-center justify-between">
             <button
               onClick={() => setStep(2)}
-              className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white px-3 py-2 rounded-lg"
+              className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 px-3 py-1.5 rounded-md"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -332,7 +332,7 @@ export const SalonBookingFlow: React.FC = () => {
             <button
               disabled={!customerName.trim() || !phone.trim()}
               onClick={() => setStep(4)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs transition shadow disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs transition shadow-sm disabled:opacity-50"
             >
               <span>Review Booking</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -345,65 +345,65 @@ export const SalonBookingFlow: React.FC = () => {
       {step === 4 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Review & Confirm Appointment</h3>
-            <p className="text-xs text-neutral-400">Review your appointment details before submitting.</p>
+            <h3 className="text-base font-semibold text-gray-900">Review & Confirm Appointment</h3>
+            <p className="text-xs text-gray-500">Review your appointment details before submitting.</p>
           </div>
 
-          <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-5 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-neutral-800/80">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-3 shadow-sm">
+            <div className="flex items-center justify-between pb-2.5 border-b border-gray-200">
               <div>
-                <div className="text-xs text-neutral-400">Salon</div>
-                <div className="text-sm font-bold text-white">{customization.businessName}</div>
+                <div className="text-xs text-gray-500">Salon</div>
+                <div className="text-sm font-semibold text-gray-900">{customization.businessName}</div>
               </div>
-              <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20">
+              <span className="text-xs font-medium px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">
                 Direct Booking
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <span className="text-neutral-400 block text-[11px]">Service</span>
-                <span className="font-semibold text-white">{selectedService.name}</span>
+                <span className="text-gray-500 block text-[11px]">Service</span>
+                <span className="font-medium text-gray-900">{selectedService.name}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">Duration</span>
-                <span className="font-semibold text-white">{selectedService.duration}</span>
+                <span className="text-gray-500 block text-[11px]">Duration</span>
+                <span className="font-medium text-gray-900">{selectedService.duration}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">Date & Time</span>
-                <span className="font-semibold text-white">Today, {selectedSlot}</span>
+                <span className="text-gray-500 block text-[11px]">Date & Time</span>
+                <span className="font-medium text-gray-900">Today, {selectedSlot}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">Assigned Stylist</span>
-                <span className="font-semibold text-white">{selectedStaff}</span>
+                <span className="text-gray-500 block text-[11px]">Assigned Stylist</span>
+                <span className="font-medium text-gray-900">{selectedStaff}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">Client Name</span>
-                <span className="font-semibold text-white">{customerName}</span>
+                <span className="text-gray-500 block text-[11px]">Client Name</span>
+                <span className="font-medium text-gray-900">{customerName}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">WhatsApp</span>
-                <span className="font-semibold text-white">{phone}</span>
+                <span className="text-gray-500 block text-[11px]">WhatsApp</span>
+                <span className="font-medium text-gray-900">{phone}</span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-neutral-800/80 flex items-center justify-between">
-              <span className="text-xs font-medium text-neutral-300">Total Due at Salon</span>
-              <span className="text-lg font-extrabold text-white">₹{selectedService.price}</span>
+            <div className="pt-2.5 border-t border-gray-200 flex items-center justify-between">
+              <span className="text-xs font-medium text-gray-600">Total Due at Salon</span>
+              <span className="text-base font-bold text-gray-900">₹{selectedService.price}</span>
             </div>
           </div>
 
           <div className="pt-2 flex items-center justify-between">
             <button
               onClick={() => setStep(3)}
-              className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white px-3 py-2 rounded-lg"
+              className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 px-3 py-1.5 rounded-md"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
             </button>
             <button
               onClick={handleConfirmBooking}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs shadow-lg shadow-rose-950/40 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs shadow-sm transition"
             >
               <Check className="w-4 h-4" />
               <span>Confirm Appointment</span>
@@ -414,46 +414,46 @@ export const SalonBookingFlow: React.FC = () => {
 
       {/* STEP 5: SUCCESS SLIP */}
       {step === 5 && (
-        <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-6 sm:p-8 text-center space-y-5 animate-in fade-in zoom-in-95 duration-200">
-          <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 text-center space-y-4 shadow-sm animate-in fade-in zoom-in-95 duration-200">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
 
           <div>
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+            <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
               Appointment Confirmed
             </div>
-            <h3 className="text-2xl font-extrabold text-white">Token #{generatedToken}</h3>
-            <p className="text-xs text-neutral-400 mt-1">
+            <h3 className="text-xl font-bold text-gray-900">Token #{generatedToken}</h3>
+            <p className="text-xs text-gray-500 mt-1">
               Thank you, {customerName}. Your slot with {selectedStaff} has been reserved.
             </p>
           </div>
 
           {/* Appointment Card Summary */}
-          <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800 text-left text-xs space-y-2 max-w-md mx-auto">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Salon</span>
-              <span className="font-semibold text-white">{customization.businessName}</span>
+          <div className="bg-gray-50 p-3.5 rounded-md border border-gray-200 text-left text-xs space-y-2 max-w-md mx-auto">
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Salon</span>
+              <span className="font-semibold text-gray-900">{customization.businessName}</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Service</span>
-              <span className="font-semibold text-white">{selectedService.name} (₹{selectedService.price})</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Service</span>
+              <span className="font-semibold text-gray-900">{selectedService.name} (₹{selectedService.price})</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Timing</span>
-              <span className="font-semibold text-white">Today · {selectedSlot}</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Timing</span>
+              <span className="font-semibold text-gray-900">Today · {selectedSlot}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-400">Stylist</span>
-              <span className="font-semibold text-white">{selectedStaff}</span>
+              <span className="text-gray-500">Stylist</span>
+              <span className="font-semibold text-gray-900">{selectedStaff}</span>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
             <button
               onClick={() => setViewMode('dashboard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs shadow-md transition"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs shadow-sm transition"
             >
               <span>View in Owner Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -461,7 +461,7 @@ export const SalonBookingFlow: React.FC = () => {
 
             <button
               onClick={openConfirmationWhatsApp}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md transition"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs shadow-sm transition"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Simulate WhatsApp Slip</span>
@@ -469,7 +469,7 @@ export const SalonBookingFlow: React.FC = () => {
 
             <button
               onClick={() => setStep(1)}
-              className="w-full sm:w-auto text-xs text-neutral-400 hover:text-white px-3 py-2"
+              className="w-full sm:w-auto text-xs text-gray-500 hover:text-gray-900 px-3 py-1.5"
             >
               Book Another
             </button>

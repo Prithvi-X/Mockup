@@ -39,51 +39,51 @@ export const ClinicDashboardView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 sm:space-y-8">
-      {/* Top Banner */}
-      <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-5 sm:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-5 shadow-sm">
+    <div className="space-y-6">
+      {/* Top Header Card */}
+      <div className="bg-white border border-gray-200 rounded-lg p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">
-              Outpatient Department & Queue Management
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-semibold text-cyan-700 uppercase tracking-wider">
+              OPD & Queue
             </span>
-            <span className="text-neutral-600">•</span>
-            <span className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-gray-300">•</span>
+            <span className="text-xs font-medium text-emerald-700 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Live Waiting Room
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
             {customization.businessName}
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
             Doctor tokens, waiting room queue callout, and electronic prescription history.
           </p>
         </div>
 
         <button
           onClick={() => setViewMode('customer')}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs sm:text-sm shadow-md transition"
+          className="flex items-center gap-2 px-3.5 py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs sm:text-sm shadow-sm transition"
         >
-          <Eye className="w-4 h-4 text-cyan-600" />
+          <Eye className="w-4 h-4" />
           <span>Book Token on Customer Side</span>
         </button>
       </div>
 
       {/* Prominent Live Token Callout Card */}
-      <div className="bg-gradient-to-r from-neutral-900 via-neutral-900 to-cyan-950/40 border border-cyan-500/30 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
+      <div className="bg-cyan-50/60 border border-cyan-200 rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center font-mono text-2xl font-black text-cyan-300">
+          <div className="w-14 h-14 rounded-lg bg-white border border-cyan-200 flex items-center justify-center font-mono text-xl font-bold text-cyan-700 shadow-sm">
             {clinicCurrentToken}
           </div>
           <div>
-            <div className="text-[11px] font-semibold text-cyan-400 uppercase tracking-wider">
+            <div className="text-[11px] font-semibold text-cyan-800 uppercase tracking-wider">
               Current Patient In Chamber
             </div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-base font-bold text-gray-900">
               {clinicAppointments.find((a) => a.tokenNumber === clinicCurrentToken)?.patientName || 'Ayush Kumar (12y)'}
             </h3>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-gray-600">
               Doctor: {clinicAppointments.find((a) => a.tokenNumber === clinicCurrentToken)?.doctorName || 'Dr. Arvind Sharma'}
             </p>
           </div>
@@ -92,72 +92,72 @@ export const ClinicDashboardView: React.FC = () => {
         {/* Call Next Button */}
         <button
           onClick={callNextClinicPatient}
-          className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-cyan-950/40 transition transform active:scale-95"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs sm:text-sm shadow-sm transition"
         >
-          <BellRing className="w-4 h-4 animate-bounce" />
+          <BellRing className="w-4 h-4" />
           <span>Call Next Patient ({waitingCount} Waiting)</span>
         </button>
       </div>
 
       {/* KPI Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {stats.map((metric, idx) => (
           <StatCard key={idx} metric={metric} />
         ))}
       </div>
 
       {/* Queue Table */}
-      <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm">
-        <div className="p-4 sm:p-5 border-b border-neutral-800 flex items-center justify-between">
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+        <div className="p-4 border-b border-gray-200 flex items-center justify-between">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Today's OPD Consultation Queue</h3>
-            <p className="text-xs text-neutral-400 mt-0.5">
+            <h3 className="text-sm font-semibold text-gray-900">Today's OPD Consultation Queue</h3>
+            <p className="text-xs text-gray-500 mt-0.5">
               Click any patient name to open their consultation notes and medical history.
             </p>
           </div>
-          <span className="text-xs font-medium text-neutral-400 bg-neutral-800 px-2.5 py-1 rounded-lg">
+          <span className="text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded border border-gray-200">
             Live Tokens
           </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm">
-            <thead className="bg-neutral-900/90 text-neutral-400 uppercase tracking-wider text-[11px] border-b border-neutral-800">
+            <thead className="bg-gray-50 text-gray-600 uppercase tracking-wider text-[11px] font-semibold border-b border-gray-200">
               <tr>
-                <th className="px-4 py-3 font-semibold">Token</th>
-                <th className="px-4 py-3 font-semibold">Time</th>
-                <th className="px-4 py-3 font-semibold">Patient Name</th>
-                <th className="px-4 py-3 font-semibold">Doctor</th>
-                <th className="px-4 py-3 font-semibold">Reason / Symptoms</th>
-                <th className="px-4 py-3 font-semibold">Status</th>
-                <th className="px-4 py-3 font-semibold text-right">Action</th>
+                <th className="px-4 py-2.5 font-semibold">Token</th>
+                <th className="px-4 py-2.5 font-semibold">Time</th>
+                <th className="px-4 py-2.5 font-semibold">Patient Name</th>
+                <th className="px-4 py-2.5 font-semibold">Doctor</th>
+                <th className="px-4 py-2.5 font-semibold">Reason / Symptoms</th>
+                <th className="px-4 py-2.5 font-semibold">Status</th>
+                <th className="px-4 py-2.5 font-semibold text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/60 text-neutral-200">
+            <tbody className="divide-y divide-gray-200 text-gray-800">
               {clinicAppointments.map((appt) => (
-                <tr key={appt.id} className="hover:bg-neutral-800/30 transition">
-                  <td className="px-4 py-3.5 font-mono font-bold text-cyan-400">{appt.tokenNumber}</td>
-                  <td className="px-4 py-3.5 whitespace-nowrap text-white font-medium">{appt.time}</td>
-                  <td className="px-4 py-3.5 whitespace-nowrap">
+                <tr key={appt.id} className="hover:bg-gray-50/75 transition">
+                  <td className="px-4 py-3 font-mono font-bold text-cyan-700">{appt.tokenNumber}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-gray-900 font-medium">{appt.time}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <button
                       onClick={() => setSelectedPatient(appt)}
-                      className="font-semibold text-white hover:underline text-left flex items-center gap-1.5"
+                      className="font-semibold text-gray-900 hover:text-cyan-700 text-left flex items-center gap-1.5"
                     >
-                      <User className="w-3.5 h-3.5 text-neutral-400" />
+                      <User className="w-3.5 h-3.5 text-gray-400" />
                       <span>{appt.patientName}</span>
-                      <span className="text-[11px] text-neutral-400 font-normal">({appt.age})</span>
+                      <span className="text-[11px] text-gray-500 font-normal">({appt.age})</span>
                     </button>
-                    <div className="text-[11px] text-neutral-400">{appt.phone}</div>
+                    <div className="text-[11px] text-gray-500">{appt.phone}</div>
                   </td>
-                  <td className="px-4 py-3.5 whitespace-nowrap text-neutral-300">{appt.doctorName}</td>
-                  <td className="px-4 py-3.5 whitespace-nowrap text-neutral-300">{appt.reason}</td>
-                  <td className="px-4 py-3.5 whitespace-nowrap">
+                  <td className="px-4 py-3 whitespace-nowrap text-gray-700">{appt.doctorName}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-gray-600">{appt.reason}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <StatusBadge status={appt.status} />
                   </td>
-                  <td className="px-4 py-3.5 whitespace-nowrap text-right">
+                  <td className="px-4 py-3 whitespace-nowrap text-right">
                     <button
                       onClick={() => setSelectedPatient(appt)}
-                      className="px-2.5 py-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 rounded-lg text-xs font-medium border border-neutral-700"
+                      className="px-2.5 py-1 bg-white hover:bg-gray-50 text-gray-700 rounded text-xs font-medium border border-gray-200 transition shadow-sm"
                     >
                       Notes ({appt.notes.length})
                     </button>
@@ -179,33 +179,33 @@ export const ClinicDashboardView: React.FC = () => {
           maxWidth="max-w-lg"
         >
           <div className="space-y-4 text-xs">
-            <div className="bg-neutral-950 p-3.5 rounded-xl border border-neutral-800 space-y-2">
+            <div className="bg-gray-50 p-3.5 rounded-lg border border-gray-200 space-y-2">
               <div className="flex justify-between">
-                <span className="text-neutral-400">Chief Complaint:</span>
-                <span className="font-semibold text-white">{selectedPatient.reason}</span>
+                <span className="text-gray-500">Chief Complaint:</span>
+                <span className="font-semibold text-gray-900">{selectedPatient.reason}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-400">Phone:</span>
-                <span className="text-neutral-200">{selectedPatient.phone}</span>
+                <span className="text-gray-500">Phone:</span>
+                <span className="text-gray-800">{selectedPatient.phone}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-400">Consultation Status:</span>
+                <span className="text-gray-500">Consultation Status:</span>
                 <StatusBadge status={selectedPatient.status} />
               </div>
             </div>
 
             <div>
-              <h4 className="font-semibold uppercase tracking-wider text-neutral-300 mb-2">
+              <h4 className="font-semibold uppercase tracking-wider text-gray-700 mb-2">
                 Consultation Notes & Prescriptions
               </h4>
               <div className="space-y-1.5 max-h-36 overflow-y-auto mb-3">
                 {selectedPatient.notes.length === 0 ? (
-                  <div className="text-neutral-500 italic p-2 bg-neutral-950 rounded border border-neutral-800">
+                  <div className="text-gray-500 italic p-2 bg-gray-50 rounded border border-gray-200">
                     No notes recorded yet for this visit.
                   </div>
                 ) : (
                   selectedPatient.notes.map((note, idx) => (
-                    <div key={idx} className="bg-neutral-950 p-2.5 rounded-lg border border-neutral-800 text-neutral-200">
+                    <div key={idx} className="bg-gray-50 p-2.5 rounded-md border border-gray-200 text-gray-800">
                       • {note}
                     </div>
                   ))
@@ -218,12 +218,12 @@ export const ClinicDashboardView: React.FC = () => {
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
                   placeholder="Type doctor observation or Rx note..."
-                  className="flex-1 bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="flex-1 bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 />
                 <button
                   type="submit"
                   disabled={!newNote.trim()}
-                  className="px-3.5 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs rounded-lg transition disabled:opacity-50"
+                  className="px-3.5 py-1.5 bg-cyan-600 hover:bg-cyan-700 text-white font-medium text-xs rounded-md transition disabled:opacity-50"
                 >
                   Save Note
                 </button>

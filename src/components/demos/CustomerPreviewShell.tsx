@@ -35,19 +35,19 @@ export const CustomerPreviewShell: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       {/* Top Simulator Banner */}
-      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-md">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-md bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
             <Smartphone className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-bold text-white flex items-center gap-1.5">
-              <span>Customer-Facing Mobile Experience</span>
-              <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.2 rounded font-semibold">
-                Interactive Loop
+            <div className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+              <span>Customer Mobile Experience</span>
+              <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.2 rounded font-medium">
+                Live Loop
               </span>
             </div>
-            <p className="text-[11px] text-neutral-400">
+            <p className="text-[11px] text-gray-500">
               Actions taken here immediately post into the Owner's Business Dashboard.
             </p>
           </div>
@@ -55,7 +55,7 @@ export const CustomerPreviewShell: React.FC = () => {
 
         <button
           onClick={() => setViewMode('dashboard')}
-          className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-semibold text-neutral-200 bg-neutral-800 hover:bg-neutral-700 px-3.5 py-2 rounded-xl border border-neutral-700 transition"
+          className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 px-3 py-1.5 rounded-md border border-gray-200 transition shadow-sm"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Switch to Business Dashboard</span>
@@ -63,19 +63,19 @@ export const CustomerPreviewShell: React.FC = () => {
       </div>
 
       {/* Mock Storefront Wrapper */}
-      <div className="bg-neutral-900/70 border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl">
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
         {/* Storefront Header */}
-        <div className="bg-neutral-950 p-6 sm:p-7 border-b border-neutral-800 text-center relative">
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-neutral-400 uppercase tracking-widest mb-2">
+        <div className="bg-gray-50 p-6 border-b border-gray-200 text-center relative">
+          <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white border border-gray-200 text-[11px] font-medium text-gray-600 uppercase tracking-wider mb-2">
             {business.label}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
             {customization.businessName}
           </h2>
-          <p className="text-xs text-neutral-400 mt-1 max-w-md mx-auto">
+          <p className="text-xs text-gray-500 mt-1 max-w-md mx-auto">
             {customization.tagline || business.tagline}
           </p>
-          <div className="mt-2 text-xs text-neutral-400 flex items-center justify-center gap-3">
+          <div className="mt-2 text-xs text-gray-400 flex items-center justify-center gap-2">
             <span>{customization.address}</span>
             <span>•</span>
             <span>{customization.phone}</span>
@@ -83,7 +83,7 @@ export const CustomerPreviewShell: React.FC = () => {
         </div>
 
         {/* Dynamic Interactive Flow */}
-        <div className="p-6 sm:p-8">
+        <div className="p-5 sm:p-6">
           {renderCustomerFlow()}
         </div>
       </div>

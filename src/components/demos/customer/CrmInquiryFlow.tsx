@@ -38,62 +38,62 @@ export const CrmInquiryFlow: React.FC = () => {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       {isSubmitted ? (
-        <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-6 sm:p-8 text-center space-y-5 animate-in fade-in duration-200">
-          <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 text-center space-y-4 shadow-sm animate-in fade-in duration-200">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+            <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
               Inquiry Logged
             </div>
-            <h3 className="text-2xl font-extrabold text-white">Lead Ref #{leadCode}</h3>
-            <p className="text-xs text-neutral-400 mt-1">
+            <h3 className="text-xl font-bold text-gray-900">Lead Ref #{leadCode}</h3>
+            <p className="text-xs text-gray-500 mt-1">
               Thank you, {contactPerson}. Your request has been added to our active sales pipeline.
             </p>
           </div>
 
-          <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800 text-left text-xs space-y-2 max-w-md mx-auto">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Company</span>
-              <span className="font-semibold text-white">{companyName}</span>
+          <div className="bg-gray-50 p-3.5 rounded-md border border-gray-200 text-left text-xs space-y-2 max-w-md mx-auto">
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Company</span>
+              <span className="font-semibold text-gray-900">{companyName}</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Requirement</span>
-              <span className="font-semibold text-white">{requirement}</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Requirement</span>
+              <span className="font-medium text-gray-900">{requirement}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-400">Pipeline Stage</span>
-              <span className="font-bold text-violet-400">New Inquiry (Priority)</span>
+              <span className="text-gray-500">Pipeline Stage</span>
+              <span className="font-semibold text-violet-700">New Inquiry (Priority)</span>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
             <button
               onClick={() => setViewMode('dashboard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs transition shadow"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs shadow-sm transition"
             >
               <span>View in Deal Pipeline</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="w-full sm:w-auto text-xs text-neutral-400 hover:text-white px-3 py-2"
+              className="w-full sm:w-auto text-xs text-gray-500 hover:text-gray-900 px-3 py-1.5"
             >
               Submit Another Inquiry
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Request a Custom Proposal</h3>
-            <p className="text-xs text-neutral-400">Tell us what your business needs and receive a tailored software estimate.</p>
+            <h3 className="text-base font-semibold text-gray-900">Request a Custom Proposal</h3>
+            <p className="text-xs text-gray-500">Tell us what your business needs and receive a tailored software estimate.</p>
           </div>
 
-          <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-3.5 text-xs">
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3 text-xs">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-neutral-400 mb-1 font-semibold uppercase tracking-wider text-[10px]">
+                <label className="block text-gray-700 mb-1 font-medium text-[11px]">
                   Company / Organization Name *
                 </label>
                 <input
@@ -101,12 +101,12 @@ export const CrmInquiryFlow: React.FC = () => {
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="e.g. Rahul Enterprises"
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                  className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-violet-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-neutral-400 mb-1 font-semibold uppercase tracking-wider text-[10px]">
+                <label className="block text-gray-700 mb-1 font-medium text-[11px]">
                   Contact Person *
                 </label>
                 <input
@@ -114,7 +114,7 @@ export const CrmInquiryFlow: React.FC = () => {
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
                   placeholder="e.g. Rahul Verma"
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                  className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-violet-500"
                   required
                 />
               </div>
@@ -122,7 +122,7 @@ export const CrmInquiryFlow: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-neutral-400 mb-1 font-semibold uppercase tracking-wider text-[10px]">
+                <label className="block text-gray-700 mb-1 font-medium text-[11px]">
                   WhatsApp / Phone Number *
                 </label>
                 <input
@@ -130,18 +130,18 @@ export const CrmInquiryFlow: React.FC = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 98351 00880"
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                  className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-violet-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-neutral-400 mb-1 font-semibold uppercase tracking-wider text-[10px]">
+                <label className="block text-gray-700 mb-1 font-medium text-[11px]">
                   Target Budget
                 </label>
                 <select
                   value={budgetRange}
                   onChange={(e) => setBudgetRange(e.target.value)}
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                  className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-violet-500"
                 >
                   <option value="₹25,000 - ₹40,000">₹25,000 - ₹40,000 (Starter)</option>
                   <option value="₹40,000 - ₹60,000">₹40,000 - ₹60,000 (Standard)</option>
@@ -152,7 +152,7 @@ export const CrmInquiryFlow: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-neutral-400 mb-1 font-semibold uppercase tracking-wider text-[10px]">
+              <label className="block text-gray-700 mb-1 font-medium text-[11px]">
                 Software / Workflow Needs
               </label>
               <textarea
@@ -160,7 +160,7 @@ export const CrmInquiryFlow: React.FC = () => {
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
                 placeholder="e.g. Website with customer booking, staff scheduling & payment reminders"
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white resize-none"
+                className="w-full bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-violet-500 resize-none"
                 required
               />
             </div>
@@ -170,7 +170,7 @@ export const CrmInquiryFlow: React.FC = () => {
           <div className="pt-2 flex items-center justify-end">
             <button
               type="submit"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-xs shadow-md transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs shadow-sm transition"
             >
               <Check className="w-4 h-4" />
               <span>Submit Inquiry & Create Deal</span>

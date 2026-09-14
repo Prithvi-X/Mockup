@@ -73,50 +73,50 @@ export const HotelBookingFlow: React.FC = () => {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       {confirmed ? (
-        <div className="bg-neutral-950 rounded-2xl border border-neutral-800 p-6 sm:p-8 text-center space-y-5 animate-in fade-in duration-200">
-          <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="bg-white rounded-lg border border-gray-200 p-6 text-center space-y-4 shadow-sm animate-in fade-in duration-200">
+          <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center">
+            <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">
+            <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">
               Reservation Confirmed
             </div>
-            <h3 className="text-2xl font-extrabold text-white">Booking ID #{bookingRef}</h3>
-            <p className="text-xs text-neutral-400 mt-1">
+            <h3 className="text-xl font-bold text-gray-900">Booking ID #{bookingRef}</h3>
+            <p className="text-xs text-gray-500 mt-1">
               Thank you, {guestName}. Your room at {customization.businessName} has been booked.
             </p>
           </div>
 
-          <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800 text-left text-xs space-y-2 max-w-md mx-auto">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Room</span>
-              <span className="font-semibold text-white">{selectedRoom.name}</span>
+          <div className="bg-gray-50 p-3.5 rounded-md border border-gray-200 text-left text-xs space-y-2 max-w-md mx-auto">
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Room</span>
+              <span className="font-semibold text-gray-900">{selectedRoom.name}</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Duration</span>
-              <span className="font-semibold text-white">{nights} Nights ({checkIn} to {checkOut})</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Duration</span>
+              <span className="font-medium text-gray-900">{nights} Nights ({checkIn} to {checkOut})</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
-              <span className="text-neutral-400">Guests</span>
-              <span className="font-semibold text-white">{guests}</span>
+            <div className="flex justify-between border-b border-gray-200 pb-1.5">
+              <span className="text-gray-500">Guests</span>
+              <span className="font-medium text-gray-900">{guests}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-400">Total Tariff</span>
-              <span className="font-bold text-emerald-400">₹{totalAmount.toLocaleString('en-IN')} (Paid)</span>
+              <span className="text-gray-500">Total Tariff</span>
+              <span className="font-bold text-gray-900">₹{totalAmount.toLocaleString('en-IN')} (Paid)</span>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
             <button
               onClick={() => setViewMode('dashboard')}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs transition shadow"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs shadow-sm transition"
             >
               <span>View in Hotel Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={openWhatsAppSlip}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow"
+              className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs shadow-sm transition"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Simulate WhatsApp Slip</span>
@@ -124,46 +124,46 @@ export const HotelBookingFlow: React.FC = () => {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Book Your Stay</h3>
-            <p className="text-xs text-neutral-400">Direct booking at {customization.businessName} with zero OTA commissions.</p>
+            <h3 className="text-base font-semibold text-gray-900">Book Your Stay</h3>
+            <p className="text-xs text-gray-500">Direct booking at {customization.businessName} with zero OTA commissions.</p>
           </div>
 
           {/* Dates & Guests */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-neutral-950 p-4 rounded-xl border border-neutral-800 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-gray-50 p-4 rounded-lg border border-gray-200 text-xs">
             <div>
-              <label className="text-neutral-400 block mb-1 font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-gray-700 block mb-1 font-medium text-[11px]">
                 Check-In Date
               </label>
               <input
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg p-2 text-white"
+                className="w-full bg-white border border-gray-300 rounded-md p-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 required
               />
             </div>
             <div>
-              <label className="text-neutral-400 block mb-1 font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-gray-700 block mb-1 font-medium text-[11px]">
                 Check-Out Date
               </label>
               <input
                 type="date"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg p-2 text-white"
+                className="w-full bg-white border border-gray-300 rounded-md p-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 required
               />
             </div>
             <div>
-              <label className="text-neutral-400 block mb-1 font-semibold uppercase tracking-wider text-[10px]">
+              <label className="text-gray-700 block mb-1 font-medium text-[11px]">
                 Guests & Nights
               </label>
               <select
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
-                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg p-2 text-white"
+                className="w-full bg-white border border-gray-300 rounded-md p-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-indigo-500"
               >
                 <option value="1 Adult">1 Adult</option>
                 <option value="2 Adults">2 Adults</option>
@@ -174,39 +174,39 @@ export const HotelBookingFlow: React.FC = () => {
           </div>
 
           {/* Room Selection */}
-          <div className="space-y-3">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400">
+          <div className="space-y-2.5">
+            <label className="block text-xs font-medium text-gray-700">
               Select Room Category
             </label>
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {activeRooms.map((room) => (
                 <div
                   key={room.id}
                   onClick={() => setSelectedRoom(room)}
-                  className={`p-4 rounded-xl border cursor-pointer transition flex items-center justify-between ${
+                  className={`p-3.5 rounded-lg border cursor-pointer transition flex items-center justify-between ${
                     selectedRoom.id === room.id
-                      ? 'bg-neutral-800/90 border-indigo-500 text-white shadow-md ring-1 ring-indigo-500/40'
-                      : 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:border-neutral-700'
+                      ? 'bg-indigo-50/50 border-indigo-500 text-gray-900 shadow-sm ring-1 ring-indigo-400/30'
+                      : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
                   }`}
                 >
                   <div>
-                    <div className="font-bold text-sm text-white flex items-center gap-2">
+                    <div className="font-semibold text-xs sm:text-sm text-gray-900 flex items-center gap-2">
                       <span>{room.name}</span>
-                      <span className="text-[11px] bg-neutral-900 text-neutral-400 px-2 py-0.5 rounded font-normal">
+                      <span className="text-[11px] bg-gray-100 text-gray-600 border border-gray-200 px-2 py-0.5 rounded font-normal">
                         {room.capacity}
                       </span>
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-1.5 text-[11px] text-neutral-400">
+                    <div className="flex flex-wrap gap-1.5 mt-1.5 text-[11px] text-gray-500">
                       {room.amenities.map((am, i) => (
-                        <span key={i} className="bg-neutral-900/90 px-1.5 py-0.5 rounded border border-neutral-800">
+                        <span key={i} className="bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">
                           {am}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div className="text-right shrink-0 ml-4">
-                    <div className="text-base font-extrabold text-indigo-400">₹{room.price}</div>
-                    <div className="text-[10px] text-neutral-400">per night</div>
+                    <div className="text-sm sm:text-base font-bold text-indigo-700">₹{room.price}</div>
+                    <div className="text-[10px] text-gray-400">per night</div>
                   </div>
                 </div>
               ))}
@@ -214,15 +214,15 @@ export const HotelBookingFlow: React.FC = () => {
           </div>
 
           {/* Guest Details */}
-          <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-3 text-xs">
-            <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Primary Guest Information</h4>
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3 text-xs">
+            <h4 className="font-semibold text-gray-800 text-xs">Primary Guest Information</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
                 placeholder="Full Name"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 required
               />
               <input
@@ -230,21 +230,21 @@ export const HotelBookingFlow: React.FC = () => {
                 placeholder="WhatsApp Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-white"
+                className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 required
               />
             </div>
           </div>
 
           {/* Action */}
-          <div className="pt-2 flex items-center justify-between border-t border-neutral-800">
+          <div className="pt-2 flex items-center justify-between border-t border-gray-200">
             <div>
-              <span className="text-xs text-neutral-400 block">Total Due for {nights} Nights</span>
-              <span className="text-lg font-extrabold text-white">₹{totalAmount.toLocaleString('en-IN')}</span>
+              <span className="text-xs text-gray-500 block">Total Due for {nights} Nights</span>
+              <span className="text-base font-bold text-gray-900">₹{totalAmount.toLocaleString('en-IN')}</span>
             </div>
             <button
               type="submit"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs shadow-sm transition"
             >
               <Check className="w-4 h-4" />
               <span>Confirm Reservation</span>

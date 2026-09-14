@@ -80,76 +80,76 @@ export const SalonDashboardView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="space-y-5">
       {/* Top Banner with Quick Actions */}
-      <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-5 sm:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-5 shadow-sm">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-xs font-semibold text-rose-400 uppercase tracking-wider">
-              Salon Operating System
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-semibold text-rose-700 uppercase tracking-wider">
+              Salon Operations
             </span>
-            <span className="text-neutral-600">•</span>
-            <span className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Live Interactive State
+            <span className="text-gray-300">•</span>
+            <span className="text-xs font-medium text-emerald-700 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              Live Interactive
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
             {customization.businessName}
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
             Appointments, stylist availability, payments & customer history.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setViewMode('customer')}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs sm:text-sm shadow-md transition"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs sm:text-sm shadow-xs transition"
           >
-            <Eye className="w-4 h-4 text-rose-600" />
-            <span>Book New from Customer View</span>
+            <Eye className="w-4 h-4" />
+            <span>Book from Customer View</span>
           </button>
         </div>
       </div>
 
       {/* KPI Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {stats.map((metric, idx) => (
           <StatCard key={idx} metric={metric} />
         ))}
       </div>
 
       {/* View Sub-Tabs */}
-      <div className="flex items-center gap-2 border-b border-neutral-800 pb-3 text-xs">
+      <div className="flex items-center gap-2 border-b border-gray-200 pb-2 text-xs">
         <button
           onClick={() => setActiveTab('appointments')}
-          className={`px-3.5 py-1.5 rounded-lg font-semibold transition ${
+          className={`px-3 py-1.5 rounded-md font-medium transition ${
             activeTab === 'appointments'
-              ? 'bg-neutral-800 text-white shadow-sm border border-neutral-700'
-              : 'text-neutral-400 hover:text-white'
+              ? 'bg-gray-100 text-gray-900 font-semibold'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
           }`}
         >
-          Today's Appointments ({salonBookings.length})
+          Appointments ({salonBookings.length})
         </button>
 
         <button
           onClick={() => setActiveTab('customers')}
-          className={`px-3.5 py-1.5 rounded-lg font-semibold transition ${
+          className={`px-3 py-1.5 rounded-md font-medium transition ${
             activeTab === 'customers'
-              ? 'bg-neutral-800 text-white shadow-sm border border-neutral-700'
-              : 'text-neutral-400 hover:text-white'
+              ? 'bg-gray-100 text-gray-900 font-semibold'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
           }`}
         >
-          Customer Records & Profiles ({salonCustomers.length})
+          Customer Records ({salonCustomers.length})
         </button>
 
         <button
           onClick={() => setActiveTab('staff')}
-          className={`px-3.5 py-1.5 rounded-lg font-semibold transition ${
+          className={`px-3 py-1.5 rounded-md font-medium transition ${
             activeTab === 'staff'
-              ? 'bg-neutral-800 text-white shadow-sm border border-neutral-700'
-              : 'text-neutral-400 hover:text-white'
+              ? 'bg-gray-100 text-gray-900 font-semibold'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
           }`}
         >
           Stylist Schedules ({salonStaff.length})
@@ -158,39 +158,39 @@ export const SalonDashboardView: React.FC = () => {
 
       {/* TAB 1: APPOINTMENTS TABLE */}
       {activeTab === 'appointments' && (
-        <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm">
-          <div className="p-4 sm:p-5 border-b border-neutral-800 flex items-center justify-between">
+        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div className="p-3.5 sm:p-4 border-b border-gray-200 flex items-center justify-between bg-white">
             <div>
-              <h3 className="text-base font-bold text-white tracking-tight">Today's Appointments Schedule</h3>
-              <p className="text-xs text-neutral-400 mt-0.5">
+              <h3 className="text-sm font-semibold text-gray-900 tracking-tight">Today's Appointments Schedule</h3>
+              <p className="text-xs text-gray-500 mt-0.5">
                 Click <strong>Confirm</strong> to approve pending bookings, or <strong>Record Payment</strong>.
               </p>
             </div>
-            <span className="text-xs font-medium text-neutral-400 bg-neutral-800/80 px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-0.5 rounded">
               Live updates
             </span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-neutral-900/90 text-neutral-400 uppercase tracking-wider text-[11px] border-b border-neutral-800">
+              <thead className="bg-gray-50 text-gray-600 font-medium text-[11px] uppercase tracking-wider border-b border-gray-200">
                 <tr>
-                  <th className="px-4 py-3 font-semibold">Token</th>
-                  <th className="px-4 py-3 font-semibold">Time</th>
-                  <th className="px-4 py-3 font-semibold">Customer</th>
-                  <th className="px-4 py-3 font-semibold">Service</th>
-                  <th className="px-4 py-3 font-semibold">Stylist</th>
-                  <th className="px-4 py-3 font-semibold">Amount</th>
-                  <th className="px-4 py-3 font-semibold">Status</th>
-                  <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Token</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Time</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Customer</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Service</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Stylist</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Amount</th>
+                  <th className="px-3.5 py-2.5 font-semibold">Status</th>
+                  <th className="px-3.5 py-2.5 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-800/60 text-neutral-200">
+              <tbody className="divide-y divide-gray-100 text-gray-800">
                 {salonBookings.map((b) => (
-                  <tr key={b.id} className="hover:bg-neutral-800/30 transition">
-                    <td className="px-4 py-3.5 font-mono font-bold text-rose-400">{b.token}</td>
-                    <td className="px-4 py-3.5 whitespace-nowrap font-medium text-white">{b.time}</td>
-                    <td className="px-4 py-3.5 whitespace-nowrap">
+                  <tr key={b.id} className="hover:bg-gray-50/70 transition">
+                    <td className="px-3.5 py-2.5 font-mono font-bold text-rose-700">{b.token}</td>
+                    <td className="px-3.5 py-2.5 whitespace-nowrap font-medium text-gray-900">{b.time}</td>
+                    <td className="px-3.5 py-2.5 whitespace-nowrap">
                       <button
                         onClick={() => {
                           const cust = salonCustomers.find(
@@ -198,35 +198,35 @@ export const SalonDashboardView: React.FC = () => {
                           );
                           if (cust) setSelectedCustomer(cust);
                         }}
-                        className="font-semibold text-white hover:underline text-left flex items-center gap-1.5"
+                        className="font-medium text-gray-900 hover:text-rose-700 hover:underline text-left flex items-center gap-1.5"
                       >
-                        <User className="w-3.5 h-3.5 text-neutral-400" />
+                        <User className="w-3.5 h-3.5 text-gray-400" />
                         <span>{b.customerName}</span>
                       </button>
-                      <div className="text-[11px] text-neutral-400">{b.phone}</div>
+                      <div className="text-[11px] text-gray-400">{b.phone}</div>
                     </td>
-                    <td className="px-4 py-3.5 whitespace-nowrap text-neutral-300">{b.serviceName}</td>
-                    <td className="px-4 py-3.5 whitespace-nowrap text-neutral-300">{b.staffName}</td>
-                    <td className="px-4 py-3.5 whitespace-nowrap">
-                      <div className="font-bold text-white">₹{b.price}</div>
+                    <td className="px-3.5 py-2.5 whitespace-nowrap text-gray-700">{b.serviceName}</td>
+                    <td className="px-3.5 py-2.5 whitespace-nowrap text-gray-700">{b.staffName}</td>
+                    <td className="px-3.5 py-2.5 whitespace-nowrap">
+                      <div className="font-semibold text-gray-900">₹{b.price}</div>
                       <span
-                        className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${
+                        className={`text-[10px] font-medium px-1.5 py-0.2 rounded border ${
                           b.paymentStatus === 'Paid'
-                            ? 'bg-emerald-500/10 text-emerald-400'
-                            : 'bg-amber-500/10 text-amber-400'
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60'
+                            : 'bg-amber-50 text-amber-700 border-amber-200/60'
                         }`}
                       >
                         {b.paymentStatus === 'Paid' ? `Paid (${b.paymentMethod || 'UPI'})` : 'Unpaid'}
                       </span>
                     </td>
-                    <td className="px-4 py-3.5 whitespace-nowrap">
+                    <td className="px-3.5 py-2.5 whitespace-nowrap">
                       <StatusBadge status={b.status} />
                     </td>
-                    <td className="px-4 py-3.5 whitespace-nowrap text-right space-x-1.5">
+                    <td className="px-3.5 py-2.5 whitespace-nowrap text-right space-x-1.5">
                       {b.status === 'Pending' && (
                         <button
                           onClick={() => confirmSalonBooking(b.id)}
-                          className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow-sm transition"
+                          className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-medium transition"
                           title="Confirm Appointment"
                         >
                           Confirm
@@ -236,17 +236,17 @@ export const SalonDashboardView: React.FC = () => {
                       {b.paymentStatus === 'Pending' && (
                         <button
                           onClick={() => handleOpenPayment(b)}
-                          className="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded-lg text-xs font-medium border border-neutral-700 transition"
+                          className="px-2 py-1 bg-white hover:bg-gray-50 text-gray-700 rounded text-xs font-medium border border-gray-300 transition"
                           title="Record Payment"
                         >
-                          <CreditCard className="w-3.5 h-3.5 inline mr-1" />
+                          <CreditCard className="w-3.5 h-3.5 inline mr-1 text-gray-500" />
                           Pay
                         </button>
                       )}
 
                       <button
                         onClick={() => handleOpenWhatsApp(b)}
-                        className="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 text-emerald-400 rounded-lg text-xs font-medium border border-neutral-700 transition"
+                        className="px-2 py-1 bg-white hover:bg-gray-50 text-emerald-700 rounded text-xs font-medium border border-gray-300 transition"
                         title="Simulate WhatsApp Confirmation"
                       >
                         <MessageSquare className="w-3.5 h-3.5 inline" />
@@ -255,7 +255,7 @@ export const SalonDashboardView: React.FC = () => {
                       {b.status !== 'Cancelled' && (
                         <button
                           onClick={() => cancelSalonBooking(b.id)}
-                          className="px-2 py-1 text-neutral-400 hover:text-rose-400 text-xs rounded transition"
+                          className="px-1.5 py-1 text-gray-400 hover:text-rose-600 text-xs rounded transition"
                           title="Cancel"
                         >
                           <X className="w-3.5 h-3.5 inline" />
@@ -272,43 +272,43 @@ export const SalonDashboardView: React.FC = () => {
 
       {/* TAB 2: CUSTOMERS DIRECTORY */}
       {activeTab === 'customers' && (
-        <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-5 shadow-sm space-y-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Customer Loyalty & History Records</h3>
-            <p className="text-xs text-neutral-400 mt-0.5">
+            <h3 className="text-sm font-semibold text-gray-900 tracking-tight">Customer Loyalty & History Records</h3>
+            <p className="text-xs text-gray-500 mt-0.5">
               Click any customer to open their full profile and service history.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {salonCustomers.map((cust) => (
               <div
                 key={cust.id}
                 onClick={() => setSelectedCustomer(cust)}
-                className="bg-neutral-950 border border-neutral-800 hover:border-neutral-700 rounded-xl p-4 cursor-pointer transition space-y-2.5 shadow-sm"
+                className="bg-white border border-gray-200 hover:border-gray-300 rounded-lg p-3.5 cursor-pointer transition space-y-2 hover:bg-gray-50/50"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 font-bold text-xs">
+                    <div className="w-8 h-8 rounded-md bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-700 font-bold text-xs">
                       {cust.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-white">{cust.name}</h4>
-                      <p className="text-xs text-neutral-400">{cust.phone}</p>
+                      <h4 className="font-semibold text-sm text-gray-900">{cust.name}</h4>
+                      <p className="text-xs text-gray-500">{cust.phone}</p>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300">
+                  <span className="text-xs font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
                     {cust.totalVisits} Visits
                   </span>
                 </div>
 
-                <div className="text-xs text-neutral-400 space-y-1 pt-1 border-t border-neutral-900">
+                <div className="text-xs text-gray-500 space-y-1 pt-1.5 border-t border-gray-100">
                   <div className="flex justify-between">
                     <span>Last Visit:</span>
-                    <span className="text-neutral-300 font-medium">{cust.lastVisit}</span>
+                    <span className="text-gray-800 font-medium">{cust.lastVisit}</span>
                   </div>
                   {cust.upcomingAppointment && (
-                    <div className="flex justify-between text-rose-400 font-medium">
+                    <div className="flex justify-between text-rose-700 font-medium">
                       <span>Upcoming:</span>
                       <span>{cust.upcomingAppointment}</span>
                     </div>
@@ -316,7 +316,7 @@ export const SalonDashboardView: React.FC = () => {
                 </div>
 
                 {cust.notes.length > 0 && (
-                  <div className="bg-neutral-900/70 p-2 rounded-lg text-[11px] text-neutral-300 italic line-clamp-1 border border-neutral-800/80">
+                  <div className="bg-gray-50 p-2 rounded text-[11px] text-gray-600 italic line-clamp-1 border border-gray-200">
                     "{cust.notes[0]}"
                   </div>
                 )}
@@ -328,37 +328,37 @@ export const SalonDashboardView: React.FC = () => {
 
       {/* TAB 3: STYLIST SCHEDULES */}
       {activeTab === 'staff' && (
-        <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-5 shadow-sm space-y-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Stylist Schedules & Load Today</h3>
-            <p className="text-xs text-neutral-400 mt-0.5">
+            <h3 className="text-sm font-semibold text-gray-900 tracking-tight">Stylist Schedules & Load Today</h3>
+            <p className="text-xs text-gray-500 mt-0.5">
               Assigned appointments and available openings across senior stylists.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
             {salonStaff.map((staff) => (
-              <div key={staff.id} className="bg-neutral-950 border border-neutral-800 rounded-xl p-4 space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+              <div key={staff.id} className="bg-white border border-gray-200 rounded-lg p-3.5 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-gray-100">
                   <div>
-                    <h4 className="font-bold text-sm text-white">{staff.name}</h4>
-                    <p className="text-xs text-neutral-400">{staff.role}</p>
+                    <h4 className="font-semibold text-sm text-gray-900">{staff.name}</h4>
+                    <p className="text-xs text-gray-500">{staff.role}</p>
                   </div>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">
+                  <span className="text-xs font-medium px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">
                     {staff.activeAppointments} Booked
                   </span>
                 </div>
 
                 <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-1.5">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-1">
                     Today's Bookings
                   </div>
                   <div className="space-y-1">
                     {staff.bookedSlots.length === 0 ? (
-                      <div className="text-xs text-neutral-500 italic">No bookings yet today</div>
+                      <div className="text-xs text-gray-400 italic">No bookings yet today</div>
                     ) : (
                       staff.bookedSlots.map((slot, i) => (
-                        <div key={i} className="text-xs text-white bg-neutral-900 p-1.5 rounded border border-neutral-800">
+                        <div key={i} className="text-xs text-gray-800 bg-gray-50 p-1.5 rounded border border-gray-200">
                           {slot}
                         </div>
                       ))
@@ -367,12 +367,12 @@ export const SalonDashboardView: React.FC = () => {
                 </div>
 
                 <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-1.5">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-1">
                     Open Slots
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {staff.availableSlots.map((slot, i) => (
-                      <span key={i} className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">
+                      <span key={i} className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded">
                         {slot}
                       </span>
                     ))}
@@ -394,32 +394,32 @@ export const SalonDashboardView: React.FC = () => {
           maxWidth="max-w-lg"
         >
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3 bg-neutral-950 p-3.5 rounded-xl border border-neutral-800 text-xs">
+            <div className="grid grid-cols-2 gap-3 bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs">
               <div>
-                <span className="text-neutral-400 block text-[11px]">Total Visits</span>
-                <span className="text-base font-extrabold text-white">{selectedCustomer.totalVisits}</span>
+                <span className="text-gray-500 block text-[11px]">Total Visits</span>
+                <span className="text-base font-bold text-gray-900">{selectedCustomer.totalVisits}</span>
               </div>
               <div>
-                <span className="text-neutral-400 block text-[11px]">Last Visit</span>
-                <span className="text-base font-bold text-neutral-200">{selectedCustomer.lastVisit}</span>
+                <span className="text-gray-500 block text-[11px]">Last Visit</span>
+                <span className="text-base font-medium text-gray-800">{selectedCustomer.lastVisit}</span>
               </div>
               {selectedCustomer.upcomingAppointment && (
-                <div className="col-span-2 pt-2 border-t border-neutral-800 text-rose-400 font-medium">
-                  <span className="text-neutral-400 block text-[11px]">Upcoming Appointment:</span>
+                <div className="col-span-2 pt-2 border-t border-gray-200 text-rose-700 font-medium">
+                  <span className="text-gray-500 block text-[11px]">Upcoming Appointment:</span>
                   {selectedCustomer.upcomingAppointment}
                 </div>
               )}
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
                 Services Used History
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {selectedCustomer.servicesUsed.map((srv, idx) => (
                   <span
                     key={idx}
-                    className="text-xs bg-neutral-800/80 text-neutral-300 px-2.5 py-1 rounded-lg border border-neutral-700"
+                    className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded border border-gray-200"
                   >
                     {srv}
                   </span>
@@ -428,12 +428,12 @@ export const SalonDashboardView: React.FC = () => {
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
                 Customer Notes & Preferences
               </h4>
               <div className="space-y-1.5 max-h-32 overflow-y-auto mb-3">
                 {selectedCustomer.notes.map((note, idx) => (
-                  <div key={idx} className="text-xs text-neutral-300 bg-neutral-950 p-2.5 rounded-lg border border-neutral-800">
+                  <div key={idx} className="text-xs text-gray-700 bg-gray-50 p-2 rounded border border-gray-200">
                     • {note}
                   </div>
                 ))}
@@ -446,12 +446,12 @@ export const SalonDashboardView: React.FC = () => {
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
                   placeholder="Add custom preference note..."
-                  className="flex-1 bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-rose-500"
+                  className="flex-1 bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-rose-500"
                 />
                 <button
                   type="submit"
                   disabled={!newNote.trim()}
-                  className="px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs rounded-lg transition disabled:opacity-50"
+                  className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs rounded-md transition disabled:opacity-50"
                 >
                   Add Note
                 </button>

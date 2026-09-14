@@ -44,7 +44,7 @@ export const DemoWorkspace: React.FC = () => {
   const hideSidebar = isFullWidthView || (isPresentationMode && viewMode !== 'dashboard');
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-950 text-neutral-100 relative pb-16">
+    <div className="min-h-screen flex flex-col bg-[#F7F8FA] text-gray-900 relative pb-16">
       {/* Fixed Demo Toolbar with Category Switcher & Notifications */}
       <DemoToolbar />
 
@@ -53,7 +53,7 @@ export const DemoWorkspace: React.FC = () => {
         {!hideSidebar && <DemoSidebar />}
 
         {/* Dynamic Workspace Content with Error Boundary */}
-        <main className={`flex-1 overflow-y-auto ${isFullWidthView ? 'p-0 w-full' : 'p-4 sm:p-6 lg:p-8 max-w-7xl'}`}>
+        <main className={`flex-1 overflow-y-auto ${isFullWidthView ? 'p-0 w-full' : 'p-4 sm:p-6 lg:p-7 max-w-7xl'}`}>
           <DemoErrorBoundary onReset={resetDemo} onReturnToShowroom={returnToShowroom}>
             {renderContent()}
           </DemoErrorBoundary>

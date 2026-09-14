@@ -272,8 +272,8 @@ export const QuickCustomizeModal: React.FC = () => {
         {/* Fast presets pill list */}
         {presets.length > 0 && (
           <div className="space-y-1.5">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
-              <Zap className="w-3 h-3 text-amber-400" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 flex items-center gap-1.5">
+              <Zap className="w-3 h-3 text-amber-500" />
               1-Click Sample Business Presets
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -282,10 +282,10 @@ export const QuickCustomizeModal: React.FC = () => {
                   type="button"
                   key={preset.name}
                   onClick={() => applyPreset(preset)}
-                  className={`text-xs px-2.5 py-1 rounded-md border transition ${
+                  className={`text-xs px-2.5 py-1 rounded-md border font-medium transition ${
                     name === preset.name
-                      ? 'bg-neutral-800 text-white border-white/40'
-                      : 'bg-neutral-950 text-neutral-400 border-neutral-800 hover:text-white hover:border-neutral-700'
+                      ? 'bg-gray-900 text-white border-gray-900 shadow-xs'
+                      : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
                   {preset.name}
@@ -297,7 +297,7 @@ export const QuickCustomizeModal: React.FC = () => {
 
         {/* Business Name */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">
             Prospect Business Name
           </label>
           <input
@@ -305,7 +305,7 @@ export const QuickCustomizeModal: React.FC = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Ranchi Hair Port"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition"
+            className="w-full bg-white border border-gray-200 rounded-lg px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             required
             autoFocus
           />
@@ -313,7 +313,7 @@ export const QuickCustomizeModal: React.FC = () => {
 
         {/* Accent Color */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
             Brand Accent Color
           </label>
           <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
@@ -324,8 +324,8 @@ export const QuickCustomizeModal: React.FC = () => {
                 onClick={() => setAccentColor(opt.id)}
                 className={`flex flex-col items-center gap-1 p-1.5 rounded-lg border text-[11px] font-medium transition ${
                   accentColor === opt.id
-                    ? 'border-white/50 bg-neutral-800 text-white shadow-sm'
-                    : 'border-neutral-800 bg-neutral-950 text-neutral-400 hover:text-white'
+                    ? 'border-indigo-600 bg-indigo-50/70 text-indigo-950 ring-1 ring-indigo-500 shadow-xs'
+                    : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
                 }`}
               >
                 <span className={`w-3.5 h-3.5 rounded-full ${opt.bgClass}`} />
@@ -338,7 +338,7 @@ export const QuickCustomizeModal: React.FC = () => {
         {/* Phone & WhatsApp */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">
               Phone Number
             </label>
             <input
@@ -346,11 +346,11 @@ export const QuickCustomizeModal: React.FC = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+91 94311 00000"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">
               WhatsApp Number
             </label>
             <input
@@ -358,14 +358,14 @@ export const QuickCustomizeModal: React.FC = () => {
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)}
               placeholder="+91 94311 00000"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+              className="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
             />
           </div>
         </div>
 
         {/* Physical Address */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">
             Local City / Area
           </label>
           <input
@@ -373,18 +373,18 @@ export const QuickCustomizeModal: React.FC = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="e.g. Circular Road, Lalpur, Ranchi"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-neutral-600 transition"
+            className="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition"
           />
         </div>
 
         {/* Action bar */}
-        <div className="pt-3 border-t border-neutral-800 flex items-center justify-between">
+        <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
           <button
             type="button"
             onClick={handleOpenFull}
-            className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white transition"
+            className="flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 transition font-medium"
           >
-            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <SlidersHorizontal className="w-3.5 h-3.5 text-gray-500" />
             Full Customizer & Catalogs...
           </button>
 
@@ -392,13 +392,13 @@ export const QuickCustomizeModal: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsQuickCustomizeOpen(false)}
-              className="px-3 py-1.5 text-xs font-medium text-neutral-400 hover:text-white bg-transparent hover:bg-neutral-800 rounded-lg transition"
+              className="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 rounded-lg transition shadow-2xs"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-white/15 hover:bg-white/25 border border-white/20 rounded-lg shadow-sm transition"
+              className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-xs transition"
             >
               <Check className="w-3.5 h-3.5" />
               Apply to Demo

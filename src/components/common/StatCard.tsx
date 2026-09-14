@@ -8,31 +8,31 @@ interface StatCardProps {
 
 export const StatCard: React.FC<StatCardProps> = ({ metric }) => {
   return (
-    <div className="bg-neutral-900/70 border border-neutral-800/80 hover:border-neutral-700/80 rounded-xl p-4 sm:p-5 transition-all duration-200 shadow-sm">
-      <div className="text-xs sm:text-sm font-medium text-neutral-400 mb-1.5 flex items-center justify-between">
-        <span>{metric.label}</span>
+    <div className="bg-white border border-gray-200 rounded-lg p-3.5 sm:p-4 transition-all hover:border-gray-300">
+      <div className="text-xs font-medium text-gray-500 mb-1 flex items-center justify-between">
+        <span className="truncate">{metric.label}</span>
         {metric.change && (
           <span
-            className={`inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-md ${
+            className={`inline-flex items-center text-[11px] font-medium px-1.5 py-0.5 rounded shrink-0 ${
               metric.isPositive
-                ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
-                : 'text-rose-400 bg-rose-500/10 border border-rose-500/20'
+                ? 'text-emerald-700 bg-emerald-50'
+                : 'text-rose-700 bg-rose-50'
             }`}
           >
             {metric.isPositive ? (
-              <TrendingUp className="w-3 h-3 mr-1" />
+              <TrendingUp className="w-3 h-3 mr-0.5" />
             ) : (
-              <TrendingDown className="w-3 h-3 mr-1" />
+              <TrendingDown className="w-3 h-3 mr-0.5" />
             )}
             {metric.change}
           </span>
         )}
       </div>
-      <div className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-1">
+      <div className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
         {metric.value}
       </div>
       {metric.subtext && (
-        <div className="text-xs text-neutral-400 font-normal">
+        <div className="text-xs text-gray-400 font-normal mt-0.5">
           {metric.subtext}
         </div>
       )}

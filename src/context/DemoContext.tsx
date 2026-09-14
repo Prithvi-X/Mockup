@@ -347,76 +347,76 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     switch (color) {
       case 'rose':
         return {
-          accentBg: 'bg-rose-500',
-          accentText: 'text-rose-400',
-          accentBorder: 'border-rose-500/30',
-          accentBadge: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
-          accentButton: 'bg-rose-600 hover:bg-rose-500 text-white shadow-rose-950/40',
-          accentGradient: 'from-rose-500/20 via-rose-500/5 to-transparent'
+          accentBg: 'bg-rose-600',
+          accentText: 'text-rose-700',
+          accentBorder: 'border-rose-200',
+          accentBadge: 'bg-rose-50 text-rose-700 border-rose-200',
+          accentButton: 'bg-rose-600 hover:bg-rose-700 text-white',
+          accentGradient: 'bg-rose-50'
         };
       case 'emerald':
         return {
-          accentBg: 'bg-emerald-500',
-          accentText: 'text-emerald-400',
-          accentBorder: 'border-emerald-500/30',
-          accentBadge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
-          accentButton: 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-950/40',
-          accentGradient: 'from-emerald-500/20 via-emerald-500/5 to-transparent'
+          accentBg: 'bg-emerald-600',
+          accentText: 'text-emerald-700',
+          accentBorder: 'border-emerald-200',
+          accentBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          accentButton: 'bg-emerald-600 hover:bg-emerald-700 text-white',
+          accentGradient: 'bg-emerald-50'
         };
       case 'amber':
         return {
-          accentBg: 'bg-amber-500',
-          accentText: 'text-amber-400',
-          accentBorder: 'border-amber-500/30',
-          accentBadge: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
-          accentButton: 'bg-amber-600 hover:bg-amber-500 text-white shadow-amber-950/40',
-          accentGradient: 'from-amber-500/20 via-amber-500/5 to-transparent'
+          accentBg: 'bg-amber-600',
+          accentText: 'text-amber-800',
+          accentBorder: 'border-amber-200',
+          accentBadge: 'bg-amber-50 text-amber-800 border-amber-200',
+          accentButton: 'bg-amber-600 hover:bg-amber-700 text-white',
+          accentGradient: 'bg-amber-50'
         };
       case 'cyan':
         return {
-          accentBg: 'bg-cyan-500',
-          accentText: 'text-cyan-400',
-          accentBorder: 'border-cyan-500/30',
-          accentBadge: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
-          accentButton: 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-cyan-950/40',
-          accentGradient: 'from-cyan-500/20 via-cyan-500/5 to-transparent'
+          accentBg: 'bg-cyan-600',
+          accentText: 'text-cyan-800',
+          accentBorder: 'border-cyan-200',
+          accentBadge: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+          accentButton: 'bg-cyan-600 hover:bg-cyan-700 text-white',
+          accentGradient: 'bg-cyan-50'
         };
       case 'violet':
         return {
-          accentBg: 'bg-violet-500',
-          accentText: 'text-violet-400',
-          accentBorder: 'border-violet-500/30',
-          accentBadge: 'bg-violet-500/10 text-violet-300 border-violet-500/20',
-          accentButton: 'bg-violet-600 hover:bg-violet-500 text-white shadow-violet-950/40',
-          accentGradient: 'from-violet-500/20 via-violet-500/5 to-transparent'
+          accentBg: 'bg-violet-600',
+          accentText: 'text-violet-700',
+          accentBorder: 'border-violet-200',
+          accentBadge: 'bg-violet-50 text-violet-700 border-violet-200',
+          accentButton: 'bg-violet-600 hover:bg-violet-700 text-white',
+          accentGradient: 'bg-violet-50'
         };
       case 'sky':
         return {
-          accentBg: 'bg-sky-500',
-          accentText: 'text-sky-400',
-          accentBorder: 'border-sky-500/30',
-          accentBadge: 'bg-sky-500/10 text-sky-300 border-sky-500/20',
-          accentButton: 'bg-sky-600 hover:bg-sky-500 text-white shadow-sky-950/40',
-          accentGradient: 'from-sky-500/20 via-sky-500/5 to-transparent'
+          accentBg: 'bg-sky-600',
+          accentText: 'text-sky-800',
+          accentBorder: 'border-sky-200',
+          accentBadge: 'bg-sky-50 text-sky-800 border-sky-200',
+          accentButton: 'bg-sky-600 hover:bg-sky-700 text-white',
+          accentGradient: 'bg-sky-50'
         };
       case 'slate':
         return {
-          accentBg: 'bg-slate-400',
-          accentText: 'text-slate-300',
-          accentBorder: 'border-slate-400/30',
-          accentBadge: 'bg-slate-500/10 text-slate-300 border-slate-400/20',
-          accentButton: 'bg-slate-700 hover:bg-slate-600 text-white shadow-slate-950/40',
-          accentGradient: 'from-slate-500/20 via-slate-500/5 to-transparent'
+          accentBg: 'bg-slate-700',
+          accentText: 'text-slate-800',
+          accentBorder: 'border-slate-200',
+          accentBadge: 'bg-slate-100 text-slate-800 border-slate-200',
+          accentButton: 'bg-slate-800 hover:bg-slate-900 text-white',
+          accentGradient: 'bg-slate-50'
         };
       case 'indigo':
       default:
         return {
-          accentBg: 'bg-indigo-500',
-          accentText: 'text-indigo-400',
-          accentBorder: 'border-indigo-500/30',
-          accentBadge: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20',
-          accentButton: 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-950/40',
-          accentGradient: 'from-indigo-500/20 via-indigo-500/5 to-transparent'
+          accentBg: 'bg-indigo-600',
+          accentText: 'text-indigo-700',
+          accentBorder: 'border-indigo-200',
+          accentBadge: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+          accentButton: 'bg-indigo-600 hover:bg-indigo-700 text-white',
+          accentGradient: 'bg-indigo-50'
         };
     }
   }, [currentCustomization.accentColor]);

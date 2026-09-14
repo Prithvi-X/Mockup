@@ -11,17 +11,17 @@ export const CategorySelector: React.FC = () => {
   const { startQuickDemo } = useWorkflow();
 
   return (
-    <section id="categories" className="py-16 md:py-24 border-b border-neutral-900">
+    <section id="categories" className="py-16 md:py-24 border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-neutral-300 uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-[11px] font-semibold text-gray-700 uppercase tracking-wider mb-3 shadow-2xs">
             Interactive Demos
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
             Choose a business to explore
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-neutral-400">
+          <p className="mt-3 text-sm sm:text-base text-gray-600">
             See what a custom system could look like for your business.
           </p>
         </div>
@@ -31,39 +31,39 @@ export const CategorySelector: React.FC = () => {
           {BUSINESS_CATEGORIES.map((category) => (
             <div
               key={category.id}
-              className="group bg-neutral-900/50 hover:bg-neutral-900 border border-neutral-800/90 hover:border-neutral-700 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-xl"
+              className="group bg-white hover:border-gray-300 border border-gray-200 rounded-xl p-6 flex flex-col justify-between transition-all duration-150 shadow-xs hover:shadow-sm"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-neutral-800 border border-neutral-700/80 flex items-center justify-center text-white">
-                    <DynamicIcon name={category.icon} className="w-5 h-5 text-indigo-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 shadow-2xs">
+                    <DynamicIcon name={category.icon} className="w-5 h-5 text-indigo-600" />
                   </div>
                   {category.badge && (
-                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700 text-neutral-300">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-50 border border-gray-200 text-gray-600">
                       {category.badge}
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-xl font-bold text-white tracking-tight mb-1">
+                <h3 className="text-lg font-bold text-gray-900 tracking-tight mb-0.5">
                   {category.label}
                 </h3>
-                <p className="text-xs font-medium text-neutral-400 mb-3">
+                <p className="text-xs font-medium text-gray-500 mb-2.5">
                   {category.name}
                 </p>
 
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-5">
+                <p className="text-xs text-gray-600 leading-relaxed mb-4">
                   {category.description}
                 </p>
 
                 {/* Preview Features Checklist */}
-                <div className="space-y-2 mb-6 pt-3 border-t border-neutral-800/70">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                <div className="space-y-1.5 mb-5 pt-3 border-t border-gray-100">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
                     Preview Features
                   </div>
                   {category.previewFeatures.map((feat, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-neutral-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-xs text-gray-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -76,18 +76,18 @@ export const CategorySelector: React.FC = () => {
                     openDemo(category.id, 'website');
                     startQuickDemo(category.id, 'quick');
                   }}
-                  className="flex items-center justify-center gap-1.5 text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 px-3 py-2.5 rounded-xl transition shadow-sm active:scale-95"
+                  className="flex items-center justify-center gap-1.5 text-xs font-semibold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-300 px-3 py-2 rounded-lg transition-colors shadow-2xs active:scale-98"
                   title="Run 60-Second Guided Sales Demo"
                 >
-                  <Zap className="w-3.5 h-3.5 fill-current" />
+                  <Zap className="w-3.5 h-3.5 fill-current text-amber-600" />
                   <span>60s Demo</span>
                 </button>
                 <button
                   onClick={() => openDemo(category.id)}
-                  className="flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-neutral-800 hover:bg-neutral-700/90 border border-neutral-700 px-3 py-2.5 rounded-xl transition"
+                  className="flex items-center justify-center gap-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-50 border border-gray-200 px-3 py-2 rounded-lg transition-colors shadow-2xs"
                 >
                   <span>Explore</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
             </div>

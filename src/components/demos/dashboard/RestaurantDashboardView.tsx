@@ -29,52 +29,52 @@ export const RestaurantDashboardView: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 sm:space-y-8">
-      {/* Top Banner */}
-      <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-5 sm:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-5 shadow-sm">
+    <div className="space-y-6">
+      {/* Top Header Card */}
+      <div className="bg-white border border-gray-200 rounded-lg p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
-              Kitchen Display & POS Billing
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-semibold text-amber-700 uppercase tracking-wider">
+              Kitchen Display & POS
             </span>
-            <span className="text-neutral-600">•</span>
-            <span className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-gray-300">•</span>
+            <span className="text-xs font-medium text-emerald-700 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Live Order Queue
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
             {customization.businessName}
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
             Real-time kitchen order tickets (KOT), active table layout, and instant cashier bills.
           </p>
         </div>
 
         <button
           onClick={() => setViewMode('customer')}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-semibold text-xs sm:text-sm shadow-md transition"
+          className="flex items-center gap-2 px-3.5 py-2 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs sm:text-sm shadow-sm transition"
         >
-          <Eye className="w-4 h-4 text-amber-600" />
+          <Eye className="w-4 h-4" />
           <span>Place Order on Customer Side</span>
         </button>
       </div>
 
       {/* KPI Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {stats.map((metric, idx) => (
           <StatCard key={idx} metric={metric} />
         ))}
       </div>
 
       {/* View Sub-Tabs */}
-      <div className="flex items-center gap-2 border-b border-neutral-800 pb-3 text-xs">
+      <div className="flex items-center gap-2 border-b border-gray-200 pb-2 text-xs">
         <button
           onClick={() => setActiveTab('kitchen')}
-          className={`px-3.5 py-1.5 rounded-lg font-semibold transition ${
+          className={`px-3 py-1.5 rounded-md font-medium transition ${
             activeTab === 'kitchen'
-              ? 'bg-neutral-800 text-white shadow-sm border border-neutral-700'
-              : 'text-neutral-400 hover:text-white'
+              ? 'bg-white text-gray-900 shadow-sm border border-gray-200'
+              : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           Kitchen Order Display ({restaurantOrders.length})
@@ -82,10 +82,10 @@ export const RestaurantDashboardView: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('tables')}
-          className={`px-3.5 py-1.5 rounded-lg font-semibold transition ${
+          className={`px-3 py-1.5 rounded-md font-medium transition ${
             activeTab === 'tables'
-              ? 'bg-neutral-800 text-white shadow-sm border border-neutral-700'
-              : 'text-neutral-400 hover:text-white'
+              ? 'bg-white text-gray-900 shadow-sm border border-gray-200'
+              : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           Table Layout & Reservations ({restaurantTables.length} Tables)
@@ -96,51 +96,51 @@ export const RestaurantDashboardView: React.FC = () => {
       {activeTab === 'kitchen' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-white tracking-tight">
+            <h3 className="text-sm font-semibold text-gray-900">
               Live Kitchen Tickets (KOT)
             </h3>
-            <span className="text-xs text-neutral-400">
+            <span className="text-xs text-gray-500">
               Advance ticket: <strong>New → Preparing → Ready → Completed</strong>
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {restaurantOrders.map((order) => (
               <div
                 key={order.id}
-                className="bg-neutral-900/70 border border-neutral-800 rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-sm"
+                className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-between space-y-3 shadow-sm"
               >
                 <div>
-                  <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-gray-100">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-mono font-extrabold text-amber-400">
+                      <span className="text-sm font-mono font-bold text-amber-700">
                         {order.orderNumber}
                       </span>
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-neutral-800 text-neutral-300">
+                      <span className="text-xs font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
                         {order.type} {order.tableNumber ? `(${order.tableNumber})` : ''}
                       </span>
                     </div>
-                    <span className="text-[11px] text-neutral-400">{order.orderTime}</span>
+                    <span className="text-[11px] text-gray-500">{order.orderTime}</span>
                   </div>
 
-                  <div className="py-2.5">
-                    <div className="text-xs font-bold text-white mb-1">{order.customerName}</div>
-                    <div className="space-y-1.5 text-xs text-neutral-300">
+                  <div className="py-2">
+                    <div className="text-xs font-semibold text-gray-900 mb-1">{order.customerName}</div>
+                    <div className="space-y-1 text-xs text-gray-700">
                       {order.items.map((it, idx) => (
                         <div key={idx} className="flex justify-between">
                           <span>
-                            <strong className="text-amber-400">{it.quantity}×</strong> {it.name}
+                            <strong className="text-amber-700 font-semibold">{it.quantity}×</strong> {it.name}
                           </span>
-                          <span className="font-mono text-neutral-400">₹{it.price * it.quantity}</span>
+                          <span className="font-mono text-gray-500">₹{it.price * it.quantity}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-neutral-800 space-y-3">
+                <div className="pt-2.5 border-t border-gray-100 space-y-2.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-400">Status:</span>
+                    <span className="text-gray-500">Status:</span>
                     <StatusBadge status={order.status} />
                   </div>
 
@@ -148,9 +148,9 @@ export const RestaurantDashboardView: React.FC = () => {
                   {order.status !== 'Completed' ? (
                     <button
                       onClick={() => advanceRestaurantOrderStatus(order.id)}
-                      className="w-full py-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs shadow-md transition flex items-center justify-center gap-1.5"
+                      className="w-full py-1.5 px-3 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-medium text-xs shadow-sm transition flex items-center justify-center gap-1.5"
                     >
-                      <ChefHat className="w-4 h-4" />
+                      <ChefHat className="w-3.5 h-3.5" />
                       <span>
                         {order.status === 'New' && 'Accept Order (Start Prep)'}
                         {order.status === 'Preparing' && 'Mark as Ready for Service'}
@@ -158,7 +158,7 @@ export const RestaurantDashboardView: React.FC = () => {
                       </span>
                     </button>
                   ) : (
-                    <div className="w-full py-1.5 text-center text-xs text-emerald-400 font-semibold bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <div className="w-full py-1 text-center text-xs text-emerald-700 font-medium bg-emerald-50 rounded border border-emerald-200">
                       ✓ Order Billed & Closed
                     </div>
                   )}
@@ -171,15 +171,15 @@ export const RestaurantDashboardView: React.FC = () => {
 
       {/* TAB 2: TABLE LAYOUT */}
       {activeTab === 'tables' && (
-        <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-5 shadow-sm space-y-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm space-y-4">
           <div>
-            <h3 className="text-base font-bold text-white tracking-tight">Interactive Table Map</h3>
-            <p className="text-xs text-neutral-400 mt-0.5">
-              Click any table to cycle its status between <strong>Available</strong>, <strong>Reserved</strong>, and <strong>Occupied</strong>.
+            <h3 className="text-sm font-semibold text-gray-900">Interactive Table Map</h3>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Click any table to cycle status between <strong>Available</strong>, <strong>Reserved</strong>, and <strong>Occupied</strong>.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {restaurantTables.map((table) => {
               const nextStatus =
                 table.status === 'Available'
@@ -192,29 +192,29 @@ export const RestaurantDashboardView: React.FC = () => {
                 <div
                   key={table.id}
                   onClick={() => toggleTableStatus(table.id, nextStatus, 'Walk-in Guests')}
-                  className={`p-4 rounded-xl border cursor-pointer transition flex flex-col justify-between space-y-3 ${
+                  className={`p-3.5 rounded-lg border cursor-pointer transition flex flex-col justify-between space-y-2.5 ${
                     table.status === 'Occupied'
-                      ? 'bg-rose-950/40 border-rose-800/80 text-white shadow-sm'
+                      ? 'bg-rose-50 border-rose-200 text-gray-900'
                       : table.status === 'Reserved'
-                      ? 'bg-amber-950/40 border-amber-800/80 text-white shadow-sm'
-                      : 'bg-neutral-950 border-neutral-800 hover:border-neutral-700 text-neutral-300'
+                      ? 'bg-amber-50 border-amber-200 text-gray-900'
+                      : 'bg-gray-50 border-gray-200 hover:border-gray-300 text-gray-700'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-white">{table.name}</span>
-                    <span className="text-[10px] text-neutral-400">{table.capacity} Seats</span>
+                    <span className="font-semibold text-xs text-gray-900">{table.name}</span>
+                    <span className="text-[10px] text-gray-500">{table.capacity} Seats</span>
                   </div>
 
                   <div className="text-xs">
                     <StatusBadge status={table.status} />
                     {table.reservedFor && (
-                      <div className="text-[11px] text-neutral-300 mt-1 truncate">
+                      <div className="text-[11px] text-gray-600 mt-1 truncate">
                         {table.reservedFor}
                       </div>
                     )}
                   </div>
 
-                  <div className="text-[10px] text-neutral-400 text-right">
+                  <div className="text-[10px] text-gray-400 text-right">
                     Tap to set {nextStatus}
                   </div>
                 </div>

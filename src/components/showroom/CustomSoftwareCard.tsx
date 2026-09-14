@@ -6,35 +6,33 @@ export const CustomSoftwareCard: React.FC = () => {
   const { openDemo } = useDemo();
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-950/40 via-neutral-900/60 to-neutral-900/90 p-6 sm:p-8 lg:p-10 shadow-lg">
-      <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div className="rounded-xl border border-gray-200 bg-white p-6 sm:p-8 lg:p-10 shadow-xs">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
             <span>Bespoke Engineering</span>
           </div>
 
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight mb-2">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-2">
             Don't see your business?
           </h3>
 
-          <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed">
             That's the point. We can design the workflow around your business instead of forcing your business into someone else's software.
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-neutral-400">
-            <span className="flex items-center gap-1">
-              <Layers className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-gray-500 font-medium">
+            <span className="flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-indigo-600" />
               Tailored screen layouts
             </span>
-            <span className="flex items-center gap-1">
-              <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5 text-indigo-600" />
               Your exact calculations & rules
             </span>
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               Zero unnecessary menus
             </span>
           </div>
@@ -42,7 +40,7 @@ export const CustomSoftwareCard: React.FC = () => {
 
         <button
           onClick={() => openDemo('custom')}
-          className="shrink-0 flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs sm:text-sm hover:bg-neutral-200 transition shadow-md"
+          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 text-white font-medium text-xs sm:text-sm hover:bg-gray-800 transition-colors shadow-xs"
         >
           <span>Build Something Custom</span>
           <ArrowRight className="w-4 h-4" />

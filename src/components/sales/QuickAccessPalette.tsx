@@ -253,14 +253,14 @@ export const QuickAccessPalette: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-slate-950/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-slate-900/40 backdrop-blur-xs">
       <div 
-        className="w-full max-w-xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden text-slate-100 animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-xl bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden text-gray-900 animate-in fade-in zoom-in-95 duration-150"
         onKeyDown={handleKeyDown}
       >
         {/* Search Box */}
-        <div className="flex items-center px-4 border-b border-slate-800 bg-slate-900/90">
-          <Search className="w-5 h-5 text-slate-400 mr-3" />
+        <div className="flex items-center px-4 border-b border-gray-200 bg-white">
+          <Search className="w-5 h-5 text-gray-400 mr-3" />
           <input
             ref={inputRef}
             type="text"
@@ -270,9 +270,9 @@ export const QuickAccessPalette: React.FC = () => {
               setSelectedIndex(0);
             }}
             placeholder="Type a command or jump to demo... (e.g. Salon, Reset, Quote)"
-            className="w-full py-3.5 bg-transparent text-white placeholder-slate-500 focus:outline-none text-sm"
+            className="w-full py-3 bg-transparent text-gray-900 placeholder-gray-400 focus:outline-none text-sm"
           />
-          <span className="text-[10px] font-mono text-slate-500 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">
+          <span className="text-[10px] font-mono text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">
             ESC
           </span>
         </div>
@@ -280,7 +280,7 @@ export const QuickAccessPalette: React.FC = () => {
         {/* Command List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
-            <div className="p-6 text-center text-xs text-slate-500">
+            <div className="p-6 text-center text-xs text-gray-500">
               No matching commands found.
             </div>
           ) : (
@@ -292,24 +292,24 @@ export const QuickAccessPalette: React.FC = () => {
                   key={cmd.id}
                   onClick={() => cmd.action()}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left text-xs transition-colors ${
                     isSelected 
-                      ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30' 
-                      : 'text-slate-300 hover:bg-slate-800/60 border border-transparent'
+                      ? 'bg-indigo-50 text-indigo-900 border border-indigo-200 font-medium' 
+                      : 'text-gray-700 hover:bg-gray-50 border border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-amber-500/20 text-amber-400' : 'bg-slate-800 text-slate-400'}`}>
+                    <div className={`p-1.5 rounded-md ${isSelected ? 'bg-indigo-100 text-indigo-700' : 'bg-gray-100 text-gray-500'}`}>
                       <Icon className="w-4 h-4" />
                     </div>
                     <div className="truncate">
                       <span className="font-medium">{cmd.title}</span>
-                      <span className="ml-2 text-[10px] text-slate-500 uppercase tracking-wider">{cmd.category}</span>
+                      <span className="ml-2 text-[10px] text-gray-400 uppercase tracking-wider">{cmd.category}</span>
                     </div>
                   </div>
 
                   {cmd.badge && (
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-gray-100 border border-gray-200 text-gray-500">
                       {cmd.badge}
                     </span>
                   )}
@@ -320,7 +320,7 @@ export const QuickAccessPalette: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-[11px] text-slate-500">
+        <div className="px-4 py-2 border-t border-gray-200 bg-gray-50 flex items-center justify-between text-[11px] text-gray-500">
           <div className="flex items-center gap-3">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>

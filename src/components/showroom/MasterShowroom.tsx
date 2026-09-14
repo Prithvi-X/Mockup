@@ -10,7 +10,7 @@ import { CustomizationModal } from '../common/CustomizationModal';
 
 export const MasterShowroom: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-950 text-neutral-100 selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen flex flex-col bg-[#F7F8FA] text-gray-900 selection:bg-indigo-100 selection:text-indigo-900">
       <MasterHeader />
       <main className="flex-1">
         <HeroSection />
