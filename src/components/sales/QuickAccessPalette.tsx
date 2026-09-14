@@ -16,7 +16,8 @@ import {
   Utensils,
   Dumbbell,
   Stethoscope,
-  Briefcase
+  Briefcase,
+  IndianRupee
 } from 'lucide-react';
 import { useDemo } from '../../context/DemoContext';
 import { useWorkflow } from '../../context/WorkflowContext';
@@ -148,6 +149,17 @@ export const QuickAccessPalette: React.FC = () => {
       action: () => {
         setIsQuickAccessOpen(false);
         setViewMode('dashboard');
+      }
+    },
+    {
+      id: 'view-pricing',
+      title: 'Switch to Pricing & Sales Offer Presentation',
+      category: 'Views',
+      icon: IndianRupee,
+      badge: 'O',
+      action: () => {
+        setIsQuickAccessOpen(false);
+        setViewMode('pricing');
       }
     },
     // Presenter

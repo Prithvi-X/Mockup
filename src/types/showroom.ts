@@ -7,7 +7,7 @@ export type BusinessCategory =
   | 'crm'
   | 'custom';
 
-export type DemoViewMode = 'dashboard' | 'customer' | 'features' | 'website';
+export type DemoViewMode = 'dashboard' | 'customer' | 'features' | 'website' | 'pricing';
 
 export type AccentColor =
   | 'indigo'

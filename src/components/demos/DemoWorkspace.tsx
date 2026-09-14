@@ -16,6 +16,7 @@ import { WhatsAppModal } from '../common/WhatsAppModal';
 import { PaymentModal } from '../common/PaymentModal';
 import { PresenterControlBar } from '../sales/PresenterControlBar';
 import { DemoErrorBoundary } from '../common/DemoErrorBoundary';
+import { PricingPresentationView } from '../pricing/PricingPresentationView';
 
 export const DemoWorkspace: React.FC = () => {
   const { category, viewMode, isPresentationMode, resetDemo, returnToShowroom } = useDemo();
@@ -25,6 +26,8 @@ export const DemoWorkspace: React.FC = () => {
       return <CustomSoftwareView />;
     }
     switch (viewMode) {
+      case 'pricing':
+        return <PricingPresentationView />;
       case 'website':
         return <WebsiteViewDispatcher />;
       case 'customer':
@@ -37,8 +40,8 @@ export const DemoWorkspace: React.FC = () => {
     }
   };
 
-  const isWebsite = viewMode === 'website' && category !== 'custom';
-  const hideSidebar = isWebsite || (isPresentationMode && viewMode !== 'dashboard');
+  const isFullWidthView = (viewMode === 'website' || viewMode === 'pricing') && category !== 'custom';
+  const hideSidebar = isFullWidthView || (isPresentationMode && viewMode !== 'dashboard');
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-950 text-neutral-100 relative pb-16">
@@ -50,7 +53,7 @@ export const DemoWorkspace: React.FC = () => {
         {!hideSidebar && <DemoSidebar />}
 
         {/* Dynamic Workspace Content with Error Boundary */}
-        <main className={`flex-1 overflow-y-auto ${isWebsite ? 'p-0 w-full' : 'p-4 sm:p-6 lg:p-8 max-w-7xl'}`}>
+        <main className={`flex-1 overflow-y-auto ${isFullWidthView ? 'p-0 w-full' : 'p-4 sm:p-6 lg:p-8 max-w-7xl'}`}>
           <DemoErrorBoundary onReset={resetDemo} onReturnToShowroom={returnToShowroom}>
             {renderContent()}
           </DemoErrorBoundary>

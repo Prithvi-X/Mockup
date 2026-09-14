@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { BusinessCategory, CustomizationState, DemoViewMode } from '../types/showroom';
 import { DemoSpeedMode } from '../types/salesMode';
+import { DealMode } from '../types/pricing';
 import { BUSINESS_DATA_MAP } from '../data/mockBusinesses';
 
 const STORAGE_KEY = 'atman_demo_customizations_v2';
@@ -30,6 +31,19 @@ interface DemoContextType {
   pinnedDemos: BusinessCategory[];
   pinDemo: (cat: BusinessCategory) => void;
   unpinDemo: (cat: BusinessCategory) => void;
+
+  // Phase 5 Pricing, Competitor Comparison & Sales Offer Engine
+  dealMode: DealMode;
+  setDealMode: (mode: DealMode) => void;
+  selectedPricingTierId: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special';
+  setSelectedPricingTierId: (id: 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special') => void;
+  customPriceOverrides: Record<string, number>;
+  setCustomPriceOverride: (tierId: string, price: number) => void;
+  advancePercentage: number;
+  setAdvancePercentage: (pct: number) => void;
+  isNegotiationDrawerOpen: boolean;
+  setIsNegotiationDrawerOpen: (open: boolean) => void;
+  openPricingForCategory: (cat?: BusinessCategory) => void;
 
   // Modals
   isCustomizeOpen: boolean;
@@ -99,6 +113,38 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     return ['salon', 'restaurant', 'gym'];
   });
+
+  // Phase 5 Pricing & Sales Offer Engine
+  const [dealMode, setDealMode] = useState<DealMode>('launch_offer');
+  const [selectedPricingTierId, setSelectedPricingTierId] = useState<'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special'>('tier_a');
+  const [customPriceOverrides, setCustomPriceOverrides] = useState<Record<string, number>>({});
+  const [advancePercentage, setAdvancePercentage] = useState<number>(50);
+  const [isNegotiationDrawerOpen, setIsNegotiationDrawerOpen] = useState<boolean>(false);
+
+  const setCustomPriceOverride = (tierId: string, price: number) => {
+    setCustomPriceOverrides(prev => ({ ...prev, [tierId]: price }));
+  };
+
+  const getCategoryDefaultTier = (cat: BusinessCategory): 'tier_a' | 'tier_b' | 'tier_c' | 'restaurant_special' => {
+    switch (cat) {
+      case 'salon': return 'tier_a';
+      case 'hotel': return 'tier_b';
+      case 'restaurant': return 'restaurant_special';
+      case 'gym': return 'tier_b';
+      case 'clinic': return 'tier_b';
+      case 'crm':
+      case 'custom':
+      default: return 'tier_c';
+    }
+  };
+
+  const openPricingForCategory = (cat: BusinessCategory = category) => {
+    setCategory(cat);
+    setSelectedPricingTierId(getCategoryDefaultTier(cat));
+    setViewMode('pricing');
+    setScreen('demo');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Modals
   const [isCustomizeOpen, setIsCustomizeOpen] = useState<boolean>(false);
@@ -192,6 +238,7 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const openDemo = (cat: BusinessCategory, mode: DemoViewMode = 'dashboard') => {
     setCategory(cat);
+    setSelectedPricingTierId(getCategoryDefaultTier(cat));
     setViewMode(mode);
     setActiveSidebarTab('overview');
     setScreen('demo');
@@ -201,6 +248,7 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const switchCategory = (cat: BusinessCategory) => {
     setCategory(cat);
+    setSelectedPricingTierId(getCategoryDefaultTier(cat));
     setActiveSidebarTab('overview');
     recordRecent(cat);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -239,6 +287,11 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return next;
     });
+    setDealMode('launch_offer');
+    setAdvancePercentage(50);
+    setCustomPriceOverrides({});
+    setIsNegotiationDrawerOpen(false);
+    setSelectedPricingTierId(getCategoryDefaultTier(category));
     setIsResetConfirmOpen(false);
     setActiveSidebarTab('overview');
     setViewMode('dashboard');
@@ -256,6 +309,11 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (e) {
       // ignore
     }
+    setDealMode('launch_offer');
+    setAdvancePercentage(50);
+    setCustomPriceOverrides({});
+    setIsNegotiationDrawerOpen(false);
+    setSelectedPricingTierId(getCategoryDefaultTier('salon'));
     setDemoSpeedMode('explore');
     setViewMode('dashboard');
     setActiveSidebarTab('overview');
@@ -386,6 +444,17 @@ export const DemoProvider: React.FC<{ children: React.ReactNode }> = ({ children
         pinnedDemos,
         pinDemo,
         unpinDemo,
+        dealMode,
+        setDealMode,
+        selectedPricingTierId,
+        setSelectedPricingTierId,
+        customPriceOverrides,
+        setCustomPriceOverride,
+        advancePercentage,
+        setAdvancePercentage,
+        isNegotiationDrawerOpen,
+        setIsNegotiationDrawerOpen,
+        openPricingForCategory,
         isCustomizeOpen,
         isQuickCustomizeOpen,
         isRequestBuildOpen,

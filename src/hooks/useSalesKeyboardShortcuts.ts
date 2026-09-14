@@ -17,6 +17,7 @@ export const useSalesKeyboardShortcuts = () => {
     isPresentationMode,
     setIsPresentationMode,
     screen,
+    setViewMode,
     resetDemo,
     showToast
   } = useDemo();
@@ -82,6 +83,14 @@ export const useSalesKeyboardShortcuts = () => {
           showToast(`Presentation mode: ${!isPresentationMode ? 'Enabled' : 'Disabled'}`);
           break;
 
+        case 'o':
+          e.preventDefault();
+          if (screen === 'demo') {
+            setViewMode('pricing');
+            showToast('Switched to Pricing & Sales Offer Presentation');
+          }
+          break;
+
         case 'r':
           e.preventDefault();
           if (screen === 'demo') {
@@ -131,6 +140,7 @@ export const useSalesKeyboardShortcuts = () => {
     isPresentationMode,
     setIsPresentationMode,
     screen,
+    setViewMode,
     resetDemo,
     showToast,
     isQuickDemoRunning,

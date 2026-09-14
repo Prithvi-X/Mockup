@@ -13,7 +13,8 @@ import {
   Minimize2, 
   X,
   Sparkles,
-  Command
+  Command,
+  Tag
 } from 'lucide-react';
 import { useDemo } from '../../context/DemoContext';
 import { useWorkflow } from '../../context/WorkflowContext';
@@ -23,6 +24,8 @@ export const PresenterControlBar: React.FC = () => {
   const { 
     screen, 
     category, 
+    viewMode,
+    setViewMode,
     demoSpeedMode, 
     setDemoSpeedMode, 
     isPresentationMode, 
@@ -210,6 +213,20 @@ export const PresenterControlBar: React.FC = () => {
               Explore
             </button>
           </div>
+
+          {/* Pricing & Sales Offer Engine Button */}
+          <button
+            onClick={() => setViewMode('pricing')}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-semibold border transition-all shadow-sm active:scale-95 ${
+              viewMode === 'pricing'
+                ? 'bg-amber-500 text-slate-950 font-bold border-amber-400'
+                : 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border-amber-500/30'
+            }`}
+            title="Open Pricing, Comparison & Sales Offer Engine"
+          >
+            <Tag className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Pricing</span>
+          </button>
 
           {/* Package Quotes & Closing Modal Button */}
           <button

@@ -18,7 +18,8 @@ import {
   FileCode2,
   Maximize2,
   Minimize2,
-  FileText
+  FileText,
+  Tag
 } from 'lucide-react';
 
 export const DemoToolbar: React.FC = () => {
@@ -90,6 +91,14 @@ export const DemoToolbar: React.FC = () => {
               }`}
             >
               Dashboard
+            </button>
+            <button
+              onClick={() => setViewMode('pricing')}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium ${
+                viewMode === 'pricing' ? 'bg-amber-500 text-slate-950 font-bold' : 'text-amber-400 hover:text-white'
+              }`}
+            >
+              Pricing
             </button>
           </div>
 
@@ -230,6 +239,19 @@ export const DemoToolbar: React.FC = () => {
             >
               <Globe className="w-3.5 h-3.5 text-indigo-400" />
               <span>Website</span>
+            </button>
+
+            <button
+              onClick={() => setViewMode('pricing')}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-md font-semibold transition ${
+                viewMode === 'pricing'
+                  ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                  : 'text-amber-400 hover:text-amber-300'
+              }`}
+              title="View Pricing, Competitor Comparison & Sales Offers"
+            >
+              <Tag className="w-3.5 h-3.5" />
+              <span>Pricing</span>
             </button>
 
             <button

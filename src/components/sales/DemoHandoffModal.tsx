@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, 
   Check, 
@@ -15,11 +15,14 @@ import {
   Copy, 
   CheckCheck,
   Zap,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck,
+  IndianRupee
 } from 'lucide-react';
 import { useDemo } from '../../context/DemoContext';
 import { useWorkflow } from '../../context/WorkflowContext';
-import { PACKAGES_CONFIG } from '../../data/packagesConfig';
+import { PRICING_CONFIG } from '../../data/pricingConfig';
+import { PricingTierConfig } from '../../types/pricing';
 import { BusinessCategory } from '../../types/showroom';
 import { SalesRequirementInquiry } from '../../types/salesMode';
 
@@ -41,6 +44,11 @@ export const DemoHandoffModal: React.FC = () => {
     setIsDemoHandoffOpen, 
     customization, 
     category,
+    selectedPricingTierId,
+    setSelectedPricingTierId,
+    dealMode,
+    customPriceOverrides,
+    advancePercentage,
     showToast 
   } = useDemo();
 
@@ -50,7 +58,22 @@ export const DemoHandoffModal: React.FC = () => {
     openWhatsAppModal 
   } = useWorkflow();
 
-  const [activeTab, setActiveTab] = useState<'packages' | 'intake' | 'saved'>('packages');
+  const [activeTab, setActiveTab] = useState<'packages' | 'intake' | 'saved'>('intake');
+
+  // Compute pricing for any tier (floor prices are strictly excluded and never displayed)
+  const getTierPricing = (tier: PricingTierConfig) => {
+    if (tier.id === 'tier_c') {
+      return { regular: 0, finalPrice: 0, advance: 0, isQuote: true };
+    }
+    const overridden = customPriceOverrides[tier.id];
+    const finalPrice = overridden !== undefined 
+      ? overridden 
+      : dealMode === 'standard' 
+      ? tier.regularPrice 
+      : tier.offerPrice;
+    const advance = Math.round((finalPrice * advancePercentage) / 100);
+    return { regular: tier.regularPrice, finalPrice, advance, isQuote: false };
+  };
 
   // Form State
   const [businessName, setBusinessName] = useState(customization.businessName || '');
@@ -63,17 +86,56 @@ export const DemoHandoffModal: React.FC = () => {
     'WhatsApp Instant Slips & SMS Reminders',
     'Owner Real-Time Operations Dashboard'
   ]);
-  const [budgetTier, setBudgetTier] = useState('₹32,000 - ₹55,000 (Recommended)');
+  const [budgetTier, setBudgetTier] = useState('');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
+  // Sync state when modal is opened or tier is selected
+  useEffect(() => {
+    if (isDemoHandoffOpen) {
+      if (customization.businessName) setBusinessName(customization.businessName);
+      if (customization.phone) setPhone(customization.phone);
+      setSelectedCat(category);
+
+      const activeTier = PRICING_CONFIG.tiers[selectedPricingTierId] || PRICING_CONFIG.tiers.tier_b;
+      const tierPricing = getTierPricing(activeTier);
+
+      if (tierPricing.isQuote) {
+        setBudgetTier(`${activeTier.name} (Custom Quote)`);
+      } else {
+        setBudgetTier(`${activeTier.name} — ₹${tierPricing.finalPrice.toLocaleString('en-IN')} (Advance: ₹${tierPricing.advance.toLocaleString('en-IN')})`);
+      }
+    }
+  }, [isDemoHandoffOpen, selectedPricingTierId, customization.businessName, customization.phone, category, dealMode, customPriceOverrides, advancePercentage]);
+
   if (!isDemoHandoffOpen) return null;
 
-  const handleSelectPackage = (pkgTitle: string, price: number) => {
-    setBudgetTier(`₹${price.toLocaleString('en-IN')} (${pkgTitle})`);
+  // Active tiers list (includes restaurant special if restaurant)
+  const activeTiers: PricingTierConfig[] = 
+    selectedCat === 'restaurant'
+      ? [
+          PRICING_CONFIG.tiers.restaurant_special,
+          PRICING_CONFIG.tiers.tier_a,
+          PRICING_CONFIG.tiers.tier_b,
+          PRICING_CONFIG.tiers.tier_c
+        ]
+      : [
+          PRICING_CONFIG.tiers.tier_a,
+          PRICING_CONFIG.tiers.tier_b,
+          PRICING_CONFIG.tiers.tier_c
+        ];
+
+  const handleSelectPackage = (tier: PricingTierConfig) => {
+    setSelectedPricingTierId(tier.id);
+    const tierPricing = getTierPricing(tier);
+    if (tierPricing.isQuote) {
+      setBudgetTier(`${tier.name} (Custom Quote)`);
+    } else {
+      setBudgetTier(`${tier.name} — ₹${tierPricing.finalPrice.toLocaleString('en-IN')} (Advance: ₹${tierPricing.advance.toLocaleString('en-IN')})`);
+    }
     setActiveTab('intake');
-    showToast(`Selected ${pkgTitle} tier for proposal.`);
+    showToast(`Selected ${tier.name} for quotation proposal.`);
   };
 
   const toggleModule = (moduleName: string) => {
@@ -104,7 +166,7 @@ export const DemoHandoffModal: React.FC = () => {
 
     saveRequirementInquiry(inquiry);
     setSubmitted(true);
-    showToast(`Requirements saved for ${inquiry.businessName}!`);
+    showToast(`Proposal recorded for ${inquiry.businessName}!`);
 
     // Simulated WhatsApp Quote Message
     setTimeout(() => {
@@ -113,9 +175,11 @@ export const DemoHandoffModal: React.FC = () => {
         inquiry.phone,
         `Hello ${inquiry.contactName}! Thank you for reviewing the custom software presentation for *${inquiry.businessName}*.\n\n` +
         `Summary of your selected architecture:\n` +
-        `• Target Tier: ${inquiry.budgetTier}\n` +
-        `• Key Modules: ${inquiry.modules.slice(0, 3).join(', ')} (+${Math.max(0, inquiry.modules.length - 3)} more)\n` +
-        `• Next Step: We will prepare your live prototype sandbox within 48 hours.\n\n` +
+        `• Solution Package: ${inquiry.budgetTier}\n` +
+        `• Payment Terms: ${advancePercentage}% Advance to start, balance upon delivery\n` +
+        `• Launch Bonus: ReviewBro.in included free for 2 months\n` +
+        `• Scope Modules: ${inquiry.modules.slice(0, 4).join(', ')}${inquiry.modules.length > 4 ? ` (+${inquiry.modules.length - 4} more)` : ''}\n` +
+        `• Next Step: We will configure your prototype sandbox within 48 hours.\n\n` +
         `Best regards,\nATMAN Software Solutions`,
         `Formal Quotation Slip: ${inquiry.businessName}`
       );
@@ -123,7 +187,7 @@ export const DemoHandoffModal: React.FC = () => {
   };
 
   const handleCopySummary = (item: SalesRequirementInquiry, index: number) => {
-    const summary = `PROSPECT REQUIREMENT SUMMARY:\nBusiness: ${item.businessName}\nContact: ${item.contactName} (${item.phone})\nIndustry: ${item.category}\nBudget Tier: ${item.budgetTier}\nModules: ${item.modules.join(', ')}\nNotes: ${item.notes || 'None'}\nRecorded: ${item.timestamp}`;
+    const summary = `PROSPECT PROPOSAL SUMMARY:\nBusiness: ${item.businessName}\nContact: ${item.contactName} (${item.phone})\nIndustry: ${item.category}\nSelected Package: ${item.budgetTier}\nIncluded Bonus: ReviewBro.in 2 months free\nModules: ${item.modules.join(', ')}\nNotes: ${item.notes || 'None'}\nRecorded: ${item.timestamp}`;
     navigator.clipboard.writeText(summary);
     setCopiedId(`saved-${index}`);
     setTimeout(() => setCopiedId(null), 2000);
@@ -162,17 +226,6 @@ export const DemoHandoffModal: React.FC = () => {
         {/* Tab Buttons */}
         <div className="flex border-b border-slate-800 px-6 bg-slate-900/50 text-sm font-medium">
           <button
-            onClick={() => setActiveTab('packages')}
-            className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
-              activeTab === 'packages'
-                ? 'border-emerald-400 text-emerald-400 font-semibold'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <DollarSign className="w-4 h-4" />
-            <span>Package Cards (Transparent Pricing)</span>
-          </button>
-          <button
             onClick={() => setActiveTab('intake')}
             className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
               activeTab === 'intake'
@@ -182,6 +235,17 @@ export const DemoHandoffModal: React.FC = () => {
           >
             <FileText className="w-4 h-4" />
             <span>Record Prospect Requirements</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('packages')}
+            className={`py-3 px-4 border-b-2 transition-all flex items-center gap-2 ${
+              activeTab === 'packages'
+                ? 'border-emerald-400 text-emerald-400 font-semibold'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <DollarSign className="w-4 h-4" />
+            <span>Investment Packages</span>
           </button>
           {savedInquiries.length > 0 && (
             <button
@@ -198,84 +262,14 @@ export const DemoHandoffModal: React.FC = () => {
           )}
         </div>
 
-        {/* TAB 1: Package Cards */}
-        {activeTab === 'packages' && (
-          <div className="p-6 space-y-6 max-h-[65vh] overflow-y-auto">
-            <div className="text-center max-w-xl mx-auto space-y-1">
-              <h3 className="text-lg font-bold text-white">Transparent Software Investment Tiers</h3>
-              <p className="text-xs text-slate-400">
-                100% custom-built for local business ownership. No recurring monthly revenue share or transaction commissions.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-              {PACKAGES_CONFIG.map((pkg) => (
-                <div
-                  key={pkg.id}
-                  className={`rounded-2xl p-5 border flex flex-col justify-between transition-all relative ${
-                    pkg.isPopular
-                      ? 'bg-slate-800/90 border-amber-500/70 shadow-xl shadow-amber-500/10 ring-1 ring-amber-500/30'
-                      : 'bg-slate-800/40 border-slate-700/80 hover:bg-slate-800/70'
-                  }`}
-                >
-                  {pkg.isPopular && (
-                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full shadow">
-                      Most Popular
-                    </div>
-                  )}
-
-                  <div>
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
-                      {pkg.tag}
-                    </span>
-                    <h4 className="text-base font-bold text-white mt-0.5">{pkg.title}</h4>
-                    
-                    <div className="mt-3 mb-3">
-                      <span className="text-xs text-slate-400">Starting from</span>
-                      <div className="text-2xl font-extrabold text-amber-400">
-                        ₹{pkg.startingPrice.toLocaleString('en-IN')}
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                      {pkg.description}
-                    </p>
-
-                    <div className="space-y-2 pt-3 border-t border-slate-700/60 mb-5">
-                      {pkg.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                          <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => handleSelectPackage(pkg.title, pkg.startingPrice)}
-                    className={`w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
-                      pkg.isPopular
-                        ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
-                        : 'bg-slate-700 hover:bg-slate-600 text-white'
-                    }`}
-                  >
-                    <span>Choose {pkg.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 2: Save Requirements Form */}
+        {/* TAB 1: Save Requirements Form */}
         {activeTab === 'intake' && (
           <form onSubmit={handleSaveInquiry} className="p-6 space-y-5 max-h-[65vh] overflow-y-auto">
             {submitted && (
               <div className="p-4 bg-emerald-500/15 border border-emerald-500/30 rounded-2xl flex items-center justify-between gap-3 text-emerald-300 text-xs animate-in fade-in">
                 <div className="flex items-center gap-2">
                   <CheckCheck className="w-5 h-5 text-emerald-400" />
-                  <span>Requirement saved! Simulated WhatsApp quote generated for prospect review.</span>
+                  <span>Proposal recorded! Simulated WhatsApp quote generated for prospect review.</span>
                 </div>
                 <button
                   type="button"
@@ -362,22 +356,30 @@ export const DemoHandoffModal: React.FC = () => {
               </div>
             </div>
 
-            {/* Target Budget Tier & Timeline */}
+            {/* Target Budget Tier & Payment Structure */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-                  Target Budget Tier
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <IndianRupee className="w-3.5 h-3.5 text-amber-400" />
+                  Target Package / Budget
                 </label>
                 <select
                   value={budgetTier}
                   onChange={(e) => setBudgetTier(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
                 >
-                  <option value="₹18,000 (Starter Website)">₹18,000 (Starter Website)</option>
-                  <option value="₹32,000 (Website + Booking)">₹32,000 (Website + Booking)</option>
-                  <option value="₹55,000 (Full Business Suite)">₹55,000 (Full Business Management Suite)</option>
-                  <option value="₹85,000+ (Custom Enterprise)">₹85,000+ (Custom Enterprise)</option>
-                  <option value="₹32,000 - ₹55,000 (Recommended)">₹32,000 - ₹55,000 (Flexible Scope)</option>
+                  {activeTiers.map((t) => {
+                    const p = getTierPricing(t);
+                    const label = p.isQuote 
+                      ? `${t.name} (Custom Quote)`
+                      : `${t.name} — ₹${p.finalPrice.toLocaleString('en-IN')} (Advance: ₹${p.advance.toLocaleString('en-IN')})${t.isPopular ? ' ★ Recommended' : ''}`;
+                    return (
+                      <option key={t.id} value={label}>
+                        {label}
+                      </option>
+                    );
+                  })}
+                  <option value="Custom Negotiated Scope">Custom Negotiated Scope</option>
                 </select>
               </div>
 
@@ -389,10 +391,29 @@ export const DemoHandoffModal: React.FC = () => {
                   type="text"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. Needs Hindi language option, 2 receipt printers"
+                  placeholder="e.g. Needs Hindi language, 2 receipt printers, staff logins"
                   className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
                 />
               </div>
+            </div>
+
+            {/* Transparent Terms & Launch Bonus Callout */}
+            <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="font-bold text-white block">Transparent Terms & Bonus Included</span>
+                  <span className="text-slate-400">
+                    50% advance to start • 50% upon delivery • {PRICING_CONFIG.bonus.exactHeadline}
+                  </span>
+                </div>
+              </div>
+
+              <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-medium self-start sm:self-center shrink-0">
+                Zero Monthly SaaS Fees
+              </span>
             </div>
 
             {/* Action Buttons */}
@@ -409,6 +430,97 @@ export const DemoHandoffModal: React.FC = () => {
               </button>
             </div>
           </form>
+        )}
+
+        {/* TAB 2: Package Cards (Transparent Phase 5 Pricing) */}
+        {activeTab === 'packages' && (
+          <div className="p-6 space-y-6 max-h-[65vh] overflow-y-auto">
+            <div className="text-center max-w-xl mx-auto space-y-1">
+              <h3 className="text-lg font-bold text-white">Transparent Software Investment Packages</h3>
+              <p className="text-xs text-slate-400">
+                100% custom-built for local business ownership. No recurring monthly revenue share or transaction commissions.
+              </p>
+            </div>
+
+            <div className={`grid grid-cols-1 md:grid-cols-2 ${activeTiers.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-4 pt-2`}>
+              {activeTiers.map((tier) => {
+                const pricing = getTierPricing(tier);
+                return (
+                  <div
+                    key={tier.id}
+                    className={`rounded-2xl p-5 border flex flex-col justify-between transition-all relative ${
+                      tier.isPopular
+                        ? 'bg-slate-800/90 border-amber-500/70 shadow-xl shadow-amber-500/10 ring-1 ring-amber-500/30'
+                        : 'bg-slate-800/40 border-slate-700/80 hover:bg-slate-800/70'
+                    }`}
+                  >
+                    {tier.isPopular && (
+                      <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full shadow">
+                        Most Popular
+                      </div>
+                    )}
+
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+                        {tier.tagline}
+                      </span>
+                      <h4 className="text-base font-bold text-white mt-0.5">{tier.name}</h4>
+                      
+                      <div className="mt-3 mb-3">
+                        {pricing.isQuote ? (
+                          <div className="text-2xl font-extrabold text-amber-400">
+                            Custom Quote
+                          </div>
+                        ) : (
+                          <div>
+                            <div className="flex items-baseline gap-2">
+                              <span className="text-2xl font-extrabold text-amber-400">
+                                ₹{pricing.finalPrice.toLocaleString('en-IN')}
+                              </span>
+                              {pricing.regular > pricing.finalPrice && (
+                                <span className="text-xs text-slate-500 line-through">
+                                  ₹{pricing.regular.toLocaleString('en-IN')}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[11px] text-emerald-400 font-semibold mt-0.5">
+                              Advance ({advancePercentage}%): ₹{pricing.advance.toLocaleString('en-IN')}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                        {tier.description}
+                      </p>
+
+                      <div className="space-y-2 pt-3 border-t border-slate-700/60 mb-5">
+                        {tier.features.slice(0, 5).map((feat, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                            <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                            <span className="line-clamp-2">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleSelectPackage(tier)}
+                      className={`w-full py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95 ${
+                        tier.isPopular
+                          ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20'
+                          : 'bg-slate-700 hover:bg-slate-600 text-white'
+                      }`}
+                    >
+                      <span>Choose {tier.name}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         )}
 
         {/* TAB 3: Saved Inquiries */}
@@ -475,7 +587,7 @@ export const DemoHandoffModal: React.FC = () => {
         {/* Footer */}
         <div className="p-4 px-6 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-xs text-slate-400">
           <span>
-            Ready to deploy: All software solutions are standalone and offline-hardened.
+            100% Client-Owned • No monthly commissions • ReviewBro.in 2 months bonus included
           </span>
           <button
             onClick={() => setIsDemoHandoffOpen(false)}
